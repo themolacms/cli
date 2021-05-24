@@ -1,5 +1,5 @@
 {
-  "name": "mola",
+  "name": "@molacms/cli",
   "version": "0.0.1",
   "description": "The Mola CMS all-in-one CLI",
   "author": "Lam Nhan",
@@ -31,10 +31,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lamnhan/seminjecto-cli.git"
+    "url": "https://github.com/themolacms/cli.git"
   },
   "bugs": {
-    "url": "https://github.com/lamnhan/seminjecto-cli/issues"
+    "url": "https://github.com/themolacms/cli/issues"
   },
   "dependencies": {
     "chalk": "^4.1.0",

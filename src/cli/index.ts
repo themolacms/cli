@@ -36,7 +36,6 @@ export class Cli {
 
     return commander;
   }
-
 }
 
 type CommandDef = [string | string[], string, ...Array<[string, string]>];

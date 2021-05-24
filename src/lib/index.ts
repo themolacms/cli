@@ -1,7 +1,3 @@
-
 export class Lib {
-
-  constructor() {
-  }
-
+  constructor() {}
 }
