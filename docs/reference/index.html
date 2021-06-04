@@ -85,7 +85,7 @@
 					</a></h2>
 					<p>The Mola CMS all-in-one CLI</p>
 					<ul>
-						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git</code></a></li>
+						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git</code></a></li>
 						<li><a href="#command-help"><code>mola help</code></a></li>
 						<li><a href="#command-*"><code>mola *</code></a></li>
 					</ul>
@@ -95,14 +95,14 @@
 					</a></h3>
 					<p>Create a new project.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">mola new &lt;theme&gt; &lt;projectName&gt; [appUrl] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --i18n --skip-install --skip-git
-mola start &lt;theme&gt; &lt;projectName&gt; [appUrl] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --i18n --skip-install --skip-git
-mola n &lt;theme&gt; &lt;projectName&gt; [appUrl] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --i18n --skip-install --skip-git</code></pre>
+					<pre><code class="language-sh">mola new &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
+mola start &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
+mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;theme&gt;</code>: Theme input.</li>
 						<li><code>&lt;projectName&gt;</code>: The project name.</li>
-						<li><code>[appUrl]</code>: The web app url.</li>
+						<li><code>[appDomain]</code>: The web app domain name.</li>
 						<li><code>[appName]</code>: The web app name.</li>
 						<li><code>[appDescription]</code>: The web app description.</li>
 					</ul>
@@ -110,9 +110,10 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appUrl] [appName] [appDescription] --<
 					<ul>
 						<li><code>-s, --source [value]</code>: Custom theme source (url to .zip).</li>
 						<li><code>-d, --deploy [value]</code>: Deploy service (github/firebase/netlify).</li>
-						<li><code>-l, --i18n</code>: Enable I18N.</li>
-						<li><code>-i, --skip-install</code>: Does not install dependency packages.</li>
-						<li><code>-g, --skip-git</code>: Does not initialize a git repository.</li>
+						<li><code>-t, --theme [value]</code>: Additional themes (commna-separated).</li>
+						<li><code>-l, --locale [value]</code>: Additional locales (commna-separated).</li>
+						<li><code>-i, --skip-install</code>: Do not install dependency packages.</li>
+						<li><code>-g, --skip-git</code>: Do not initialize a git repository.</li>
 					</ul>
 					<h3><a name="command-help"><p><code>help</code></p>
 					</a></h3>

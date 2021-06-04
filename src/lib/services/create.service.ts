@@ -68,15 +68,8 @@ export class CreateService {
      * General modifications
      */
 
-    // mola.json
-    molaDotJson.projectName = projectName;
-    molaDotJson.domain = appDomain;
-    molaDotJson.name = appName;
-    molaDotJson.description = appDescription;
-    await this.fileService.createJson(
-      resolve(projectPath, 'mola.json'),
-      molaDotJson
-    );
+    // docs/ (remove)
+    this.fileService.removeFiles([resolve(projectPath, 'docs')]);
 
     // angular.json
     await this.fileService.changeContent(
@@ -85,6 +78,23 @@ export class CreateService {
         [vendorProjectName]: projectName,
       },
       true
+    );
+
+    // package.json
+    await this.fileService.changeContent(resolve(projectPath, 'package.json'), {
+      '"name": "starter-blank"': `"name": "${projectName}"`,
+      [vendorDescription]: appDescription,
+      [vendorDomain]: appDomain,
+    });
+
+    // mola.json
+    molaDotJson.projectName = projectName;
+    molaDotJson.domain = appDomain;
+    molaDotJson.name = appName;
+    molaDotJson.description = appDescription;
+    await this.fileService.createJson(
+      resolve(projectPath, 'mola.json'),
+      molaDotJson
     );
 
     // src/index.html
@@ -115,11 +125,6 @@ export class CreateService {
 
     // github
     if (deployTarget === 'github') {
-      // src/CNAME
-      await this.fileService.createFile(
-        resolve(projectPath, 'src', 'CNAME'),
-        appDomain
-      );
       // src/404.html
       await this.fileService.changeContent(
         resolve(projectPath, 'src', '404.html'),
@@ -127,40 +132,51 @@ export class CreateService {
           [vendorName]: appName,
         }
       );
+
+      // src/CNAME
+      await this.fileService.createFile(
+        resolve(projectPath, 'src', 'CNAME'),
+        appDomain
+      );
     }
 
     // firebase/netlify
     else {
-      // remove src/CNAME
-      // and src/404.html
-      this.fileService.removeFiles([
-        resolve(projectPath, 'src', 'CNAME'),
-        resolve(projectPath, 'src', '404.html'),
-      ]);
-      // remove src/index.html script hacks
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'index.html'),
-        content =>
-          content.replace(
-            /<script title="Github Pages Only"(.*?)<\/script>/g,
-            ''
-          )
-      );
       // angular.json
       await this.fileService.changeContent(
         resolve(projectPath, 'angular.json'),
         {
           '"outputPath": "docs"': '"outputPath": "www"',
-          '"src/CNAME",': '',
-          '"src/404.html"': '',
+          '\n              "src/404.html",': '',
+          '\n              "src/CNAME"': '',
         }
       );
-      // package.json deploy script
+
+      // package.json (deploy script)
       await this.fileService.changeContent(
         resolve(projectPath, 'package.json'),
         {
           '"deploy": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy": "${deployTarget} deploy --only hosting"`,
         }
+      );
+
+      // src/404.html & src/CNAME (remove)
+      this.fileService.removeFiles([
+        resolve(projectPath, 'src', '404.html'),
+        resolve(projectPath, 'src', 'CNAME'),
+      ]);
+
+      // src/index.html (remove script hacks)
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'index.html'),
+        content =>
+          content.replace(
+            content.slice(
+              content.indexOf('<!-- Github Pages Only -->'),
+              content.indexOf('</script>') + 9
+            ),
+            ''
+          )
       );
     }
 
