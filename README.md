@@ -10,9 +10,10 @@
 
 - [Command overview](#cli-command-overview)
 - [Command reference](#cli-command-reference)
+  - [`new`](#command-new)
   - [`help`](#command-help)
   - [`*`](#command-*)
-- [Detail API reference](https://example.com)
+- [Detail API reference](https://mola-cli.lamnhan.com)
 
 
 </section>
@@ -24,11 +25,41 @@
 
 The Mola CMS all-in-one CLI
 
+- [`mola new|start|n <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git`](#command-new)
 - [`mola help`](#command-help)
 - [`mola *`](#command-*)
 
 <h2><a name="cli-command-reference"><p>Command reference</p>
 </a></h2>
+
+<h3><a name="command-new"><p><code>new</code></p>
+</a></h3>
+
+Create a new project.
+
+**Usage:**
+
+```sh
+mola new <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git
+mola start <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git
+mola n <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git
+```
+
+**Parameters:**
+
+- `<theme>`: Theme input.
+- `<projectName>`: The project name.
+- `[appUrl]`: The web app url.
+- `[appName]`: The web app name.
+- `[appDescription]`: The web app description.
+
+**Options:**
+
+- `-s, --source [value]`: Custom theme source (url to .zip).
+- `-d, --deploy [value]`: Deploy service (github/firebase/netlify).
+- `-l, --i18n`: Enable I18N.
+- `-i, --skip-install`: Does not install dependency packages.
+- `-g, --skip-git`: Does not initialize a git repository.
 
 <h3><a name="command-help"><p><code>help</code></p>
 </a></h3>
