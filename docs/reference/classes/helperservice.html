@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Cli | @molacms/cli</title>
+	<title>HelperService | @molacms/cli</title>
 	<meta name="description" content="Documentation for @molacms/cli">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="cli.html">Cli</a>
+					<a href="helperservice.html">HelperService</a>
 				</li>
 			</ul>
-			<h1>Class Cli</h1>
+			<h1>Class HelperService</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Cli</span>
+						<span class="target">HelperService</span>
 					</li>
 				</ul>
 			</section>
@@ -79,21 +79,13 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="cli.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cli.html#commander" class="tsd-kind-icon">commander</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cli.html#newcommand" class="tsd-kind-icon">new<wbr>Command</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cli.html#newcommanddef" class="tsd-kind-icon">new<wbr>Command<wbr>Def</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="helperservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cli.html#getapp" class="tsd-kind-icon">get<wbr>App</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="helperservice.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,88 +97,48 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Cli<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cli.html" class="tsd-signature-type">Cli</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Helper<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="helperservice.html" class="tsd-signature-type">HelperService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/index.ts#L29">cli/index.ts:29</a></li>
+									<li>Defined in lib/services/helper.service.ts:1</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="cli.html" class="tsd-signature-type">Cli</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="helperservice.html" class="tsd-signature-type">HelperService</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="commander" class="tsd-anchor"></a>
-					<h3>commander</h3>
-					<div class="tsd-signature tsd-kind-icon">commander<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&#x27;mola&#x27;, &#x27;The Mola CMS all-in-one CLI&#x27;]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/index.ts#L11">cli/index.ts:11</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="newcommand" class="tsd-anchor"></a>
-					<h3>new<wbr>Command</h3>
-					<div class="tsd-signature tsd-kind-icon">new<wbr>Command<span class="tsd-signature-symbol">:</span> <a href="newcommand.html" class="tsd-signature-type">NewCommand</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/index.ts#L9">cli/index.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="newcommanddef" class="tsd-anchor"></a>
-					<h3>new<wbr>Command<wbr>Def</h3>
-					<div class="tsd-signature tsd-kind-icon">new<wbr>Command<wbr>Def<span class="tsd-signature-symbol">:</span> <a href="../globals.html#commanddef" class="tsd-signature-type">CommandDef</a><span class="tsd-signature-symbol"> = [[&#x27;new &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription]&#x27;, &#x27;start&#x27;, &#x27;n&#x27;],&#x27;Create a new project.&#x27;,[&#x27;-s, --source [value]&#x27;, &#x27;Custom theme source (url to .zip).&#x27;],[&#x27;-d, --deploy [value]&#x27;, &#x27;Deploy service (github/firebase/netlify).&#x27;],[&#x27;-t, --theme [value]&#x27;, &#x27;Additional themes (commna-separated).&#x27;],[&#x27;-l, --locale [value]&#x27;, &#x27;Additional locales (commna-separated).&#x27;],[&#x27;-i, --skip-install&#x27;, &#x27;Do not install dependency packages.&#x27;],[&#x27;-g, --skip-git&#x27;, &#x27;Do not initialize a git repository.&#x27;],]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/index.ts#L20">cli/index.ts:20</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>Theme input.</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The project name.</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The web app domain name.</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The web app name.</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The web app description.</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getapp" class="tsd-anchor"></a>
-					<h3>get<wbr>App</h3>
+					<a name="parseparams" class="tsd-anchor"></a>
+					<h3>parse<wbr>Params</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>App<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Command</span></li>
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Params<span class="tsd-signature-symbol">(</span>param<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, exclude<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, separator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/index.ts#L40">cli/index.ts:40</a></li>
+									<li>Defined in lib/services/helper.service.ts:4</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Command</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>param: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> exclude: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> separator: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;,&quot;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -202,30 +154,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="cli.html" class="tsd-kind-icon">Cli</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="cli.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cli.html#commander" class="tsd-kind-icon">commander</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cli.html#newcommand" class="tsd-kind-icon">new<wbr>Command</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cli.html#newcommanddef" class="tsd-kind-icon">new<wbr>Command<wbr>Def</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="cli.html#getapp" class="tsd-kind-icon">get<wbr>App</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="createservice.html" class="tsd-kind-icon">Create<wbr>Service</a>
 					</li>
@@ -235,9 +166,21 @@
 					<li class=" tsd-kind-class">
 						<a href="fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="helperservice.html" class="tsd-kind-icon">Helper<wbr>Service</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="helperservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="helperservice.html#parseparams" class="tsd-kind-icon">parse<wbr>Params</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="lib.html" class="tsd-kind-icon">Lib</a>
 					</li>

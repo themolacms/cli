@@ -1,5 +1,6 @@
 import {resolve} from 'path';
-import {camelCase, capitalCase, pascalCase} from 'change-case';
+
+import {MolaDotJson} from '../types/mola.type';
 
 import {FileService} from './file.service';
 import {DownloadService} from './download.service';
@@ -31,30 +32,150 @@ export class CreateService {
     }
   }
 
-  async create(
-    resourceUrl: string,
-    projectPath: string,
-    appUrl: string,
-    appName: string,
-    appDescription: string
-  ) {
+  async create(resourceUrl: string, projectPath: string) {
     await this.downloadService.downloadAndUnzip(
       resourceUrl,
       projectPath + '/download.zip'
     );
-    return this.modifyContent(projectPath, appUrl, appName, appDescription);
   }
 
-  private async modifyContent(
+  async modify(
     projectPath: string,
-    appUrl: string,
+    appDomain: string,
     appName: string,
-    appDescription: string
+    appDescription: string,
+    deployTarget: string,
+    addThemes: string[],
+    addLocales: string[]
   ) {
-    // const name = projectPath.replace(/\\/g, '/').split('/').pop() as string;
-    // const nameCamel = camelCase(name);
-    // const namePascal = pascalCase(name);
-    // const nameCapital = capitalCase(name);
-    // console.log(appUrl, appName, appDescription);
+    // get project name
+    const projectName = projectPath
+      .replace(/\\/g, '/')
+      .split('/')
+      .pop() as string;
+    // load mola.json
+    const molaDotJson = await this.fileService.readJson<MolaDotJson>(
+      resolve(projectPath, 'mola.json')
+    );
+    const {
+      domain: vendorDomain,
+      name: vendorName,
+      description: vendorDescription,
+      projectName: vendorProjectName,
+    } = molaDotJson.vendor;
+
+    /**
+     * General modifications
+     */
+
+    // mola.json
+    molaDotJson.projectName = projectName;
+    molaDotJson.domain = appDomain;
+    molaDotJson.name = appName;
+    molaDotJson.description = appDescription;
+    await this.fileService.createJson(
+      resolve(projectPath, 'mola.json'),
+      molaDotJson
+    );
+
+    // angular.json
+    await this.fileService.changeContent(
+      resolve(projectPath, 'angular.json'),
+      {
+        [vendorProjectName]: projectName,
+      },
+      true
+    );
+
+    // src/index.html
+    await this.fileService.changeContent(
+      resolve(projectPath, 'src', 'index.html'),
+      {
+        [vendorDomain]: appDomain,
+        [vendorName]: appName,
+        [vendorDescription]: appDescription,
+      },
+      true
+    );
+
+    // src/app/app.component.ts
+    await this.fileService.changeContent(
+      resolve(projectPath, 'src', 'app', 'app.component.ts'),
+      {
+        [vendorDomain]: appDomain,
+        [vendorName]: appName,
+        [vendorDescription]: appDescription,
+      },
+      true
+    );
+
+    /**
+     * Specific deploy target modifiations
+     */
+
+    // github
+    if (deployTarget === 'github') {
+      // src/CNAME
+      await this.fileService.createFile(
+        resolve(projectPath, 'src', 'CNAME'),
+        appDomain
+      );
+      // src/404.html
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', '404.html'),
+        {
+          [vendorName]: appName,
+        }
+      );
+    }
+
+    // firebase/netlify
+    else {
+      // remove src/CNAME
+      // and src/404.html
+      this.fileService.removeFiles([
+        resolve(projectPath, 'src', 'CNAME'),
+        resolve(projectPath, 'src', '404.html'),
+      ]);
+      // remove src/index.html script hacks
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'index.html'),
+        content =>
+          content.replace(
+            /<script title="Github Pages Only"(.*?)<\/script>/g,
+            ''
+          )
+      );
+      // angular.json
+      await this.fileService.changeContent(
+        resolve(projectPath, 'angular.json'),
+        {
+          '"outputPath": "docs"': '"outputPath": "www"',
+          '"src/CNAME",': '',
+          '"src/404.html"': '',
+        }
+      );
+      // package.json deploy script
+      await this.fileService.changeContent(
+        resolve(projectPath, 'package.json'),
+        {
+          '"deploy": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy": "${deployTarget} deploy --only hosting"`,
+        }
+      );
+    }
+
+    /**
+     * Extra modifications
+     */
+
+    // additional themes
+    if (addThemes.length) {
+      //
+    }
+
+    // additional locale
+    if (addLocales.length) {
+      //
+    }
   }
 }

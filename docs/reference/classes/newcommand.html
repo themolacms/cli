@@ -97,17 +97,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>New<wbr>Command<span class="tsd-signature-symbol">(</span>fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, createService<span class="tsd-signature-symbol">: </span><a href="createservice.html" class="tsd-signature-type">CreateService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="newcommand.html" class="tsd-signature-type">NewCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>New<wbr>Command<span class="tsd-signature-symbol">(</span>helperService<span class="tsd-signature-symbol">: </span><a href="helperservice.html" class="tsd-signature-type">HelperService</a>, fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, createService<span class="tsd-signature-symbol">: </span><a href="createservice.html" class="tsd-signature-type">CreateService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="newcommand.html" class="tsd-signature-type">NewCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in cli/commands/new.command.ts:16</li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L18">cli/commands/new.command.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>helperService: <a href="helperservice.html" class="tsd-signature-type">HelperService</a></h5>
+								</li>
 								<li>
 									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
 								</li>
@@ -126,13 +129,13 @@
 					<a name="run" class="tsd-anchor"></a>
 					<h3>run</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>theme<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, projectName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDescription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, commandOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/newcommandoptions.html" class="tsd-signature-type">NewCommandOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>theme<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, projectName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDomain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDescription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, commandOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/newcommandoptions.html" class="tsd-signature-type">NewCommandOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in cli/commands/new.command.ts:22</li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L25">cli/commands/new.command.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -144,7 +147,7 @@
 									<h5>projectName: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>appUrl: <span class="tsd-signature-type">string</span></h5>
+									<h5>appDomain: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>appName: <span class="tsd-signature-type">string</span></h5>
@@ -185,6 +188,9 @@
 						<a href="fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="helperservice.html" class="tsd-kind-icon">Helper<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="lib.html" class="tsd-kind-icon">Lib</a>
 					</li>
 				</ul>
@@ -203,7 +209,16 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/generalproperties.html" class="tsd-kind-icon">General<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/moladotjson.html" class="tsd-kind-icon">Mola<wbr>Dot<wbr>Json</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/vendorproperties.html" class="tsd-kind-icon">Vendor<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>

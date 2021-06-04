@@ -25,7 +25,7 @@
 
 The Mola CMS all-in-one CLI
 
-- [`mola new|start|n <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git`](#command-new)
+- [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git`](#command-new)
 - [`mola help`](#command-help)
 - [`mola *`](#command-*)
 
@@ -40,16 +40,16 @@ Create a new project.
 **Usage:**
 
 ```sh
-mola new <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git
-mola start <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git
-mola n <theme> <projectName> [appUrl] [appName] [appDescription] --source [value] --deploy [value] --i18n --skip-install --skip-git
+mola new <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
+mola start <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
+mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
 ```
 
 **Parameters:**
 
 - `<theme>`: Theme input.
 - `<projectName>`: The project name.
-- `[appUrl]`: The web app url.
+- `[appDomain]`: The web app domain name.
 - `[appName]`: The web app name.
 - `[appDescription]`: The web app description.
 
@@ -57,9 +57,10 @@ mola n <theme> <projectName> [appUrl] [appName] [appDescription] --source [value
 
 - `-s, --source [value]`: Custom theme source (url to .zip).
 - `-d, --deploy [value]`: Deploy service (github/firebase/netlify).
-- `-l, --i18n`: Enable I18N.
-- `-i, --skip-install`: Does not install dependency packages.
-- `-g, --skip-git`: Does not initialize a git repository.
+- `-t, --theme [value]`: Additional themes (commna-separated).
+- `-l, --locale [value]`: Additional locales (commna-separated).
+- `-i, --skip-install`: Do not install dependency packages.
+- `-g, --skip-git`: Do not initialize a git repository.
 
 <h3><a name="command-help"><p><code>help</code></p>
 </a></h3>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NewCommandOptions | @molacms/cli</title>
+	<title>VendorProperties | @molacms/cli</title>
 	<meta name="description" content="Documentation for @molacms/cli">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="newcommandoptions.html">NewCommandOptions</a>
+					<a href="vendorproperties.html">VendorProperties</a>
 				</li>
 			</ul>
-			<h1>Interface NewCommandOptions</h1>
+			<h1>Interface VendorProperties</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">NewCommandOptions</span>
+						<a href="generalproperties.html" class="tsd-signature-type">GeneralProperties</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">VendorProperties</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -79,12 +84,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#deploy" class="tsd-kind-icon">deploy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#locale" class="tsd-kind-icon">locale</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#skipgit" class="tsd-kind-icon">skip<wbr>Git</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#skipinstall" class="tsd-kind-icon">skip<wbr>Install</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#source" class="tsd-kind-icon">source</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="newcommandoptions.html#theme" class="tsd-kind-icon">theme</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#domain" class="tsd-kind-icon">domain</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="vendorproperties.html#locales" class="tsd-kind-icon">locales</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#projectname" class="tsd-kind-icon">project<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="vendorproperties.html#themes" class="tsd-kind-icon">themes</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,63 +97,67 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deploy" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> deploy</h3>
-					<div class="tsd-signature tsd-kind-icon">deploy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"github"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"firebase"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"netlify"</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#description">description</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L11">cli/commands/new.command.ts:11</a></li>
+							<li>Defined in lib/types/mola.type.ts:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="domain" class="tsd-anchor"></a>
+					<h3>domain</h3>
+					<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#domain">domain</a></p>
+						<ul>
+							<li>Defined in lib/types/mola.type.ts:9</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="locale" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> locale</h3>
-					<div class="tsd-signature tsd-kind-icon">locale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="locales" class="tsd-anchor"></a>
+					<h3>locales</h3>
+					<div class="tsd-signature tsd-kind-icon">locales<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L13">cli/commands/new.command.ts:13</a></li>
+							<li>Defined in lib/types/mola.type.ts:16</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#name">name</a></p>
+						<ul>
+							<li>Defined in lib/types/mola.type.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="projectname" class="tsd-anchor"></a>
+					<h3>project<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">project<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#projectname">projectName</a></p>
+						<ul>
+							<li>Defined in lib/types/mola.type.ts:8</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="skipgit" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> skip<wbr>Git</h3>
-					<div class="tsd-signature tsd-kind-icon">skip<wbr>Git<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
+					<a name="themes" class="tsd-anchor"></a>
+					<h3>themes</h3>
+					<div class="tsd-signature tsd-kind-icon">themes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L14">cli/commands/new.command.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="skipinstall" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> skip<wbr>Install</h3>
-					<div class="tsd-signature tsd-kind-icon">skip<wbr>Install<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L15">cli/commands/new.command.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="source" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> source</h3>
-					<div class="tsd-signature tsd-kind-icon">source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L10">cli/commands/new.command.ts:10</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="theme" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> theme</h3>
-					<div class="tsd-signature tsd-kind-icon">theme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/d4eee58/src/cli/commands/new.command.ts#L12">cli/commands/new.command.ts:12</a></li>
+							<li>Defined in lib/types/mola.type.ts:15</li>
 						</ul>
 					</aside>
 				</section>
@@ -191,36 +200,36 @@
 					<li class=" tsd-kind-interface">
 						<a href="moladotjson.html" class="tsd-kind-icon">Mola<wbr>Dot<wbr>Json</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+						<a href="vendorproperties.html" class="tsd-kind-icon">Vendor<wbr>Properties</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="newcommandoptions.html#deploy" class="tsd-kind-icon">deploy</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="vendorproperties.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="vendorproperties.html#domain" class="tsd-kind-icon">domain</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="newcommandoptions.html#locale" class="tsd-kind-icon">locale</a>
+								<a href="vendorproperties.html#locales" class="tsd-kind-icon">locales</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="vendorproperties.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="vendorproperties.html#projectname" class="tsd-kind-icon">project<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="newcommandoptions.html#skipgit" class="tsd-kind-icon">skip<wbr>Git</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="newcommandoptions.html#skipinstall" class="tsd-kind-icon">skip<wbr>Install</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="newcommandoptions.html#source" class="tsd-kind-icon">source</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="newcommandoptions.html#theme" class="tsd-kind-icon">theme</a>
+								<a href="vendorproperties.html#themes" class="tsd-kind-icon">themes</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="vendorproperties.html" class="tsd-kind-icon">Vendor<wbr>Properties</a>
-					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
 					</li>

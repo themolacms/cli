@@ -13,23 +13,25 @@ export class Cli {
   /**
    * @param theme - Theme input.
    * @param projectName - The project name.
-   * @param appUrl? - The web app url.
+   * @param appDomain? - The web app domain name.
    * @param appName? - The web app name.
    * @param appDescription? - The web app description.
    */
   newCommandDef: CommandDef = [
-    ['new <theme> <projectName> [appUrl] [appName] [appDescription]', 'start', 'n'],
+    ['new <theme> <projectName> [appDomain] [appName] [appDescription]', 'start', 'n'],
     'Create a new project.',
     ['-s, --source [value]', 'Custom theme source (url to .zip).'],
     ['-d, --deploy [value]', 'Deploy service (github/firebase/netlify).'],
-    ['-l, --i18n', 'Enable I18N.'],
-    ['-i, --skip-install', 'Does not install dependency packages.'],
-    ['-g, --skip-git', 'Does not initialize a git repository.'],
+    ['-t, --theme [value]', 'Additional themes (commna-separated).'],
+    ['-l, --locale [value]', 'Additional locales (commna-separated).'],
+    ['-i, --skip-install', 'Do not install dependency packages.'],
+    ['-g, --skip-git', 'Do not initialize a git repository.'],
   ];
 
   constructor() {
     this.molaModule = new MolaModule();
     this.newCommand = new NewCommand(
+      this.molaModule.helperService,
       this.molaModule.fileService,
       this.molaModule.createService
     );
@@ -53,7 +55,8 @@ export class Cli {
         description,
         sourceOpt,
         deployOpt,
-        i18nOpt,
+        themeOpt,
+        localeOpt,
         skipInstallOpt,
         skipGitOpt,
       ] = this.newCommandDef;
@@ -63,15 +66,16 @@ export class Cli {
         .description(description)
         .option(...sourceOpt)
         .option(...deployOpt)
-        .option(...i18nOpt)
+        .option(...themeOpt)
+        .option(...localeOpt)
         .option(...skipInstallOpt)
         .option(...skipGitOpt)
         .description(description)
-        .action((type, projectName, appUrl, appName, appDescription, options) =>
+        .action((type, projectName, appDomain, appName, appDescription, options) =>
           this.newCommand.run(
             type,
             projectName,
-            appUrl,
+            appDomain,
             appName,
             appDescription,
             options
