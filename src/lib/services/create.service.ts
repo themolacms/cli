@@ -237,7 +237,10 @@ export class CreateService {
     themeChanging: CompareAndExtractResult
   ) {
     const {toChange, toAdds, toRemoves} = themeChanging;
-    // change
+
+    /**
+     * change
+     */
     if (toChange) {
       const {from, to} = toChange;
       // src/styles.scss
@@ -257,7 +260,11 @@ export class CreateService {
         true
       );
     }
-    // remove
+
+    /**
+     * remove
+     */
+
     if (toRemoves.length) {
       const stylesRemoving = {} as Record<string, string>;
       const compRemoving = {} as Record<string, string>;
@@ -291,7 +298,11 @@ export class CreateService {
         compRemoving
       );
     }
-    // add
+
+    /**
+     * add
+     */
+
     if (toAdds.length) {
       const stylesAdding1 = [] as string[];
       const stylesAdding2 = [] as string[];
@@ -335,6 +346,86 @@ export class CreateService {
     localeChanging: CompareAndExtractResult
   ) {
     const {toChange, toAdds, toRemoves} = localeChanging;
-    // ...
+
+    /**
+     * change
+     */
+    if (toChange) {
+      const {from, to} = toChange;
+      // src/app/app.module.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app.module.ts'),
+        {
+          [`useValue: '${from}'`]: `useValue: '${to}'`,
+        }
+      );
+      // src/app/app-translation.module.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
+        {
+          [from]: to,
+        },
+        true
+      );
+      // assets/i18n/${from}.json
+      const fromPath = resolve(projectPath, 'assets', 'i18n', `${from}.json`);
+      const i18nJson = await this.fileService.readJson(fromPath);
+      await this.fileService.createJson(
+        resolve(projectPath, 'assets', 'i18n', `${to}.json`),
+        i18nJson
+      );
+      await this.fileService.removeFiles([fromPath]);
+    }
+
+    /**
+     * remove
+     */
+
+    if (toRemoves.length) {
+      const moduleRemoving = {} as Record<string, string>;
+      const fileRemoving = [] as string[];
+      toRemoves.forEach(toRemove => {
+        // src/app/app-translation.module.ts
+        moduleRemoving[`'${toRemove}'`] = '';
+        moduleRemoving[`'${toRemove}',`] = '';
+        // assets/i18n/
+        fileRemoving.push(
+          resolve(projectPath, 'assets', 'i18n', `${toRemove}.json`)
+        );
+      });
+      // src/app/app-translation.module.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
+        moduleRemoving
+      );
+      // assets/i18n/
+      await this.fileService.removeFiles(fileRemoving);
+    }
+
+    /**
+     * add
+     */
+
+    if (toAdds.length) {
+      const moduleAdding = toAdds;
+      const fileAdding = toAdds;
+      // src/app/app-translation.module.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
+        {
+          'availableLangs: [':
+            'availableLangs: [' + moduleAdding.join(', ') + ', ',
+        }
+      );
+      // assets/i18n/
+      await Promise.all(
+        fileAdding.map(toAdd =>
+          this.fileService.createJson(
+            resolve(projectPath, 'assets', 'i18n', `${toAdd}.json`),
+            {}
+          )
+        )
+      );
+    }
   }
 }
