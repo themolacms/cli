@@ -100,10 +100,10 @@ export class CreateService {
     );
 
     // modify themes
-    await this.modifyTheme(themeChanging);
+    await this.modifyTheme(projectPath, themeChanging);
 
     // modify locales
-    await this.modifyLocale(localeChanging);
+    await this.modifyLocale(projectPath, localeChanging);
   }
 
   private async modifyContent(
@@ -232,11 +232,109 @@ export class CreateService {
     }
   }
 
-  private modifyTheme(themeChanging: CompareAndExtractResult) {
-    console.log(themeChanging);
+  private async modifyTheme(
+    projectPath: string,
+    themeChanging: CompareAndExtractResult
+  ) {
+    const {toChange, toAdds, toRemoves} = themeChanging;
+    // change
+    if (toChange) {
+      const {from, to} = toChange;
+      // src/styles.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'styles.scss'),
+        {
+          [`@lamnhan/unistylus/scss/themes/${from}-default`]: `@lamnhan/unistylus/scss/themes/${to}-default`,
+          [`[data-theme=${from}]`]: `[data-theme=${to}]`,
+        }
+      );
+      // src/theming/app.component.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
+        {
+          [from]: to,
+        },
+        true
+      );
+    }
+    // remove
+    if (toRemoves.length) {
+      const stylesRemoving = {} as Record<string, string>;
+      const compRemoving = {} as Record<string, string>;
+      toRemoves.forEach(toRemove => {
+        // styles.scss (import)
+        stylesRemoving[
+          `\n@import '@lamnhan/unistylus/scss/themes/${toRemove}';`
+        ] = '';
+        // styles.scss (customization, may be)
+        stylesRemoving[
+          `[data-theme=${toRemove}]`
+        ] = `/* TODO: delete this -> [data-theme=${toRemove}] */`;
+        stylesRemoving[
+          `[data-theme=${toRemove}],`
+        ] = `/* TODO: delete this -> [data-theme=${toRemove}], */`;
+        // app.component.scss (data)
+        compRemoving[
+          `$${toRemove}_theme_icons:`
+        ] = `/* TODO: delete this -> $${toRemove}_theme_icons: */`;
+        // app.component.scss (register)
+        compRemoving[`\n    ${toRemove}: $${toRemove}_theme_icons,`] = '';
+      });
+      // src/styles.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'styles.scss'),
+        stylesRemoving
+      );
+      // src/theming/app.component.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
+        compRemoving
+      );
+    }
+    // add
+    if (toAdds.length) {
+      const stylesAdding1 = [] as string[];
+      const stylesAdding2 = [] as string[];
+      const compAdding1 = [] as string[];
+      const compAdding2 = [] as string[];
+      toAdds.forEach(toAdd => {
+        // styles.scss (import)
+        stylesAdding1.push(
+          `@import '@lamnhan/unistylus/scss/themes/${toAdd}';`
+        );
+        // styles.scss (customization, may be)
+        stylesAdding2.push(`[data-theme=${toAdd}],`);
+        // app.component.scss (data)
+        compAdding1.push(`$${toAdd}_theme_icons: ();`);
+        // app.component.scss (register)
+        compAdding2.push(`    ${toAdd}: $${toAdd}_theme_icons,`);
+      });
+      // src/styles.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'styles.scss'),
+        {
+          "-default';\n": "-default';\n" + stylesAdding1.join('\n') + '\n',
+          '[data-theme=default],\n':
+            '[data-theme=default],\n' + stylesAdding2.join('\n') + '\n',
+        }
+      );
+      // src/theming/app.component.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
+        {
+          '\n@include register_app_icons(':
+            '\n' + compAdding1.join('\n\n') + '\n@include register_app_icons(',
+          '\n    default: ': '\n' + compAdding2.join('\n') + '\n    default: ',
+        }
+      );
+    }
   }
 
-  private modifyLocale(localeChanging: CompareAndExtractResult) {
-    console.log(localeChanging);
+  private async modifyLocale(
+    projectPath: string,
+    localeChanging: CompareAndExtractResult
+  ) {
+    const {toChange, toAdds, toRemoves} = localeChanging;
+    // ...
   }
 }
