@@ -6,9 +6,9 @@ import {NewCommand} from './commands/new.command';
 
 export class Cli {
   private molaModule: MolaModule;
-  newCommand: NewCommand;
+  public readonly newCommand: NewCommand;
 
-  commander = ['mola', 'The Mola CMS all-in-one CLI'];
+  public readonly commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
   /**
    * @param theme - Theme input.
@@ -17,13 +17,13 @@ export class Cli {
    * @param appName? - The web app name.
    * @param appDescription? - The web app description.
    */
-  newCommandDef: CommandDef = [
+   public readonly newCommandDef: CommandDef = [
     ['new <theme> <projectName> [appDomain] [appName] [appDescription]', 'start', 'n'],
     'Create a new project.',
     ['-s, --source [value]', 'Custom theme source (url to .zip).'],
     ['-d, --deploy [value]', 'Deploy service (github/firebase/netlify).'],
-    ['-t, --theme [value]', 'Additional themes (commna-separated).'],
-    ['-l, --locale [value]', 'Additional locales (commna-separated).'],
+    ['-t, --theme [value]', 'Change or add themes (commna-separated).'],
+    ['-l, --locale [value]', 'Change or add locales (commna-separated).'],
     ['-i, --skip-install', 'Do not install dependency packages.'],
     ['-g, --skip-git', 'Do not initialize a git repository.'],
   ];

@@ -42,10 +42,10 @@ export class NewCommand {
     appName = appName || 'A Mola Web App';
     appDescription = appDescription || 'Just another awesome Mola web app.';
     const deployTarget = commandOptions.deploy || 'github';
-    const additionalThemes = this.helperService.parseParams(
+    const appThemes = this.helperService.parseParams(
       commandOptions.theme || ''
     );
-    const additionalLocales = this.helperService.parseParams(
+    const appLocales = this.helperService.parseParams(
       commandOptions.locale || ''
     );
     // create
@@ -53,12 +53,12 @@ export class NewCommand {
     // modify
     await this.createService.modify(
       projectPath,
+      deployTarget,
       appDomain,
       appName,
       appDescription,
-      deployTarget,
-      additionalThemes,
-      additionalLocales
+      appThemes,
+      appLocales
     );
     // listing
     const files = await this.fileService.listDir(projectPath);
@@ -79,7 +79,6 @@ export class NewCommand {
       execSync('git init', {stdio: 'inherit', cwd: projectPath});
     }
     // notify for firebase init
-    // TODO: includes in firebase setup ...
     if (commandOptions.deploy === 'firebase') {
       console.log('\n' + yellow('======================================'));
       console.log('\n' + yellow('= NOTICE: Please run `firebase init` ='));

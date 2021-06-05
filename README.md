@@ -57,8 +57,8 @@ mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [va
 
 - `-s, --source [value]`: Custom theme source (url to .zip).
 - `-d, --deploy [value]`: Deploy service (github/firebase/netlify).
-- `-t, --theme [value]`: Additional themes (commna-separated).
-- `-l, --locale [value]`: Additional locales (commna-separated).
+- `-t, --theme [value]`: Change or add themes (commna-separated).
+- `-l, --locale [value]`: Change or add locales (commna-separated).
 - `-i, --skip-install`: Do not install dependency packages.
 - `-g, --skip-git`: Do not initialize a git repository.
 

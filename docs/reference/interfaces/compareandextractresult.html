@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VendorProperties | @molacms/cli</title>
+	<title>CompareAndExtractResult | @molacms/cli</title>
 	<meta name="description" content="Documentation for @molacms/cli">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="vendorproperties.html">VendorProperties</a>
+					<a href="compareandextractresult.html">CompareAndExtractResult</a>
 				</li>
 			</ul>
-			<h1>Interface VendorProperties</h1>
+			<h1>Interface CompareAndExtractResult</h1>
 		</div>
 	</div>
 </header>
@@ -68,12 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="generalproperties.html" class="tsd-signature-type">GeneralProperties</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">VendorProperties</span>
-							</li>
-						</ul>
+						<span class="target">CompareAndExtractResult</span>
 					</li>
 				</ul>
 			</section>
@@ -84,12 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#domain" class="tsd-kind-icon">domain</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="vendorproperties.html#locales" class="tsd-kind-icon">locales</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="vendorproperties.html#projectname" class="tsd-kind-icon">project<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="vendorproperties.html#themes" class="tsd-kind-icon">themes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="compareandextractresult.html#latestvalues" class="tsd-kind-icon">latest<wbr>Values</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="compareandextractresult.html#toadds" class="tsd-kind-icon">to<wbr>Adds</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="compareandextractresult.html#tochange" class="tsd-kind-icon">to<wbr>Change</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="compareandextractresult.html#toremoves" class="tsd-kind-icon">to<wbr>Removes</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,67 +90,54 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="latestvalues" class="tsd-anchor"></a>
+					<h3>latest<wbr>Values</h3>
+					<div class="tsd-signature tsd-kind-icon">latest<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#description">description</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/types/mola.type.ts#L11">lib/types/mola.type.ts:11</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="domain" class="tsd-anchor"></a>
-					<h3>domain</h3>
-					<div class="tsd-signature tsd-kind-icon">domain<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#domain">domain</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/types/mola.type.ts#L9">lib/types/mola.type.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/helper.service.ts#L8">lib/services/helper.service.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="locales" class="tsd-anchor"></a>
-					<h3>locales</h3>
-					<div class="tsd-signature tsd-kind-icon">locales<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="toadds" class="tsd-anchor"></a>
+					<h3>to<wbr>Adds</h3>
+					<div class="tsd-signature tsd-kind-icon">to<wbr>Adds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/types/mola.type.ts#L16">lib/types/mola.type.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#name">name</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/types/mola.type.ts#L10">lib/types/mola.type.ts:10</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="projectname" class="tsd-anchor"></a>
-					<h3>project<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">project<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="moladotjson.html">MolaDotJson</a>.<a href="moladotjson.html#projectname">projectName</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/types/mola.type.ts#L8">lib/types/mola.type.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/helper.service.ts#L6">lib/services/helper.service.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="themes" class="tsd-anchor"></a>
-					<h3>themes</h3>
-					<div class="tsd-signature tsd-kind-icon">themes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="tochange" class="tsd-anchor"></a>
+					<h3>to<wbr>Change</h3>
+					<div class="tsd-signature tsd-kind-icon">to<wbr>Change<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/types/mola.type.ts#L15">lib/types/mola.type.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/helper.service.ts#L2">lib/services/helper.service.ts:2</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="toremoves" class="tsd-anchor"></a>
+					<h3>to<wbr>Removes</h3>
+					<div class="tsd-signature tsd-kind-icon">to<wbr>Removes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/helper.service.ts#L7">lib/services/helper.service.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -194,8 +174,29 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
 					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="compareandextractresult.html" class="tsd-kind-icon">Compare<wbr>And<wbr>Extract<wbr>Result</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="compareandextractresult.html#latestvalues" class="tsd-kind-icon">latest<wbr>Values</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="compareandextractresult.html#toadds" class="tsd-kind-icon">to<wbr>Adds</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="compareandextractresult.html#tochange" class="tsd-kind-icon">to<wbr>Change</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="compareandextractresult.html#toremoves" class="tsd-kind-icon">to<wbr>Removes</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="generalproperties.html" class="tsd-kind-icon">General<wbr>Properties</a>
+						<a href="molabackend.html" class="tsd-kind-icon">Mola<wbr>Backend</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="moladotjson.html" class="tsd-kind-icon">Mola<wbr>Dot<wbr>Json</a>
@@ -203,33 +204,6 @@
 					<li class=" tsd-kind-interface">
 						<a href="newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="vendorproperties.html" class="tsd-kind-icon">Vendor<wbr>Properties</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="vendorproperties.html#description" class="tsd-kind-icon">description</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="vendorproperties.html#domain" class="tsd-kind-icon">domain</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="vendorproperties.html#locales" class="tsd-kind-icon">locales</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="vendorproperties.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="vendorproperties.html#projectname" class="tsd-kind-icon">project<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="vendorproperties.html#themes" class="tsd-kind-icon">themes</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
 					</li>

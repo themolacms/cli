@@ -1,17 +1,13 @@
-export interface MolaDotJson extends GeneralProperties {
-  vendor: VendorProperties;
-  additionalThemes?: string[];
-  additionalLocales?: string[];
-}
-
-export interface GeneralProperties {
+export interface MolaDotJson {
   projectName: string;
   domain: string;
   name: string;
   description: string;
-}
-
-export interface VendorProperties extends GeneralProperties {
   themes: string[];
   locales: string[];
+  backend: MolaBackend;
+}
+
+export interface MolaBackend {
+  provider: 'none' | 'firebase';
 }

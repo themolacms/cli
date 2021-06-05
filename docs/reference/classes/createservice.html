@@ -99,17 +99,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Create<wbr>Service<span class="tsd-signature-symbol">(</span>fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, downloadService<span class="tsd-signature-symbol">: </span><a href="downloadservice.html" class="tsd-signature-type">DownloadService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="createservice.html" class="tsd-signature-type">CreateService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Create<wbr>Service<span class="tsd-signature-symbol">(</span>helperService<span class="tsd-signature-symbol">: </span><a href="helperservice.html" class="tsd-signature-type">HelperService</a>, fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, downloadService<span class="tsd-signature-symbol">: </span><a href="downloadservice.html" class="tsd-signature-type">DownloadService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="createservice.html" class="tsd-signature-type">CreateService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/services/create.service.ts#L8">lib/services/create.service.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/create.service.ts#L9">lib/services/create.service.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>helperService: <a href="helperservice.html" class="tsd-signature-type">HelperService</a></h5>
+								</li>
 								<li>
 									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
 								</li>
@@ -134,7 +137,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/services/create.service.ts#L35">lib/services/create.service.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/create.service.ts#L37">lib/services/create.service.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -154,19 +157,22 @@
 					<a name="modify" class="tsd-anchor"></a>
 					<h3>modify</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">modify<span class="tsd-signature-symbol">(</span>projectPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDomain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDescription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deployTarget<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, addThemes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, addLocales<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">modify<span class="tsd-signature-symbol">(</span>projectPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deployTarget<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDomain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDescription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appThemes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, appLocales<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/services/create.service.ts#L42">lib/services/create.service.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/create.service.ts#L44">lib/services/create.service.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>projectPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>deployTarget: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>appDomain: <span class="tsd-signature-type">string</span></h5>
@@ -178,13 +184,10 @@
 									<h5>appDescription: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>deployTarget: <span class="tsd-signature-type">string</span></h5>
+									<h5>appThemes: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5>addThemes: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5>addLocales: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>appLocales: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -201,7 +204,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/3d892bb/src/lib/services/create.service.ts#L14">lib/services/create.service.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/fc61bee/src/lib/services/create.service.ts#L16">lib/services/create.service.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -266,16 +269,16 @@
 						<a href="newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/generalproperties.html" class="tsd-kind-icon">General<wbr>Properties</a>
+						<a href="../interfaces/compareandextractresult.html" class="tsd-kind-icon">Compare<wbr>And<wbr>Extract<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/molabackend.html" class="tsd-kind-icon">Mola<wbr>Backend</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/moladotjson.html" class="tsd-kind-icon">Mola<wbr>Dot<wbr>Json</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/vendorproperties.html" class="tsd-kind-icon">Vendor<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>

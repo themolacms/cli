@@ -2,11 +2,13 @@ import {resolve} from 'path';
 
 import {MolaDotJson} from '../types/mola.type';
 
+import {HelperService, CompareAndExtractResult} from './helper.service';
 import {FileService} from './file.service';
 import {DownloadService} from './download.service';
 
 export class CreateService {
   constructor(
+    private helperService: HelperService,
     private fileService: FileService,
     private downloadService: DownloadService
   ) {}
@@ -41,18 +43,19 @@ export class CreateService {
 
   async modify(
     projectPath: string,
+    deployTarget: string,
     appDomain: string,
     appName: string,
     appDescription: string,
-    deployTarget: string,
-    addThemes: string[],
-    addLocales: string[]
+    appThemes: string[],
+    appLocales: string[]
   ) {
     // get project name
-    const projectName = projectPath
+    const appProjectName = projectPath
       .replace(/\\/g, '/')
       .split('/')
       .pop() as string;
+
     // load mola.json
     const molaDotJson = await this.fileService.readJson<MolaDotJson>(
       resolve(projectPath, 'mola.json')
@@ -62,8 +65,66 @@ export class CreateService {
       name: vendorName,
       description: vendorDescription,
       projectName: vendorProjectName,
-    } = molaDotJson.vendor;
+      themes,
+      locales,
+    } = molaDotJson;
+    const vendorThemes = [...themes];
+    const vendorLocales = [...locales];
+    const themeChanging = this.helperService.compareAndExtract(
+      vendorThemes,
+      appThemes
+    );
+    const localeChanging = this.helperService.compareAndExtract(
+      vendorLocales,
+      appLocales
+    );
 
+    // update mola.json
+    molaDotJson.projectName = appProjectName;
+    molaDotJson.domain = appDomain;
+    molaDotJson.name = appName;
+    molaDotJson.description = appDescription;
+    molaDotJson.themes = themeChanging.latestValues;
+    molaDotJson.locales = localeChanging.latestValues;
+    await this.fileService.createJson(
+      resolve(projectPath, 'mola.json'),
+      molaDotJson
+    );
+
+    // modify content
+    await this.modifyContent(
+      projectPath,
+      deployTarget,
+      {appProjectName, appDomain, appName, appDescription},
+      {vendorProjectName, vendorDomain, vendorName, vendorDescription}
+    );
+
+    // modify themes
+    await this.modifyTheme(themeChanging);
+
+    // modify locales
+    await this.modifyLocale(localeChanging);
+  }
+
+  private async modifyContent(
+    projectPath: string,
+    deployTarget: string,
+    app: {
+      appProjectName: string;
+      appDomain: string;
+      appName: string;
+      appDescription: string;
+    },
+    vendor: {
+      vendorProjectName: string;
+      vendorDomain: string;
+      vendorName: string;
+      vendorDescription: string;
+    }
+  ) {
+    const {appProjectName, appDomain, appName, appDescription} = app;
+    const {vendorProjectName, vendorDomain, vendorName, vendorDescription} =
+      vendor;
     /**
      * General modifications
      */
@@ -75,27 +136,17 @@ export class CreateService {
     await this.fileService.changeContent(
       resolve(projectPath, 'angular.json'),
       {
-        [vendorProjectName]: projectName,
+        [vendorProjectName]: appProjectName,
       },
       true
     );
 
     // package.json
     await this.fileService.changeContent(resolve(projectPath, 'package.json'), {
-      '"name": "starter-blank"': `"name": "${projectName}"`,
+      '"name": "starter-blank"': `"name": "${appProjectName}"`,
       [vendorDescription]: appDescription,
       [vendorDomain]: appDomain,
     });
-
-    // mola.json
-    molaDotJson.projectName = projectName;
-    molaDotJson.domain = appDomain;
-    molaDotJson.name = appName;
-    molaDotJson.description = appDescription;
-    await this.fileService.createJson(
-      resolve(projectPath, 'mola.json'),
-      molaDotJson
-    );
 
     // src/index.html
     await this.fileService.changeContent(
@@ -179,19 +230,13 @@ export class CreateService {
           )
       );
     }
+  }
 
-    /**
-     * Extra modifications
-     */
+  private modifyTheme(themeChanging: CompareAndExtractResult) {
+    console.log(themeChanging);
+  }
 
-    // additional themes
-    if (addThemes.length) {
-      //
-    }
-
-    // additional locale
-    if (addLocales.length) {
-      //
-    }
+  private modifyLocale(localeChanging: CompareAndExtractResult) {
+    console.log(localeChanging);
   }
 }
