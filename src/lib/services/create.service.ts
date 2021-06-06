@@ -223,8 +223,8 @@ export class CreateService {
         content =>
           content.replace(
             content.slice(
-              content.indexOf('<!-- Github Pages Only -->'),
-              content.indexOf('</script>') + 9
+              content.indexOf('\n  <!-- Github Pages Only -->'),
+              content.indexOf('</script>') + 11
             ),
             ''
           )
@@ -237,6 +237,7 @@ export class CreateService {
     themeChanging: CompareAndExtractResult
   ) {
     const {toChange, toAdds, toRemoves} = themeChanging;
+    console.log(themeChanging);
 
     /**
      * change
@@ -249,6 +250,8 @@ export class CreateService {
         {
           [`@lamnhan/unistylus/scss/themes/${from}-default`]: `@lamnhan/unistylus/scss/themes/${to}-default`,
           [`[data-theme=${from}]`]: `[data-theme=${to}]`,
+          [`[data-theme="${from}"]`]: `[data-theme="${to}"]`,
+          [`[data-theme='${from}']`]: `[data-theme='${to}']`,
         }
       );
       // src/theming/app.component.scss
@@ -274,16 +277,17 @@ export class CreateService {
           `\n@import '@lamnhan/unistylus/scss/themes/${toRemove}';`
         ] = '';
         // styles.scss (customization, may be)
-        stylesRemoving[
-          `[data-theme=${toRemove}]`
-        ] = `/* TODO: delete this -> [data-theme=${toRemove}] */`;
-        stylesRemoving[
-          `[data-theme=${toRemove}],`
-        ] = `/* TODO: delete this -> [data-theme=${toRemove}], */`;
+        const stylesRemovingText = `// TODO: delete this line/block -> [data-theme=${toRemove}]`;
+        stylesRemoving[`[data-theme=${toRemove}]`] = stylesRemovingText;
+        stylesRemoving[`[data-theme="${toRemove}"]`] = stylesRemovingText;
+        stylesRemoving[`[data-theme='${toRemove}']`] = stylesRemovingText;
+        stylesRemoving[`[data-theme=${toRemove}],`] = stylesRemovingText;
+        stylesRemoving[`[data-theme="${toRemove}"],`] = stylesRemovingText;
+        stylesRemoving[`[data-theme='${toRemove}'],`] = stylesRemovingText;
         // app.component.scss (data)
         compRemoving[
-          `$${toRemove}_theme_icons:`
-        ] = `/* TODO: delete this -> $${toRemove}_theme_icons: */`;
+          `$${toRemove}_theme_icons: (`
+        ] = `// TODO: delete this map -> $${toRemove}_theme_icons: (`;
         // app.component.scss (register)
         compRemoving[`\n    ${toRemove}: $${toRemove}_theme_icons,`] = '';
       });
@@ -313,8 +317,10 @@ export class CreateService {
         stylesAdding1.push(
           `@import '@lamnhan/unistylus/scss/themes/${toAdd}';`
         );
-        // styles.scss (customization, may be)
-        stylesAdding2.push(`[data-theme=${toAdd}],`);
+        // styles.scss (customization)
+        stylesAdding2.push(
+          `// modify the ${toAdd} theme\n// [data-theme=${toAdd}] {}`
+        );
         // app.component.scss (data)
         compAdding1.push(`$${toAdd}_theme_icons: ();`);
         // app.component.scss (register)
@@ -325,8 +331,8 @@ export class CreateService {
         resolve(projectPath, 'src', 'styles.scss'),
         {
           "-default';\n": "-default';\n" + stylesAdding1.join('\n') + '\n',
-          '[data-theme=default],\n':
-            '[data-theme=default],\n' + stylesAdding2.join('\n') + '\n',
+          '\n// register parts':
+            '\n' + stylesAdding2.join('\n\n') + '\n\n// register parts',
         }
       );
       // src/theming/app.component.scss
@@ -334,7 +340,9 @@ export class CreateService {
         resolve(projectPath, 'src', 'theming', 'app.component.scss'),
         {
           '\n@include register_app_icons(':
-            '\n' + compAdding1.join('\n\n') + '\n@include register_app_icons(',
+            '\n' +
+            compAdding1.join('\n\n') +
+            '\n\n@include register_app_icons(',
           '\n    default: ': '\n' + compAdding2.join('\n') + '\n    default: ',
         }
       );
@@ -346,6 +354,7 @@ export class CreateService {
     localeChanging: CompareAndExtractResult
   ) {
     const {toChange, toAdds, toRemoves} = localeChanging;
+    console.log(localeChanging);
 
     /**
      * change

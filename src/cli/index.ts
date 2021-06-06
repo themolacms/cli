@@ -11,7 +11,7 @@ export class Cli {
   public readonly commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
   /**
-   * @param theme - Theme input.
+   * @param theme - A Mola theme input.
    * @param projectName - The project name.
    * @param appDomain? - The web app domain name.
    * @param appName? - The web app name.
@@ -20,9 +20,9 @@ export class Cli {
    public readonly newCommandDef: CommandDef = [
     ['new <theme> <projectName> [appDomain] [appName] [appDescription]', 'start', 'n'],
     'Create a new project.',
-    ['-s, --source [value]', 'Custom theme source (url to .zip).'],
+    ['-s, --source [value]', 'Custom Mola theme source (url to .zip).'],
     ['-d, --deploy [value]', 'Deploy service (github/firebase/netlify).'],
-    ['-t, --theme [value]', 'Change or add themes (commna-separated).'],
+    ['-t, --theme [value]', 'Change or add Unistylus themes (commna-separated).'],
     ['-l, --locale [value]', 'Change or add locales (commna-separated).'],
     ['-i, --skip-install', 'Do not install dependency packages.'],
     ['-g, --skip-git', 'Do not initialize a git repository.'],
@@ -71,9 +71,9 @@ export class Cli {
         .option(...skipInstallOpt)
         .option(...skipGitOpt)
         .description(description)
-        .action((type, projectName, appDomain, appName, appDescription, options) =>
+        .action((theme, projectName, appDomain, appName, appDescription, options) =>
           this.newCommand.run(
-            type,
+            theme,
             projectName,
             appDomain,
             appName,
