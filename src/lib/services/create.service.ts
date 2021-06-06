@@ -1,4 +1,4 @@
-import {resolve} from 'path';
+import {join, resolve} from 'path';
 
 import {MolaDotJson} from '../types/mola.type';
 
@@ -269,6 +269,7 @@ export class CreateService {
      */
 
     if (toRemoves.length) {
+      // prepare
       const stylesRemoving = {} as Record<string, string>;
       const compRemoving = {} as Record<string, string>;
       toRemoves.forEach(toRemove => {
@@ -308,6 +309,7 @@ export class CreateService {
      */
 
     if (toAdds.length) {
+      // prepare
       const stylesAdding1 = [] as string[];
       const stylesAdding2 = [] as string[];
       const compAdding1 = [] as string[];
@@ -361,11 +363,29 @@ export class CreateService {
      */
     if (toChange) {
       const {from, to} = toChange;
+      const [fromCode] = from.split('-');
+      const [toCode] = to.split('-');
+      // src/index.html
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'index.html'),
+        {
+          [`lang="${fromCode}"`]: `lang="${toCode}"`,
+          [`content="${from}"`]: `content="${to}"`,
+        }
+      );
       // src/app/app.module.ts
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'app', 'app.module.ts'),
         {
           [`useValue: '${from}'`]: `useValue: '${to}'`,
+        }
+      );
+      // src/app/app.component.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app.component.ts'),
+        {
+          [`lang: '${fromCode}'`]: `lang: '${toCode}'`,
+          [`ogLocale: '${from}'`]: `ogLocale: '${to}'`,
         }
       );
       // src/app/app-translation.module.ts
@@ -377,10 +397,16 @@ export class CreateService {
         true
       );
       // assets/i18n/${from}.json
-      const fromPath = resolve(projectPath, 'assets', 'i18n', `${from}.json`);
+      const fromPath = resolve(
+        projectPath,
+        'src',
+        'assets',
+        'i18n',
+        `${from}.json`
+      );
       const i18nJson = await this.fileService.readJson(fromPath);
       await this.fileService.createJson(
-        resolve(projectPath, 'assets', 'i18n', `${to}.json`),
+        resolve(projectPath, 'src', 'assets', 'i18n', `${to}.json`),
         i18nJson
       );
       await this.fileService.removeFiles([fromPath]);
@@ -391,6 +417,7 @@ export class CreateService {
      */
 
     if (toRemoves.length) {
+      // prepare
       const moduleRemoving = {} as Record<string, string>;
       const fileRemoving = [] as string[];
       toRemoves.forEach(toRemove => {
@@ -399,7 +426,7 @@ export class CreateService {
         moduleRemoving[`'${toRemove}',`] = '';
         // assets/i18n/
         fileRemoving.push(
-          resolve(projectPath, 'assets', 'i18n', `${toRemove}.json`)
+          resolve(projectPath, 'src', 'assets', 'i18n', `${toRemove}.json`)
         );
       });
       // src/app/app-translation.module.ts
@@ -409,6 +436,7 @@ export class CreateService {
       );
       // assets/i18n/
       await this.fileService.removeFiles(fileRemoving);
+      // TODO: remove meta translation
     }
 
     /**
@@ -416,21 +444,45 @@ export class CreateService {
      */
 
     if (toAdds.length) {
+      // prepare
       const moduleAdding = toAdds;
       const fileAdding = toAdds;
+      // src/app/app.component.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app.component.ts'),
+        {
+          '/* Meta Translations Here */':
+            '{\n' +
+            moduleAdding
+              .map(toAdd => {
+                const [toAddCode] = toAdd.split('-');
+                return [
+                  `        '${toAdd}': {`,
+                  `          lang: '${toAddCode}',`,
+                  `          ogLocale: '${toAdd}',`,
+                  '        },',
+                ].join('\n');
+              })
+              .join('\n') +
+            '\n      },',
+        }
+      );
       // src/app/app-translation.module.ts
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
         {
           'availableLangs: [':
-            'availableLangs: [' + moduleAdding.join(', ') + ', ',
+            'availableLangs: [' +
+            "'" +
+            moduleAdding.reverse().join("', '") +
+            "', ",
         }
       );
       // assets/i18n/
       await Promise.all(
         fileAdding.map(toAdd =>
           this.fileService.createJson(
-            resolve(projectPath, 'assets', 'i18n', `${toAdd}.json`),
+            resolve(projectPath, 'src', 'assets', 'i18n', `${toAdd}.json`),
             {}
           )
         )
