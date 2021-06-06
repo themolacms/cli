@@ -9,8 +9,9 @@ import {CreateService} from '../../lib/services/create.service';
 interface NewCommandOptions {
   source?: string;
   deploy?: 'github' | 'firebase' | 'netlify';
-  theme?: string;
   locale?: string;
+  skin?: string;
+  soul?: string;
   skipGit?: boolean;
   skipInstall?: boolean;
 }
@@ -42,12 +43,11 @@ export class NewCommand {
     appName = appName || 'A Mola Web App';
     appDescription = appDescription || 'Just another awesome Mola web app.';
     const deployTarget = commandOptions.deploy || 'github';
-    const appThemes = this.helperService.parseParams(
-      commandOptions.theme || ''
-    );
     const appLocales = this.helperService.parseParams(
       commandOptions.locale || ''
     );
+    const appSkins = this.helperService.parseParams(commandOptions.skin || '');
+    const appSoul = commandOptions.soul || '';
     // create
     await this.createService.create(resourceUrl, projectPath);
     // modify
@@ -57,8 +57,9 @@ export class NewCommand {
       appDomain,
       appName,
       appDescription,
-      appThemes,
-      appLocales
+      appLocales,
+      appSkins,
+      appSoul
     );
     // listing
     const files = await this.fileService.listDir(projectPath);

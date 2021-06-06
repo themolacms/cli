@@ -22,8 +22,9 @@ export class Cli {
     'Create a new project.',
     ['-s, --source [value]', 'Custom Mola theme source (url to .zip).'],
     ['-d, --deploy [value]', 'Deploy service (github/firebase/netlify).'],
-    ['-t, --theme [value]', 'Change or add Unistylus themes (commna-separated).'],
     ['-l, --locale [value]', 'Change or add locales (commna-separated).'],
+    ['-k, --skin [value]', 'Change or add Unistylus skins (commna-separated).'],
+    ['-o, --soul [value]', 'Change Unistylus soul.'],
     ['-i, --skip-install', 'Do not install dependency packages.'],
     ['-g, --skip-git', 'Do not initialize a git repository.'],
   ];
@@ -55,8 +56,9 @@ export class Cli {
         description,
         sourceOpt,
         deployOpt,
-        themeOpt,
         localeOpt,
+        skinOpt,
+        soulOpt,
         skipInstallOpt,
         skipGitOpt,
       ] = this.newCommandDef;
@@ -66,8 +68,9 @@ export class Cli {
         .description(description)
         .option(...sourceOpt)
         .option(...deployOpt)
-        .option(...themeOpt)
         .option(...localeOpt)
+        .option(...skinOpt)
+        .option(...soulOpt)
         .option(...skipInstallOpt)
         .option(...skipGitOpt)
         .description(description)

@@ -3,11 +3,12 @@ export interface MolaDotJson {
   domain: string;
   name: string;
   description: string;
-  themes: string[];
   locales: string[];
-  backend: MolaBackend;
+  skins: string[];
+  soul: string;
+  backend?: BackendPoperties;
 }
 
-export interface MolaBackend {
-  provider: 'none' | 'firebase';
+export interface BackendPoperties {
+  database: true;
 }

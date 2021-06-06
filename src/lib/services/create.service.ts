@@ -1,4 +1,4 @@
-import {join, resolve} from 'path';
+import {resolve} from 'path';
 
 import {MolaDotJson} from '../types/mola.type';
 
@@ -47,8 +47,9 @@ export class CreateService {
     appDomain: string,
     appName: string,
     appDescription: string,
-    appThemes: string[],
-    appLocales: string[]
+    appLocales: string[],
+    appSkins: string[],
+    appSoul: string
   ) {
     // get project name
     const appProjectName = projectPath
@@ -65,27 +66,31 @@ export class CreateService {
       name: vendorName,
       description: vendorDescription,
       projectName: vendorProjectName,
-      themes,
       locales,
+      skins,
+      soul,
     } = molaDotJson;
-    const vendorThemes = [...themes];
     const vendorLocales = [...locales];
-    const themeChanging = this.helperService.compareAndExtract(
-      vendorThemes,
-      appThemes
-    );
+    const vendorSkins = [...skins];
+    const vendorSoul = soul;
     const localeChanging = this.helperService.compareAndExtract(
       vendorLocales,
       appLocales
     );
+    const skinChanging = this.helperService.compareAndExtract(
+      vendorSkins,
+      appSkins
+    );
+    const soulChanging = vendorSoul !== appSoul;
 
     // update mola.json
     molaDotJson.projectName = appProjectName;
     molaDotJson.domain = appDomain;
     molaDotJson.name = appName;
     molaDotJson.description = appDescription;
-    molaDotJson.themes = themeChanging.latestValues;
     molaDotJson.locales = localeChanging.latestValues;
+    molaDotJson.skins = skinChanging.latestValues;
+    molaDotJson.soul = soulChanging ? appSoul : vendorSoul;
     await this.fileService.createJson(
       resolve(projectPath, 'mola.json'),
       molaDotJson
@@ -99,11 +104,16 @@ export class CreateService {
       {vendorProjectName, vendorDomain, vendorName, vendorDescription}
     );
 
-    // modify themes
-    await this.modifyTheme(projectPath, themeChanging);
-
     // modify locales
     await this.modifyLocale(projectPath, localeChanging);
+
+    // modify skins
+    await this.modifySkin(projectPath, skinChanging);
+
+    // modify soul
+    if (soulChanging) {
+      await this.modifySoul(projectPath, vendorSoul, appSoul);
+    }
   }
 
   private async modifyContent(
@@ -232,125 +242,6 @@ export class CreateService {
     }
   }
 
-  private async modifyTheme(
-    projectPath: string,
-    themeChanging: CompareAndExtractResult
-  ) {
-    const {toChange, toAdds, toRemoves} = themeChanging;
-    console.log(themeChanging);
-
-    /**
-     * change
-     */
-    if (toChange) {
-      const {from, to} = toChange;
-      // src/styles.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'styles.scss'),
-        {
-          [`@lamnhan/unistylus/scss/themes/${from}-default`]: `@lamnhan/unistylus/scss/themes/${to}-default`,
-          [`[data-theme=${from}]`]: `[data-theme=${to}]`,
-          [`[data-theme="${from}"]`]: `[data-theme="${to}"]`,
-          [`[data-theme='${from}']`]: `[data-theme='${to}']`,
-        }
-      );
-      // src/theming/app.component.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
-        {
-          [from]: to,
-        },
-        true
-      );
-    }
-
-    /**
-     * remove
-     */
-
-    if (toRemoves.length) {
-      // prepare
-      const stylesRemoving = {} as Record<string, string>;
-      const compRemoving = {} as Record<string, string>;
-      toRemoves.forEach(toRemove => {
-        // styles.scss (import)
-        stylesRemoving[
-          `\n@import '@lamnhan/unistylus/scss/themes/${toRemove}';`
-        ] = '';
-        // styles.scss (customization, may be)
-        const stylesRemovingText = `// TODO: delete this line/block -> [data-theme=${toRemove}]`;
-        stylesRemoving[`[data-theme=${toRemove}]`] = stylesRemovingText;
-        stylesRemoving[`[data-theme="${toRemove}"]`] = stylesRemovingText;
-        stylesRemoving[`[data-theme='${toRemove}']`] = stylesRemovingText;
-        stylesRemoving[`[data-theme=${toRemove}],`] = stylesRemovingText;
-        stylesRemoving[`[data-theme="${toRemove}"],`] = stylesRemovingText;
-        stylesRemoving[`[data-theme='${toRemove}'],`] = stylesRemovingText;
-        // app.component.scss (data)
-        compRemoving[
-          `$${toRemove}_theme_icons: (`
-        ] = `// TODO: delete this map -> $${toRemove}_theme_icons: (`;
-        // app.component.scss (register)
-        compRemoving[`\n    ${toRemove}: $${toRemove}_theme_icons,`] = '';
-      });
-      // src/styles.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'styles.scss'),
-        stylesRemoving
-      );
-      // src/theming/app.component.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
-        compRemoving
-      );
-    }
-
-    /**
-     * add
-     */
-
-    if (toAdds.length) {
-      // prepare
-      const stylesAdding1 = [] as string[];
-      const stylesAdding2 = [] as string[];
-      const compAdding1 = [] as string[];
-      const compAdding2 = [] as string[];
-      toAdds.forEach(toAdd => {
-        // styles.scss (import)
-        stylesAdding1.push(
-          `@import '@lamnhan/unistylus/scss/themes/${toAdd}';`
-        );
-        // styles.scss (customization)
-        stylesAdding2.push(
-          `// modify the ${toAdd} theme\n// [data-theme=${toAdd}] {}`
-        );
-        // app.component.scss (data)
-        compAdding1.push(`$${toAdd}_theme_icons: ();`);
-        // app.component.scss (register)
-        compAdding2.push(`    ${toAdd}: $${toAdd}_theme_icons,`);
-      });
-      // src/styles.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'styles.scss'),
-        {
-          "-default';\n": "-default';\n" + stylesAdding1.join('\n') + '\n',
-          '\n// register parts':
-            '\n' + stylesAdding2.join('\n\n') + '\n\n// register parts',
-        }
-      );
-      // src/theming/app.component.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
-        {
-          '\n@include register_app_icons(':
-            '\n' +
-            compAdding1.join('\n\n') +
-            '\n\n@include register_app_icons(',
-          '\n    default: ': '\n' + compAdding2.join('\n') + '\n    default: ',
-        }
-      );
-    }
-  }
-
   private async modifyLocale(
     projectPath: string,
     localeChanging: CompareAndExtractResult
@@ -451,7 +342,7 @@ export class CreateService {
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'app', 'app.component.ts'),
         {
-          '/* Meta Translations Here */':
+          '/* MOLA:META_TRANSLATIONS */':
             '{\n' +
             moduleAdding
               .map(toAdd => {
@@ -488,5 +379,133 @@ export class CreateService {
         )
       );
     }
+  }
+
+  private async modifySkin(
+    projectPath: string,
+    skinChanging: CompareAndExtractResult
+  ) {
+    const {toChange, toAdds, toRemoves} = skinChanging;
+    console.log(skinChanging);
+
+    /**
+     * change
+     */
+    if (toChange) {
+      const {from, to} = toChange;
+      // src/styles.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'styles.scss'),
+        {
+          [`@lamnhan/unistylus/scss/skins/${from}-default`]: `@lamnhan/unistylus/scss/skins/${to}-default`,
+          [`[data-theme=${from}]`]: `[data-theme=${to}]`,
+          [`[data-theme="${from}"]`]: `[data-theme="${to}"]`,
+          [`[data-theme='${from}']`]: `[data-theme='${to}']`,
+        }
+      );
+      // src/theming/app.component.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
+        {
+          [from]: to,
+        },
+        true
+      );
+    }
+
+    /**
+     * remove
+     */
+
+    if (toRemoves.length) {
+      // prepare
+      const stylesRemoving = {} as Record<string, string>;
+      const compRemoving = {} as Record<string, string>;
+      toRemoves.forEach(toRemove => {
+        // styles.scss (import)
+        stylesRemoving[
+          `\n@import '@lamnhan/unistylus/scss/skins/${toRemove}';`
+        ] = '';
+        // styles.scss (customization, may be)
+        const stylesRemovingText = `// TODO: delete this line/block -> [data-theme=${toRemove}]`;
+        stylesRemoving[`[data-theme=${toRemove}]`] = stylesRemovingText;
+        stylesRemoving[`[data-theme="${toRemove}"]`] = stylesRemovingText;
+        stylesRemoving[`[data-theme='${toRemove}']`] = stylesRemovingText;
+        stylesRemoving[`[data-theme=${toRemove}],`] = stylesRemovingText;
+        stylesRemoving[`[data-theme="${toRemove}"],`] = stylesRemovingText;
+        stylesRemoving[`[data-theme='${toRemove}'],`] = stylesRemovingText;
+        // app.component.scss (data)
+        compRemoving[
+          `$${toRemove}_theme_icons: (`
+        ] = `// TODO: delete this map -> $${toRemove}_theme_icons: (`;
+        // app.component.scss (register)
+        compRemoving[`\n    ${toRemove}: $${toRemove}_theme_icons,`] = '';
+      });
+      // src/styles.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'styles.scss'),
+        stylesRemoving
+      );
+      // src/theming/app.component.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
+        compRemoving
+      );
+    }
+
+    /**
+     * add
+     */
+
+    if (toAdds.length) {
+      // prepare
+      const stylesAdding1 = [] as string[];
+      const stylesAdding2 = [] as string[];
+      const compAdding1 = [] as string[];
+      const compAdding2 = [] as string[];
+      toAdds.forEach(toAdd => {
+        // styles.scss (import)
+        stylesAdding1.push(`@import '@lamnhan/unistylus/scss/skins/${toAdd}';`);
+        // styles.scss (customization)
+        stylesAdding2.push(
+          `// modify "${toAdd}" skin\n// [data-theme=${toAdd}] {}`
+        );
+        // app.component.scss (data)
+        compAdding1.push(`$${toAdd}_theme_icons: ();`);
+        // app.component.scss (register)
+        compAdding2.push(`    ${toAdd}: $${toAdd}_theme_icons,`);
+      });
+      // src/styles.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'styles.scss'),
+        {
+          "-default';\n": "-default';\n" + stylesAdding1.join('\n') + '\n',
+          '\n// register soul':
+            '\n' + stylesAdding2.join('\n\n') + '\n\n// register soul',
+        }
+      );
+      // src/theming/app.component.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
+        {
+          '\n@include register_app_icons(':
+            '\n' +
+            compAdding1.join('\n\n') +
+            '\n\n@include register_app_icons(',
+          '\n    default: ': '\n' + compAdding2.join('\n') + '\n    default: ',
+        }
+      );
+    }
+  }
+
+  private async modifySoul(projectPath: string, from: string, to: string) {
+    console.log({from, to});
+    // src/styles.scss
+    await this.fileService.changeContent(
+      resolve(projectPath, 'src', 'styles.scss'),
+      {
+        [`@lamnhan/unistylus/scss/souls/${from}`]: `@lamnhan/unistylus/scss/souls/${to}`,
+      }
+    );
   }
 }

@@ -25,7 +25,7 @@
 
 The Mola CMS all-in-one CLI
 
-- [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git`](#command-new)
+- [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
 - [`mola help`](#command-help)
 - [`mola *`](#command-*)
 
@@ -40,14 +40,14 @@ Create a new project.
 **Usage:**
 
 ```sh
-mola new <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
-mola start <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
-mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --theme [value] --locale [value] --skip-install --skip-git
+mola new <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git
+mola start <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git
+mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git
 ```
 
 **Parameters:**
 
-- `<theme>`: Theme input.
+- `<theme>`: A Mola theme input.
 - `<projectName>`: The project name.
 - `[appDomain]`: The web app domain name.
 - `[appName]`: The web app name.
@@ -55,10 +55,11 @@ mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [va
 
 **Options:**
 
-- `-s, --source [value]`: Custom theme source (url to .zip).
+- `-s, --source [value]`: Custom Mola theme source (url to .zip).
 - `-d, --deploy [value]`: Deploy service (github/firebase/netlify).
-- `-t, --theme [value]`: Change or add themes (commna-separated).
 - `-l, --locale [value]`: Change or add locales (commna-separated).
+- `-k, --skin [value]`: Change or add Unistylus skins (commna-separated).
+- `-o, --soul [value]`: Change Unistylus soul.
 - `-i, --skip-install`: Do not install dependency packages.
 - `-g, --skip-git`: Do not initialize a git repository.
 
