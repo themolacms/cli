@@ -1,14 +1,41 @@
+import {yellow, green} from 'chalk';
+
+import {ProjectService} from '../../lib/services/project.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
 
 export class SudoSetCommand {
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(
+    private projectService: ProjectService,
+    private firebaseService: FirebaseService
+  ) {}
 
   async run(email: string) {
-    await this.firebaseService.initializeApp();
     if (!email) {
-      throw new Error('Missing required <email> param.');
+      throw new Error("Missing required 'email' param.");
     }
-    console.log('sudo-set', {email});
-    // https://firebase.google.com/docs/auth/admin/custom-claims
+    const molaDotJson = await this.projectService.getMolaDotJson();
+    const {backend} = molaDotJson;
+    if (!backend?.sadmin) {
+      // init firebase
+      await this.firebaseService.initializeApp();
+      const auth = this.firebaseService.auth();
+      // get the user
+      const sadminUser = await auth.getUserByEmail(email);
+      if (sadminUser) {
+        const {uid, customClaims} = sadminUser;
+        await auth.setCustomUserClaims(uid, {...customClaims, role: 'sadmin'});
+        await this.projectService.updateMolaDotJson({
+          backend: {...molaDotJson.backend, sadmin: email},
+        });
+        console.log('A new super admin is setted.');
+      }
+    } else {
+      console.log(
+        `There is a super admin already - ${green(
+          backend.sadmin
+        )}, to set another one you need to remove the current first: $` +
+          yellow('mola sudo remove')
+      );
+    }
   }
 }

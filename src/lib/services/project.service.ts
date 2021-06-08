@@ -30,4 +30,9 @@ export class ProjectService {
       resolve(projectPath, 'mola.json')
     );
   }
+
+  async updateMolaDotJson(data: {[P in keyof MolaDotJson]?: MolaDotJson[P]}) {
+    const molaDotJson = await this.getMolaDotJson();
+    await this.fileService.createJson('mola.json', {...molaDotJson, ...data});
+  }
 }
