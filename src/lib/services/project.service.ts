@@ -15,11 +15,15 @@ export interface MolaDotJson {
 }
 
 export interface BackendPoperties {
-  database: true;
+  sadmin?: string;
 }
 
 export class ProjectService {
   constructor(private fileService: FileService) {}
+
+  isValid(projectPath = '.') {
+    return this.fileService.exists(resolve(projectPath, 'mola.json'));
+  }
 
   getMolaDotJson(projectPath = '.') {
     return this.fileService.readJson<MolaDotJson>(

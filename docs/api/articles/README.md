@@ -15,6 +15,7 @@
   - [`deploy`](#command-deploy)
   - [`docs`](#command-docs)
   - [`e2e`](#command-e2e)
+  - [`info`](#command-info)
   - [`new`](#command-new)
   - [`preview`](#command-preview)
   - [`sudo`](#command-sudo)
@@ -38,6 +39,7 @@ The Mola CMS all-in-one CLI
 - [`mola deploy|d`](#command-deploy)
 - [`mola docs|d`](#command-docs)
 - [`mola e2e|e`](#command-e2e)
+- [`mola info|i`](#command-info)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
 - [`mola preview|p`](#command-preview)
 - [`mola sudo|sadmin|s <subCommand> [email]`](#command-sudo)
@@ -111,6 +113,18 @@ E2e test the app.
 ```sh
 mola e2e
 mola e
+```
+
+<h3><a name="command-info"><p><code>info</code></p>
+</a></h3>
+
+Display project information.
+
+**Usage:**
+
+```sh
+mola info
+mola i
 ```
 
 <h3><a name="command-new"><p><code>new</code></p>

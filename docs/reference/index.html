@@ -72,7 +72,15 @@
 					<ul>
 						<li><a href="#cli-command-overview">Command overview</a></li>
 						<li><a href="#cli-command-reference">Command reference</a><ul>
+								<li><a href="#command-add"><code>add</code></a></li>
+								<li><a href="#command-build"><code>build</code></a></li>
+								<li><a href="#command-deploy"><code>deploy</code></a></li>
+								<li><a href="#command-docs"><code>docs</code></a></li>
+								<li><a href="#command-e2e"><code>e2e</code></a></li>
 								<li><a href="#command-new"><code>new</code></a></li>
+								<li><a href="#command-preview"><code>preview</code></a></li>
+								<li><a href="#command-sudo"><code>sudo</code></a></li>
+								<li><a href="#command-test"><code>test</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
 								<li><a href="#command-*"><code>*</code></a></li>
 							</ul>
@@ -85,12 +93,55 @@
 					</a></h2>
 					<p>The Mola CMS all-in-one CLI</p>
 					<ul>
+						<li><a href="#command-add"><code>mola add|generate|a &lt;input&gt;</code></a></li>
+						<li><a href="#command-build"><code>mola build|b</code></a></li>
+						<li><a href="#command-deploy"><code>mola deploy|d</code></a></li>
+						<li><a href="#command-docs"><code>mola docs|d</code></a></li>
+						<li><a href="#command-e2e"><code>mola e2e|e</code></a></li>
 						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git</code></a></li>
+						<li><a href="#command-preview"><code>mola preview|p</code></a></li>
+						<li><a href="#command-sudo"><code>mola sudo|sadmin|s &lt;subCommand&gt; [email]</code></a></li>
+						<li><a href="#command-test"><code>mola test|t</code></a></li>
 						<li><a href="#command-help"><code>mola help</code></a></li>
 						<li><a href="#command-*"><code>mola *</code></a></li>
 					</ul>
 					<h2><a name="cli-command-reference"><p>Command reference</p>
 					</a></h2>
+					<h3><a name="command-add"><p><code>add</code></p>
+					</a></h3>
+					<p>Add a components, pages, ...</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola add &lt;input&gt;
+mola generate &lt;input&gt;
+mola a &lt;input&gt;</code></pre>
+					<p><strong>Parameters:</strong></p>
+					<ul>
+						<li><code>&lt;input&gt;</code>: An input string</li>
+					</ul>
+					<h3><a name="command-build"><p><code>build</code></p>
+					</a></h3>
+					<p>Build the app.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola build
+mola b</code></pre>
+					<h3><a name="command-deploy"><p><code>deploy</code></p>
+					</a></h3>
+					<p>Deploy the app.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola deploy
+mola d</code></pre>
+					<h3><a name="command-docs"><p><code>docs</code></p>
+					</a></h3>
+					<p>Open documentation.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola docs
+mola d</code></pre>
+					<h3><a name="command-e2e"><p><code>e2e</code></p>
+					</a></h3>
+					<p>E2e test the app.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola e2e
+mola e</code></pre>
 					<h3><a name="command-new"><p><code>new</code></p>
 					</a></h3>
 					<p>Create a new project.</p>
@@ -116,6 +167,30 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] 
 						<li><code>-i, --skip-install</code>: Do not install dependency packages.</li>
 						<li><code>-g, --skip-git</code>: Do not initialize a git repository.</li>
 					</ul>
+					<h3><a name="command-preview"><p><code>preview</code></p>
+					</a></h3>
+					<p>Preview the app.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola preview
+mola p</code></pre>
+					<h3><a name="command-sudo"><p><code>sudo</code></p>
+					</a></h3>
+					<p>Manage super admin account.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola sudo &lt;subCommand&gt; [email]
+mola sadmin &lt;subCommand&gt; [email]
+mola s &lt;subCommand&gt; [email]</code></pre>
+					<p><strong>Parameters:</strong></p>
+					<ul>
+						<li><code>&lt;subCommand&gt;</code>: A supported sub-command: get, set, remove</li>
+						<li><code>[email]</code>: A user email (set)</li>
+					</ul>
+					<h3><a name="command-test"><p><code>test</code></p>
+					</a></h3>
+					<p>Unit test the app.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola <span class="hljs-built_in">test</span>
+mola t</code></pre>
 					<h3><a name="command-help"><p><code>help</code></p>
 					</a></h3>
 					<p>Display help.</p>
@@ -174,6 +249,9 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] 
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/helperservice.html" class="tsd-kind-icon">Helper<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/infocommand.html" class="tsd-kind-icon">Info<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/lib.html" class="tsd-kind-icon">Lib</a>

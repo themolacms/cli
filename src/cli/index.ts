@@ -2,13 +2,14 @@
 import {red} from 'chalk';
 import {Command} from 'commander';
 import {Lib as MolaModule} from '../lib/index';
+import {DocsCommand} from './commands/docs.command';
+import {InfoCommand} from './commands/info.command';
 import {NewCommand} from './commands/new.command';
+import {AddCommand} from './commands/add.command';
 import {SudoCommand} from './commands/sudo.command';
 import {SudoGetCommand} from './commands/sudo-get.command';
 import {SudoSetCommand} from './commands/sudo-set.command';
 import {SudoRemoveCommand} from './commands/sudo-remove.command';
-import {AddCommand} from './commands/add.command';
-import {DocsCommand} from './commands/docs.command';
 import {BuildCommand} from './commands/build.command';
 import {PreviewCommand} from './commands/preview.command';
 import {DeployCommand} from './commands/deploy.command';
@@ -17,13 +18,14 @@ import {E2eCommand} from './commands/e2e.command';
 
 export class Cli {
   private molaModule: MolaModule;
+  docsCommand: DocsCommand;
+  infoCommand: InfoCommand;
   newCommand: NewCommand;
+  addCommand: AddCommand;
   sudoCommand: SudoCommand;
   sudoGetCommand: SudoGetCommand;
   sudoSetCommand: SudoSetCommand;
   sudoRemoveCommand: SudoRemoveCommand;
-  addCommand: AddCommand;
-  docsCommand: DocsCommand;
   buildCommand: BuildCommand;
   previewCommand: PreviewCommand;
   deployCommand: DeployCommand;
@@ -32,6 +34,14 @@ export class Cli {
 
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
+  docsCommandDef: CommandDef = [
+    ['docs', 'd'], 'Open documentation.'
+  ];
+
+  infoCommandDef: CommandDef = [
+    ['info', 'i'], 'Display project information.'
+  ];
+
   /**
    * @param theme - A Mola theme input.
    * @param projectName - The project name.
@@ -39,7 +49,7 @@ export class Cli {
    * @param appName? - The web app name.
    * @param appDescription? - The web app description.
    */
-  newCommandDef: CommandDef = [
+   newCommandDef: CommandDef = [
     ['new <theme> <projectName> [appDomain] [appName] [appDescription]', 'start', 'n'],
     'Create a new project.',
     ['-s, --source [value]', 'Custom Mola theme source (url to .zip).'],
@@ -49,6 +59,13 @@ export class Cli {
     ['-o, --soul [value]', 'Change Unistylus soul.'],
     ['-i, --skip-install', 'Do not install dependency packages.'],
     ['-g, --skip-git', 'Do not initialize a git repository.'],
+  ];
+
+  /**
+   * @param input - An input string
+   */
+  addCommandDef: CommandDef = [
+    ['add <input>', 'generate', 'a'], 'Add a components, pages, ...'
   ];
 
   /**
@@ -75,17 +92,6 @@ export class Cli {
     'sudo-remove', 'Remove the super admin account.'
   ];
 
-  /**
-   * @param input - An input string
-   */
-  addCommandDef: CommandDef = [
-    ['add <input>', 'generate', 'a'], 'Add a components, pages, ...'
-  ];
-
-  docsCommandDef: CommandDef = [
-    ['docs', 'd'], 'Open documentation.'
-  ];
-
   buildCommandDef: CommandDef = [
     ['build', 'b'], 'Build the app.'
   ];
@@ -108,14 +114,17 @@ export class Cli {
 
   constructor() {
     this.molaModule = new MolaModule();
+    this.docsCommand = new DocsCommand();
+    this.infoCommand = new InfoCommand(this.molaModule.projectService);
     this.newCommand = new NewCommand(
       this.molaModule.helperService,
       this.molaModule.fileService,
       this.molaModule.downloadService,
       this.molaModule.projectService,
     );
+    this.addCommand = new AddCommand();
     this.sudoGetCommand = new SudoGetCommand(
-      this.molaModule.firebaseService,
+      this.molaModule.projectService,
     );
     this.sudoSetCommand = new SudoSetCommand(
       this.molaModule.firebaseService,
@@ -128,8 +137,6 @@ export class Cli {
       this.sudoSetCommand,
       this.sudoRemoveCommand,
     );
-    this.addCommand = new AddCommand();
-    this.docsCommand = new DocsCommand();
     this.buildCommand = new BuildCommand(this.molaModule.terminalService);
     this.previewCommand = new PreviewCommand(this.molaModule.projectService);
     this.deployCommand = new DeployCommand(this.molaModule.terminalService);
@@ -147,6 +154,26 @@ export class Cli {
       .name(`${command}`)
       .usage('[options] [command]')
       .description(description);
+
+    // docs
+    (() => {
+      const [[command, ...aliases], description] = this.docsCommandDef;
+      commander
+        .command(command)
+        .aliases(aliases)
+        .description(description)
+        .action(() => this.docsCommand.run());
+    })();
+
+    // info
+    (() => {
+      const [[command, ...aliases], description] = this.infoCommandDef;
+      commander
+        .command(command)
+        .aliases(aliases)
+        .description(description)
+        .action(() => this.infoCommand.run());
+    })();
 
     // new
     (() => {
@@ -185,6 +212,16 @@ export class Cli {
         );
     })();
 
+    // add
+    (() => {
+      const [[command, ...aliases], description] = this.addCommandDef;
+      commander
+        .command(command)
+        .aliases(aliases)
+        .description(description)
+        .action((input) => this.addCommand.run(input));
+    })();
+
     // sudo
     (() => {
       const [[command, ...aliases], description] = this.sudoCommandDef;
@@ -220,26 +257,6 @@ export class Cli {
         .command(command as string)
         .description(description)
         .action(() => this.sudoRemoveCommand.run());
-    })();
-
-    // add
-    (() => {
-      const [[command, ...aliases], description] = this.addCommandDef;
-      commander
-        .command(command)
-        .aliases(aliases)
-        .description(description)
-        .action((input) => this.addCommand.run(input));
-    })();
-
-    // docs
-    (() => {
-      const [[command, ...aliases], description] = this.docsCommandDef;
-      commander
-        .command(command)
-        .aliases(aliases)
-        .description(description)
-        .action(() => this.docsCommand.run());
     })();
 
     // build

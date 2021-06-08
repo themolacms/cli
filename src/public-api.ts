@@ -8,13 +8,14 @@ export * from './lib/services/terminal.service';
 export * from './lib/services/project.service';
 export * from './lib/services/firebase.service';
 
+export * from './cli/commands/docs.command';
+export * from './cli/commands/info.command';
 export * from './cli/commands/new.command';
+export * from './cli/commands/add.command';
 export * from './cli/commands/sudo.command';
 export * from './cli/commands/sudo-get.command';
 export * from './cli/commands/sudo-set.command';
 export * from './cli/commands/sudo-remove.command';
-export * from './cli/commands/add.command';
-export * from './cli/commands/docs.command';
 export * from './cli/commands/build.command';
 export * from './cli/commands/preview.command';
 export * from './cli/commands/deploy.command';
