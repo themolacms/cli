@@ -1,5 +1,6 @@
 import {yellow, green} from 'chalk';
 
+import {OK, WARN} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
 
@@ -27,13 +28,14 @@ export class SudoSetCommand {
         await this.projectService.updateMolaDotJson({
           backend: {...molaDotJson.backend, sadmin: email},
         });
-        console.log('A new super admin is setted.');
+        console.log(OK + 'A new super admin is setted.');
       }
     } else {
       console.log(
-        `There is a super admin already - ${green(
-          backend.sadmin
-        )}, to set another one you need to remove the current first: $` +
+        WARN +
+          `There is a super admin already - ${green(
+            backend.sadmin
+          )}, to set another one you need to remove the current first: $` +
           yellow('mola sudo remove')
       );
     }

@@ -1,3 +1,4 @@
+import {OK, WARN} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
 
@@ -26,10 +27,10 @@ export class SudoRemoveCommand {
         await this.projectService.updateMolaDotJson({
           backend: {...molaDotJson.backend, sadmin: ''},
         });
-        console.log('The super admin is removed.');
+        console.log(OK + 'The super admin is removed.');
       }
     } else {
-      console.log('This app has no super admin.');
+      console.log(WARN + 'This app has no super admin.');
     }
   }
 }

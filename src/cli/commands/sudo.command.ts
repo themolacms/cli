@@ -1,5 +1,7 @@
 import {yellow} from 'chalk';
 
+import {ERROR} from '../../lib/services/message.service';
+
 import {SudoGetCommand} from './sudo-get.command';
 import {SudoSetCommand} from './sudo-set.command';
 import {SudoRemoveCommand} from './sudo-remove.command';
@@ -27,7 +29,8 @@ export class SudoCommand {
         break;
       default:
         console.log(
-          `Invalid sub-command '${subCommand}':  ` +
+          ERROR +
+            `Invalid sub-command '${subCommand}':  ` +
             `${yellow('get')}, ${yellow('set')}, ${yellow('remove')}`
         );
         break;

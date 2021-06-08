@@ -6,6 +6,7 @@ import {
   HelperService,
   CompareAndExtractResult,
 } from '../../lib/services/helper.service';
+import {OK} from '../../lib/services/message.service';
 import {FileService} from '../../lib/services/file.service';
 import {DownloadService} from '../../lib/services/download.service';
 import {ProjectService} from '../../lib/services/project.service';
@@ -67,7 +68,7 @@ export class NewCommand {
     // listing
     const files = await this.fileService.listDir(projectPath);
     console.log(
-      `Create a new ${yellow(theme)} project:`,
+      OK + `Create a new ${yellow(theme)} project:`,
       green(validProjectName)
     );
     console.log('From: ' + gray(resourceUrl));
@@ -85,7 +86,7 @@ export class NewCommand {
     // notify for firebase init
     if (commandOptions.deploy === 'firebase') {
       console.log('\n' + yellow('======================================'));
-      console.log('\n' + yellow('= NOTICE: Please run `firebase init` ='));
+      console.log('\n' + yellow('= RUN: `firebase init` to ./firebase ='));
       console.log('\n' + yellow('======================================'));
     }
   }

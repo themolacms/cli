@@ -127,9 +127,11 @@ export class Cli {
       this.molaModule.projectService,
     );
     this.sudoSetCommand = new SudoSetCommand(
+      this.molaModule.projectService,
       this.molaModule.firebaseService,
     );
     this.sudoRemoveCommand = new SudoRemoveCommand(
+      this.molaModule.projectService,
       this.molaModule.firebaseService,
     );
     this.sudoCommand = new SudoCommand(

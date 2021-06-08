@@ -1,6 +1,7 @@
 import {blue} from 'chalk';
 const superstatic = require('superstatic');
 
+import {INFO} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 
 export class PreviewCommand {
@@ -26,7 +27,7 @@ export class PreviewCommand {
         debug: true,
       })
       .listen(() =>
-        console.log('Preview your app at: ' + blue('localhost:4200'))
+        console.log(INFO + 'Preview your app at: ' + blue('localhost:4200'))
       );
   }
 }
