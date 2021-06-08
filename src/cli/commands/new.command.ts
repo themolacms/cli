@@ -43,8 +43,8 @@ export class NewCommand {
       .replace(/ /g, '-');
     const projectPath = resolve(validProjectName);
     appDomain = appDomain || 'mola.lamnhan.com';
-    appName = appName || 'A Mola Web App';
-    appDescription = appDescription || 'Just another awesome Mola web app.';
+    appName = appName || 'Mola App';
+    appDescription = appDescription || 'Just another awesome Mola app.';
     const deployTarget = commandOptions.deploy || 'github';
     const appLocales = this.helperService.parseParams(
       commandOptions.locale || ''
@@ -163,6 +163,7 @@ export class NewCommand {
     molaDotJson.domain = appDomain;
     molaDotJson.name = appName;
     molaDotJson.description = appDescription;
+    molaDotJson.deployTarget = deployTarget;
     molaDotJson.locales = localeChanging.latestValues;
     molaDotJson.skins = skinChanging.latestValues;
     molaDotJson.soul = soulChanging ? appSoul : vendorSoul;
