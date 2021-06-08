@@ -85,6 +85,9 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="addcommand.html#addany" class="tsd-kind-icon">add<wbr>Any</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="addcommand.html#addcomponent" class="tsd-kind-icon">add<wbr>Component</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="addcommand.html#addpage" class="tsd-kind-icon">add<wbr>Page</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="addcommand.html#run" class="tsd-kind-icon">run</a></li>
 							</ul>
 						</section>
@@ -97,15 +100,24 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Add<wbr>Command<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="addcommand.html" class="tsd-signature-type">AddCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Add<wbr>Command<span class="tsd-signature-symbol">(</span>fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, terminalService<span class="tsd-signature-symbol">: </span><a href="terminalservice.html" class="tsd-signature-type">TerminalService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="addcommand.html" class="tsd-signature-type">AddCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/e990c6a/src/cli/commands/add.command.ts#L1">cli/commands/add.command.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/cli/commands/add.command.ts#L7">cli/commands/add.command.ts:7</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
+								</li>
+								<li>
+									<h5>terminalService: <a href="terminalservice.html" class="tsd-signature-type">TerminalService</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="addcommand.html" class="tsd-signature-type">AddCommand</a></h4>
 						</li>
 					</ul>
@@ -114,16 +126,16 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="run" class="tsd-anchor"></a>
-					<h3>run</h3>
+					<a name="addany" class="tsd-anchor"></a>
+					<h3>add<wbr>Any</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Any<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/e990c6a/src/cli/commands/add.command.ts#L4">cli/commands/add.command.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/cli/commands/add.command.ts#L50">cli/commands/add.command.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -132,7 +144,79 @@
 									<h5>input: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addcomponent" class="tsd-anchor"></a>
+					<h3>add<wbr>Component</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Component<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/cli/commands/add.command.ts#L29">cli/commands/add.command.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addpage" class="tsd-anchor"></a>
+					<h3>add<wbr>Page</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Page<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/cli/commands/add.command.ts#L42">cli/commands/add.command.ts:42</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="run" class="tsd-anchor"></a>
+					<h3>run</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/cli/commands/add.command.ts#L13">cli/commands/add.command.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -155,6 +239,15 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="addcommand.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="addcommand.html#addany" class="tsd-kind-icon">add<wbr>Any</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="addcommand.html#addcomponent" class="tsd-kind-icon">add<wbr>Component</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="addcommand.html#addpage" class="tsd-kind-icon">add<wbr>Page</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="addcommand.html#run" class="tsd-kind-icon">run</a>

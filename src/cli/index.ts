@@ -63,9 +63,10 @@ export class Cli {
 
   /**
    * @param input - An input string
+   * @param params? - List of parameters
    */
   addCommandDef: CommandDef = [
-    ['add <input>', 'generate', 'g', 'a'], 'Add a components, pages, ...'
+    ['add <input> [params...]', 'generate', 'g', 'a'], 'Add a components, pages, ...'
   ];
 
   /**
@@ -122,7 +123,10 @@ export class Cli {
       this.molaModule.downloadService,
       this.molaModule.projectService,
     );
-    this.addCommand = new AddCommand();
+    this.addCommand = new AddCommand(
+      this.molaModule.fileService,
+      this.molaModule.terminalService,
+    );
     this.sudoGetCommand = new SudoGetCommand(
       this.molaModule.projectService,
     );
@@ -221,7 +225,7 @@ export class Cli {
         .command(command)
         .aliases(aliases)
         .description(description)
-        .action((input) => this.addCommand.run(input));
+        .action((input, params) => this.addCommand.run(input, params));
     })();
 
     // sudo

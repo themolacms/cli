@@ -34,7 +34,7 @@
 
 The Mola CMS all-in-one CLI
 
-- [`mola add|generate|g|a <input>`](#command-add)
+- [`mola add|generate|g|a <input> [params...]`](#command-add)
 - [`mola build|b`](#command-build)
 - [`mola deploy|d`](#command-deploy)
 - [`mola docs|home|h`](#command-docs)
@@ -58,15 +58,16 @@ Add a components, pages, ...
 **Usage:**
 
 ```sh
-mola add <input>
-mola generate <input>
-mola g <input>
-mola a <input>
+mola add <input> [params...]
+mola generate <input> [params...]
+mola g <input> [params...]
+mola a <input> [params...]
 ```
 
 **Parameters:**
 
 - `<input>`: An input string
+- `[params...]`: The `[params...]` parameter.
 
 <h3><a name="command-build"><p><code>build</code></p>
 </a></h3>

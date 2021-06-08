@@ -94,10 +94,10 @@
 					</a></h2>
 					<p>The Mola CMS all-in-one CLI</p>
 					<ul>
-						<li><a href="#command-add"><code>mola add|generate|a &lt;input&gt;</code></a></li>
+						<li><a href="#command-add"><code>mola add|generate|g|a &lt;input&gt;</code></a></li>
 						<li><a href="#command-build"><code>mola build|b</code></a></li>
 						<li><a href="#command-deploy"><code>mola deploy|d</code></a></li>
-						<li><a href="#command-docs"><code>mola docs|d</code></a></li>
+						<li><a href="#command-docs"><code>mola docs|home|h</code></a></li>
 						<li><a href="#command-e2e"><code>mola e2e|e</code></a></li>
 						<li><a href="#command-info"><code>mola info|i</code></a></li>
 						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git</code></a></li>
@@ -115,6 +115,7 @@
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola add &lt;input&gt;
 mola generate &lt;input&gt;
+mola g &lt;input&gt;
 mola a &lt;input&gt;</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
@@ -137,7 +138,8 @@ mola d</code></pre>
 					<p>Open documentation.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola docs
-mola d</code></pre>
+mola home
+mola h</code></pre>
 					<h3><a name="command-e2e"><p><code>e2e</code></p>
 					</a></h3>
 					<p>E2e test the app.</p>
@@ -167,7 +169,7 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] 
 					</ul>
 					<p><strong>Options:</strong></p>
 					<ul>
-						<li><code>-s, --source [value]</code>: Custom Mola theme source (url to .zip).</li>
+						<li><code>-s, --source [value]</code>: Custom Mola theme source (url/path to .zip).</li>
 						<li><code>-d, --deploy [value]</code>: Deploy service (github/firebase/netlify).</li>
 						<li><code>-l, --locale [value]</code>: Change or add locales (commna-separated).</li>
 						<li><code>-k, --skin [value]</code>: Change or add Unistylus skins (commna-separated).</li>
