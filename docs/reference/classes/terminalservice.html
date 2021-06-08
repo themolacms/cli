@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NewCommand | @molacms/cli</title>
+	<title>TerminalService | @molacms/cli</title>
 	<meta name="description" content="Documentation for @molacms/cli">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="newcommand.html">NewCommand</a>
+					<a href="terminalservice.html">TerminalService</a>
 				</li>
 			</ul>
-			<h1>Class NewCommand</h1>
+			<h1>Class TerminalService</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">NewCommand</span>
+						<span class="target">TerminalService</span>
 					</li>
 				</ul>
 			</section>
@@ -79,16 +79,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="newcommand.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="terminalservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="newcommand.html#create" class="tsd-kind-icon">create</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="newcommand.html#modify" class="tsd-kind-icon">modify</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="newcommand.html#proccessinput" class="tsd-kind-icon">proccess<wbr>Input</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="newcommand.html#run" class="tsd-kind-icon">run</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="terminalservice.html#exec" class="tsd-kind-icon">exec</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="terminalservice.html#getcommand" class="tsd-kind-icon">get<wbr>Command</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="terminalservice.html#getrawargs" class="tsd-kind-icon">get<wbr>Raw<wbr>Args</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="terminalservice.html#run" class="tsd-kind-icon">run</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,31 +100,16 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>New<wbr>Command<span class="tsd-signature-symbol">(</span>helperService<span class="tsd-signature-symbol">: </span><a href="helperservice.html" class="tsd-signature-type">HelperService</a>, fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a>, downloadService<span class="tsd-signature-symbol">: </span><a href="downloadservice.html" class="tsd-signature-type">DownloadService</a>, projectService<span class="tsd-signature-symbol">: </span><a href="projectservice.html" class="tsd-signature-type">ProjectService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="newcommand.html" class="tsd-signature-type">NewCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Terminal<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="terminalservice.html" class="tsd-signature-type">TerminalService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/cli/commands/new.command.ts#L23">cli/commands/new.command.ts:23</a></li>
+									<li>Defined in lib/services/terminal.service.ts:4</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>helperService: <a href="helperservice.html" class="tsd-signature-type">HelperService</a></h5>
-								</li>
-								<li>
-									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
-								</li>
-								<li>
-									<h5>downloadService: <a href="downloadservice.html" class="tsd-signature-type">DownloadService</a></h5>
-								</li>
-								<li>
-									<h5>projectService: <a href="projectservice.html" class="tsd-signature-type">ProjectService</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="newcommand.html" class="tsd-signature-type">NewCommand</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="terminalservice.html" class="tsd-signature-type">TerminalService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -132,92 +117,54 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="create" class="tsd-anchor"></a>
-					<h3>create</h3>
+					<a name="exec" class="tsd-anchor"></a>
+					<h3>exec</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>resourceUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, projectPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">exec<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cwd<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, stdio<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"ignore"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"inherit"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"pipe"</span>, raw<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/cli/commands/new.command.ts#L114">cli/commands/new.command.ts:114</a></li>
+									<li>Defined in lib/services/terminal.service.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>resourceUrl: <span class="tsd-signature-type">string</span></h5>
+									<h5>command: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>projectPath: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cwd: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;.&quot;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> stdio: <span class="tsd-signature-type">"ignore"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"inherit"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"pipe"</span><span class="tsd-signature-symbol"> = &quot;inherit&quot;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> raw: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="modify" class="tsd-anchor"></a>
-					<h3>modify</h3>
+					<a name="getcommand" class="tsd-anchor"></a>
+					<h3>get<wbr>Command</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">modify<span class="tsd-signature-symbol">(</span>projectPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, deployTarget<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDomain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDescription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appLocales<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, appSkins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, appSoul<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Command<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/cli/commands/new.command.ts#L121">cli/commands/new.command.ts:121</a></li>
+									<li>Defined in lib/services/terminal.service.ts:7</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>projectPath: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>deployTarget: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>appDomain: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>appName: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>appDescription: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>appLocales: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5>appSkins: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5>appSoul: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="proccessinput" class="tsd-anchor"></a>
-					<h3>proccess<wbr>Input</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">proccess<wbr>Input<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/cli/commands/new.command.ts#L93">cli/commands/new.command.ts:93</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>input: <span class="tsd-signature-type">string</span></h5>
+									<h5>command: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -225,40 +172,66 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="run" class="tsd-anchor"></a>
-					<h3>run</h3>
+					<a name="getrawargs" class="tsd-anchor"></a>
+					<h3>get<wbr>Raw<wbr>Args</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>theme<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, projectName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDomain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, appDescription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, commandOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/newcommandoptions.html" class="tsd-signature-type">NewCommandOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Raw<wbr>Args<span class="tsd-signature-symbol">(</span>commanderRawArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, command<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, toString<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/cli/commands/new.command.ts#L31">cli/commands/new.command.ts:31</a></li>
+									<li>Defined in lib/services/terminal.service.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>theme: <span class="tsd-signature-type">string</span></h5>
+									<h5>commanderRawArgs: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 								<li>
-									<h5>projectName: <span class="tsd-signature-type">string</span></h5>
+									<h5>command: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>appDomain: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>appName: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>appDescription: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>commandOptions: <a href="../interfaces/newcommandoptions.html" class="tsd-signature-type">NewCommandOptions</a></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> toString: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="run" class="tsd-anchor"></a>
+					<h3>run</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>handlerCommand<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, command<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, commanderRawArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, cwd<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, forwarding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lib/services/terminal.service.ts:34</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>handlerCommand: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>command: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>commanderRawArgs: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cwd: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;.&quot;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> forwarding: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -307,30 +280,9 @@
 					<li class=" tsd-kind-class">
 						<a href="lib.html" class="tsd-kind-icon">Lib</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="newcommand.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="newcommand.html#create" class="tsd-kind-icon">create</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="newcommand.html#modify" class="tsd-kind-icon">modify</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="newcommand.html#proccessinput" class="tsd-kind-icon">proccess<wbr>Input</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="newcommand.html#run" class="tsd-kind-icon">run</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="previewcommand.html" class="tsd-kind-icon">Preview<wbr>Command</a>
 					</li>
@@ -349,9 +301,30 @@
 					<li class=" tsd-kind-class">
 						<a href="sudosetcommand.html" class="tsd-kind-icon">Sudo<wbr>Set<wbr>Command</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="terminalservice.html" class="tsd-kind-icon">Terminal<wbr>Service</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="terminalservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="terminalservice.html#exec" class="tsd-kind-icon">exec</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="terminalservice.html#getcommand" class="tsd-kind-icon">get<wbr>Command</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="terminalservice.html#getrawargs" class="tsd-kind-icon">get<wbr>Raw<wbr>Args</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="terminalservice.html#run" class="tsd-kind-icon">run</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="testcommand.html" class="tsd-kind-icon">Test<wbr>Command</a>
 					</li>

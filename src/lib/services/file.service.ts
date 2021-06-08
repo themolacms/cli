@@ -1,8 +1,19 @@
-import {readFile, readJson, writeJson, outputFile, remove} from 'fs-extra';
+import {
+  pathExists,
+  readFile,
+  readJson,
+  writeJson,
+  outputFile,
+  remove,
+} from 'fs-extra';
 import * as recursiveReaddir from 'recursive-readdir';
 
 export class FileService {
   constructor() {}
+
+  exists(path: string) {
+    return pathExists(path);
+  }
 
   readText(filePath: string) {
     return readFile(filePath, 'utf8');

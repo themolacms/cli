@@ -88,6 +88,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fileservice.html#changecontent" class="tsd-kind-icon">change<wbr>Content</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fileservice.html#createfile" class="tsd-kind-icon">create<wbr>File</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="fileservice.html#createjson" class="tsd-kind-icon">create<wbr>Json</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fileservice.html#exists" class="tsd-kind-icon">exists</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fileservice.html#listdir" class="tsd-kind-icon">list<wbr>Dir</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="fileservice.html#readjson" class="tsd-kind-icon">read<wbr>Json</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fileservice.html#readtext" class="tsd-kind-icon">read<wbr>Text</a></li>
@@ -109,7 +110,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L4">lib/services/file.service.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L11">lib/services/file.service.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="fileservice.html" class="tsd-signature-type">FileService</a></h4>
@@ -129,7 +130,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L27">lib/services/file.service.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L38">lib/services/file.service.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L11">lib/services/file.service.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L22">lib/services/file.service.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -184,7 +185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L19">lib/services/file.service.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L30">lib/services/file.service.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -207,6 +208,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="exists" class="tsd-anchor"></a>
+					<h3>exists</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">exists<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L14">lib/services/file.service.ts:14</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="listdir" class="tsd-anchor"></a>
 					<h3>list<wbr>Dir</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -216,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L47">lib/services/file.service.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L58">lib/services/file.service.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -242,7 +266,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L15">lib/services/file.service.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L26">lib/services/file.service.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -271,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L7">lib/services/file.service.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L18">lib/services/file.service.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -294,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/lib/services/file.service.ts#L23">lib/services/file.service.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/lib/services/file.service.ts#L34">lib/services/file.service.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -320,13 +344,25 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
+						<a href="addcommand.html" class="tsd-kind-icon">Add<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="buildcommand.html" class="tsd-kind-icon">Build<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="createservice.html" class="tsd-kind-icon">Create<wbr>Service</a>
+						<a href="deploycommand.html" class="tsd-kind-icon">Deploy<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="docscommand.html" class="tsd-kind-icon">Docs<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="downloadservice.html" class="tsd-kind-icon">Download<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="e2ecommand.html" class="tsd-kind-icon">E2e<wbr>Command</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -346,6 +382,9 @@
 								<a href="fileservice.html#createjson" class="tsd-kind-icon">create<wbr>Json</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="fileservice.html#exists" class="tsd-kind-icon">exists</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="fileservice.html#listdir" class="tsd-kind-icon">list<wbr>Dir</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
@@ -362,6 +401,9 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
+						<a href="firebaseservice.html" class="tsd-kind-icon">Firebase<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="helperservice.html" class="tsd-kind-icon">Helper<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -369,6 +411,30 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="previewcommand.html" class="tsd-kind-icon">Preview<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sudocommand.html" class="tsd-kind-icon">Sudo<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sudogetcommand.html" class="tsd-kind-icon">Sudo<wbr>Get<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sudoremovecommand.html" class="tsd-kind-icon">Sudo<wbr>Remove<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sudosetcommand.html" class="tsd-kind-icon">Sudo<wbr>Set<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="terminalservice.html" class="tsd-kind-icon">Terminal<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="testcommand.html" class="tsd-kind-icon">Test<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/backendpoperties.html" class="tsd-kind-icon">Backend<wbr>Poperties</a>
@@ -387,6 +453,9 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#cliapp" class="tsd-kind-icon">cli<wbr>App</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#superstatic" class="tsd-kind-icon">superstatic</a>
 					</li>
 				</ul>
 			</nav>

@@ -10,7 +10,15 @@
 
 - [Command overview](#cli-command-overview)
 - [Command reference](#cli-command-reference)
+  - [`add`](#command-add)
+  - [`build`](#command-build)
+  - [`deploy`](#command-deploy)
+  - [`docs`](#command-docs)
+  - [`e2e`](#command-e2e)
   - [`new`](#command-new)
+  - [`preview`](#command-preview)
+  - [`sudo`](#command-sudo)
+  - [`test`](#command-test)
   - [`help`](#command-help)
   - [`*`](#command-*)
 - [Detail API reference](https://mola-cli.lamnhan.com)
@@ -25,12 +33,85 @@
 
 The Mola CMS all-in-one CLI
 
+- [`mola add|generate|a <input>`](#command-add)
+- [`mola build|b`](#command-build)
+- [`mola deploy|d`](#command-deploy)
+- [`mola docs|d`](#command-docs)
+- [`mola e2e|e`](#command-e2e)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
+- [`mola preview|p`](#command-preview)
+- [`mola sudo|sadmin|s <subCommand> [email]`](#command-sudo)
+- [`mola test|t`](#command-test)
 - [`mola help`](#command-help)
 - [`mola *`](#command-*)
 
 <h2><a name="cli-command-reference"><p>Command reference</p>
 </a></h2>
+
+<h3><a name="command-add"><p><code>add</code></p>
+</a></h3>
+
+Add a components, pages, ...
+
+**Usage:**
+
+```sh
+mola add <input>
+mola generate <input>
+mola a <input>
+```
+
+**Parameters:**
+
+- `<input>`: An input string
+
+<h3><a name="command-build"><p><code>build</code></p>
+</a></h3>
+
+Build the app.
+
+**Usage:**
+
+```sh
+mola build
+mola b
+```
+
+<h3><a name="command-deploy"><p><code>deploy</code></p>
+</a></h3>
+
+Deploy the app.
+
+**Usage:**
+
+```sh
+mola deploy
+mola d
+```
+
+<h3><a name="command-docs"><p><code>docs</code></p>
+</a></h3>
+
+Open documentation.
+
+**Usage:**
+
+```sh
+mola docs
+mola d
+```
+
+<h3><a name="command-e2e"><p><code>e2e</code></p>
+</a></h3>
+
+E2e test the app.
+
+**Usage:**
+
+```sh
+mola e2e
+mola e
+```
 
 <h3><a name="command-new"><p><code>new</code></p>
 </a></h3>
@@ -62,6 +143,48 @@ mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [va
 - `-o, --soul [value]`: Change Unistylus soul.
 - `-i, --skip-install`: Do not install dependency packages.
 - `-g, --skip-git`: Do not initialize a git repository.
+
+<h3><a name="command-preview"><p><code>preview</code></p>
+</a></h3>
+
+Preview the app.
+
+**Usage:**
+
+```sh
+mola preview
+mola p
+```
+
+<h3><a name="command-sudo"><p><code>sudo</code></p>
+</a></h3>
+
+Manage super admin account.
+
+**Usage:**
+
+```sh
+mola sudo <subCommand> [email]
+mola sadmin <subCommand> [email]
+mola s <subCommand> [email]
+```
+
+**Parameters:**
+
+- `<subCommand>`: A supported sub-command: get, set, remove
+- `[email]`: A user email (set)
+
+<h3><a name="command-test"><p><code>test</code></p>
+</a></h3>
+
+Unit test the app.
+
+**Usage:**
+
+```sh
+mola test
+mola t
+```
 
 <h3><a name="command-help"><p><code>help</code></p>
 </a></h3>

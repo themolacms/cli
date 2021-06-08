@@ -68,13 +68,26 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-class"><a href="classes/addcommand.html" class="tsd-kind-icon">Add<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/buildcommand.html" class="tsd-kind-icon">Build<wbr>Command</a></li>
 								<li class="tsd-kind-class"><a href="classes/cli.html" class="tsd-kind-icon">Cli</a></li>
-								<li class="tsd-kind-class"><a href="classes/createservice.html" class="tsd-kind-icon">Create<wbr>Service</a></li>
+								<li class="tsd-kind-class"><a href="classes/deploycommand.html" class="tsd-kind-icon">Deploy<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/docscommand.html" class="tsd-kind-icon">Docs<wbr>Command</a></li>
 								<li class="tsd-kind-class"><a href="classes/downloadservice.html" class="tsd-kind-icon">Download<wbr>Service</a></li>
+								<li class="tsd-kind-class"><a href="classes/e2ecommand.html" class="tsd-kind-icon">E2e<wbr>Command</a></li>
 								<li class="tsd-kind-class"><a href="classes/fileservice.html" class="tsd-kind-icon">File<wbr>Service</a></li>
+								<li class="tsd-kind-class"><a href="classes/firebaseservice.html" class="tsd-kind-icon">Firebase<wbr>Service</a></li>
 								<li class="tsd-kind-class"><a href="classes/helperservice.html" class="tsd-kind-icon">Helper<wbr>Service</a></li>
 								<li class="tsd-kind-class"><a href="classes/lib.html" class="tsd-kind-icon">Lib</a></li>
 								<li class="tsd-kind-class"><a href="classes/newcommand.html" class="tsd-kind-icon">New<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/previewcommand.html" class="tsd-kind-icon">Preview<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a></li>
+								<li class="tsd-kind-class"><a href="classes/sudocommand.html" class="tsd-kind-icon">Sudo<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/sudogetcommand.html" class="tsd-kind-icon">Sudo<wbr>Get<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/sudoremovecommand.html" class="tsd-kind-icon">Sudo<wbr>Remove<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/sudosetcommand.html" class="tsd-kind-icon">Sudo<wbr>Set<wbr>Command</a></li>
+								<li class="tsd-kind-class"><a href="classes/terminalservice.html" class="tsd-kind-icon">Terminal<wbr>Service</a></li>
+								<li class="tsd-kind-class"><a href="classes/testcommand.html" class="tsd-kind-icon">Test<wbr>Command</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -96,6 +109,7 @@
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable"><a href="globals.html#cliapp" class="tsd-kind-icon">cli<wbr>App</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#superstatic" class="tsd-kind-icon">superstatic</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,7 +123,7 @@
 					<div class="tsd-signature tsd-kind-icon">Command<wbr>Def<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/cli/index.ts#L105">cli/index.ts:105</a></li>
+							<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/cli/index.ts#L311">cli/index.ts:311</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -122,7 +136,17 @@
 					<div class="tsd-signature tsd-kind-icon">cli<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Command</span><span class="tsd-signature-symbol"> = new Cli().getApp()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/themolacms/cli/blob/53ca2aa/src/bin.ts#L4">bin.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/themolacms/cli/blob/4a07f49/src/bin.ts#L4">bin.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="superstatic" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> superstatic</h3>
+					<div class="tsd-signature tsd-kind-icon">superstatic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = require(&#x27;superstatic&#x27;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in cli/commands/preview.command.ts:2</li>
 						</ul>
 					</aside>
 				</section>
@@ -139,16 +163,31 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
+						<a href="classes/addcommand.html" class="tsd-kind-icon">Add<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/buildcommand.html" class="tsd-kind-icon">Build<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/createservice.html" class="tsd-kind-icon">Create<wbr>Service</a>
+						<a href="classes/deploycommand.html" class="tsd-kind-icon">Deploy<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/docscommand.html" class="tsd-kind-icon">Docs<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/downloadservice.html" class="tsd-kind-icon">Download<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/e2ecommand.html" class="tsd-kind-icon">E2e<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/fileservice.html" class="tsd-kind-icon">File<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/firebaseservice.html" class="tsd-kind-icon">Firebase<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/helperservice.html" class="tsd-kind-icon">Helper<wbr>Service</a>
@@ -158,6 +197,30 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/newcommand.html" class="tsd-kind-icon">New<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/previewcommand.html" class="tsd-kind-icon">Preview<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sudocommand.html" class="tsd-kind-icon">Sudo<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sudogetcommand.html" class="tsd-kind-icon">Sudo<wbr>Get<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sudoremovecommand.html" class="tsd-kind-icon">Sudo<wbr>Remove<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sudosetcommand.html" class="tsd-kind-icon">Sudo<wbr>Set<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/terminalservice.html" class="tsd-kind-icon">Terminal<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/testcommand.html" class="tsd-kind-icon">Test<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/backendpoperties.html" class="tsd-kind-icon">Backend<wbr>Poperties</a>
@@ -176,6 +239,9 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#cliapp" class="tsd-kind-icon">cli<wbr>App</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#superstatic" class="tsd-kind-icon">superstatic</a>
 					</li>
 				</ul>
 			</nav>
