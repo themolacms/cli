@@ -35,7 +35,7 @@ export class Cli {
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
   docsCommandDef: CommandDef = [
-    ['docs', 'd'], 'Open documentation.'
+    ['docs', 'home', 'h'], 'Open documentation.'
   ];
 
   infoCommandDef: CommandDef = [
@@ -52,7 +52,7 @@ export class Cli {
    newCommandDef: CommandDef = [
     ['new <theme> <projectName> [appDomain] [appName] [appDescription]', 'start', 'n'],
     'Create a new project.',
-    ['-s, --source [value]', 'Custom Mola theme source (url to .zip).'],
+    ['-s, --source [value]', 'Custom Mola theme source (url/path to .zip).'],
     ['-d, --deploy [value]', 'Deploy service (github/firebase/netlify).'],
     ['-l, --locale [value]', 'Change or add locales (commna-separated).'],
     ['-k, --skin [value]', 'Change or add Unistylus skins (commna-separated).'],
@@ -65,7 +65,7 @@ export class Cli {
    * @param input - An input string
    */
   addCommandDef: CommandDef = [
-    ['add <input>', 'generate', 'a'], 'Add a components, pages, ...'
+    ['add <input>', 'generate', 'g', 'a'], 'Add a components, pages, ...'
   ];
 
   /**

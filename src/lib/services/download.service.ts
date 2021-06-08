@@ -1,3 +1,4 @@
+import {resolve} from 'path';
 import axios from 'axios';
 import {
   ensureDir,
@@ -13,8 +14,14 @@ export class DownloadService {
   constructor() {}
 
   async downloadAndUnzip(url: string, filePath: string) {
+    // copy
+    if (!url.startsWith('http')) {
+      await copy(resolve(url), filePath);
+    }
     // download
-    await this.download(url, filePath);
+    else {
+      await this.download(url, filePath);
+    }
     // unzip
     await this.unzip(filePath);
     // remove the zip file

@@ -92,8 +92,8 @@ export class NewCommand {
   }
 
   proccessInput(input: string) {
-    // direct url
-    if (input.endsWith('.zip') || input.startsWith('http')) {
+    // direct url or local file
+    if (input.endsWith('.zip')) {
       return input;
     }
     // 3rd github (github.com/...)
