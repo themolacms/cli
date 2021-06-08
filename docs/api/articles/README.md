@@ -34,10 +34,10 @@
 
 The Mola CMS all-in-one CLI
 
-- [`mola add|generate|a <input>`](#command-add)
+- [`mola add|generate|g|a <input>`](#command-add)
 - [`mola build|b`](#command-build)
 - [`mola deploy|d`](#command-deploy)
-- [`mola docs|d`](#command-docs)
+- [`mola docs|home|h`](#command-docs)
 - [`mola e2e|e`](#command-e2e)
 - [`mola info|i`](#command-info)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
@@ -60,6 +60,7 @@ Add a components, pages, ...
 ```sh
 mola add <input>
 mola generate <input>
+mola g <input>
 mola a <input>
 ```
 
@@ -100,7 +101,8 @@ Open documentation.
 
 ```sh
 mola docs
-mola d
+mola home
+mola h
 ```
 
 <h3><a name="command-e2e"><p><code>e2e</code></p>
@@ -150,7 +152,7 @@ mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [va
 
 **Options:**
 
-- `-s, --source [value]`: Custom Mola theme source (url to .zip).
+- `-s, --source [value]`: Custom Mola theme source (url/path to .zip).
 - `-d, --deploy [value]`: Deploy service (github/firebase/netlify).
 - `-l, --locale [value]`: Change or add locales (commna-separated).
 - `-k, --skin [value]`: Change or add Unistylus skins (commna-separated).
