@@ -21,11 +21,21 @@ export class RoleSetCommand {
     // init firebase
     await this.firebaseService.initializeApp();
     const auth = this.firebaseService.auth();
+    const firestore = this.firebaseService.firestore();
     // get the user
     const user = await auth.getUserByEmail(email);
     if (user) {
       const {uid, customClaims} = user;
-      await auth.setCustomUserClaims(uid, {...customClaims, role});
+      const claims = {...customClaims, role} as Record<string, unknown>;
+      // update claims
+      await auth.setCustomUserClaims(uid, claims);
+      // update profile
+      const dbUser = (await firestore.doc(`users/${uid}`).get()).data();
+      if (dbUser) {
+        const badges = Object.keys(claims).map(key => claims[key]);
+        await firestore.doc(`profiles/${dbUser.username}`).update({badges});
+      }
+      // result
       console.log(
         `The user '${email}' is setted to the role of: ` +
           yellow(capitalCase(role))
