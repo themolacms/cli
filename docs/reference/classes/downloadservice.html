@@ -85,8 +85,9 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#download" class="tsd-kind-icon">download</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#downloadandunzip" class="tsd-kind-icon">download<wbr>And<wbr>Unzip</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#downloadblob" class="tsd-kind-icon">download<wbr>Blob</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#downloadtext" class="tsd-kind-icon">download<wbr>Text</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#extractfilepath" class="tsd-kind-icon">extract<wbr>File<wbr>Path</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#unnest" class="tsd-kind-icon">unnest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="downloadservice.html#unzip" class="tsd-kind-icon">unzip</a></li>
@@ -101,15 +102,21 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Download<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="downloadservice.html" class="tsd-signature-type">DownloadService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Download<wbr>Service<span class="tsd-signature-symbol">(</span>fileService<span class="tsd-signature-symbol">: </span><a href="fileservice.html" class="tsd-signature-type">FileService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="downloadservice.html" class="tsd-signature-type">DownloadService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/lib/services/download.service.ts#L13">lib/services/download.service.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L15">lib/services/download.service.ts:15</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileService: <a href="fileservice.html" class="tsd-signature-type">FileService</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="downloadservice.html" class="tsd-signature-type">DownloadService</a></h4>
 						</li>
 					</ul>
@@ -118,16 +125,16 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="download" class="tsd-anchor"></a>
-					<h3>download</h3>
+					<a name="downloadandunzip" class="tsd-anchor"></a>
+					<h3>download<wbr>And<wbr>Unzip</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">download<wbr>And<wbr>Unzip<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/lib/services/download.service.ts#L34">lib/services/download.service.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L18">lib/services/download.service.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -144,16 +151,42 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="downloadandunzip" class="tsd-anchor"></a>
-					<h3>download<wbr>And<wbr>Unzip</h3>
+					<a name="downloadblob" class="tsd-anchor"></a>
+					<h3>download<wbr>Blob</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">download<wbr>And<wbr>Unzip<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">download<wbr>Blob<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/lib/services/download.service.ts#L16">lib/services/download.service.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L36">lib/services/download.service.ts:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>filePath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="downloadtext" class="tsd-anchor"></a>
+					<h3>download<wbr>Text</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">download<wbr>Text<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L55">lib/services/download.service.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -179,7 +212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/lib/services/download.service.ts#L84">lib/services/download.service.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L95">lib/services/download.service.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -222,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/lib/services/download.service.ts#L64">lib/services/download.service.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L75">lib/services/download.service.ts:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -245,7 +278,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/213cd4c/src/lib/services/download.service.ts#L53">lib/services/download.service.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/05bdfc3/src/lib/services/download.service.ts#L64">lib/services/download.service.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -294,10 +327,13 @@
 								<a href="downloadservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="downloadservice.html#download" class="tsd-kind-icon">download</a>
+								<a href="downloadservice.html#downloadandunzip" class="tsd-kind-icon">download<wbr>And<wbr>Unzip</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="downloadservice.html#downloadandunzip" class="tsd-kind-icon">download<wbr>And<wbr>Unzip</a>
+								<a href="downloadservice.html#downloadblob" class="tsd-kind-icon">download<wbr>Blob</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="downloadservice.html#downloadtext" class="tsd-kind-icon">download<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="downloadservice.html#extractfilepath" class="tsd-kind-icon">extract<wbr>File<wbr>Path</a>
@@ -392,6 +428,9 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#cliapp" class="tsd-kind-icon">cli<wbr>App</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#listgithubcontent" class="tsd-kind-icon">list<wbr>Github<wbr>Content</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#superstatic" class="tsd-kind-icon">superstatic</a>
