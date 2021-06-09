@@ -10,6 +10,9 @@ import {SudoCommand} from './commands/sudo.command';
 import {SudoGetCommand} from './commands/sudo-get.command';
 import {SudoSetCommand} from './commands/sudo-set.command';
 import {SudoRemoveCommand} from './commands/sudo-remove.command';
+import {RoleCommand} from './commands/role.command';
+import {RoleGetCommand} from './commands/role-get.command';
+import {RoleSetCommand} from './commands/role-set.command';
 import {BuildCommand} from './commands/build.command';
 import {PreviewCommand} from './commands/preview.command';
 import {DeployCommand} from './commands/deploy.command';
@@ -26,6 +29,9 @@ export class Cli {
   sudoGetCommand: SudoGetCommand;
   sudoSetCommand: SudoSetCommand;
   sudoRemoveCommand: SudoRemoveCommand;
+  roleCommand: RoleCommand;
+  roleGetCommand: RoleGetCommand;
+  roleSetCommand: RoleSetCommand;
   buildCommand: BuildCommand;
   previewCommand: PreviewCommand;
   deployCommand: DeployCommand;
@@ -66,7 +72,7 @@ export class Cli {
    * @param params? - List of parameters
    */
   addCommandDef: CommandDef = [
-    ['add <input> [params...]', 'generate', 'g', 'a'], 'Add a components, pages, ...'
+    ['add <input> [params...]', 'generate', 'a', 'g'], 'Add a components, pages, ...'
   ];
 
   /**
@@ -91,6 +97,30 @@ export class Cli {
 
   sudoRemoveCommandDef: CommandDef = [
     'sudo-remove', 'Remove the super admin account.'
+  ];
+
+  /**
+   * @param subCommand - A supported sub-command: get, set
+   * @param params? - List of sub-command parameters
+   */
+  roleCommandDef: CommandDef = [
+    ['role <subCommand> [params...]', 'r'],
+    'Manange user role.'
+  ];
+
+  /**
+   * @param email - The user email
+   */
+  roleGetCommandDef: CommandDef = [
+    'role-get <email>', 'Display a user role.'
+  ];
+
+  /**
+   * @param role - A supported role: admin, editor, author, contributor, subscriber
+   * @param email - The user email
+   */
+  roleSetCommandDef: CommandDef = [
+    'role-set <role> <email>', 'Set a role to a user.'
   ];
 
   buildCommandDef: CommandDef = [
@@ -143,6 +173,12 @@ export class Cli {
       this.sudoGetCommand,
       this.sudoSetCommand,
       this.sudoRemoveCommand,
+    );
+    this.roleGetCommand = new RoleGetCommand(this.molaModule.firebaseService);
+    this.roleSetCommand = new RoleSetCommand(this.molaModule.firebaseService);
+    this.roleCommand = new RoleCommand(
+      this.roleGetCommand,
+      this.roleSetCommand,
     );
     this.buildCommand = new BuildCommand(this.molaModule.terminalService);
     this.previewCommand = new PreviewCommand(this.molaModule.projectService);
@@ -264,6 +300,34 @@ export class Cli {
         .command(command as string)
         .description(description)
         .action(() => this.sudoRemoveCommand.run());
+    })();
+
+    // role
+    (() => {
+      const [[command, ...aliases], description] = this.roleCommandDef;
+      commander
+        .command(command)
+        .aliases(aliases)
+        .description(description)
+        .action((subCommand, params) => this.roleCommand.run(subCommand, params));
+    })();
+
+    // role-get
+    (() => {
+      const [command, description] = this.roleGetCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action((email) => this.roleGetCommand.run(email));
+    })();
+
+    // role-set
+    (() => {
+      const [command, description] = this.roleSetCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action((role, email) => this.roleSetCommand.run(role, email));
     })();
 
     // build

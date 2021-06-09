@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SudoSetCommand | @molacms/cli</title>
+	<title>RoleSetCommand | @molacms/cli</title>
 	<meta name="description" content="Documentation for @molacms/cli">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="sudosetcommand.html">SudoSetCommand</a>
+					<a href="rolesetcommand.html">RoleSetCommand</a>
 				</li>
 			</ul>
-			<h1>Class SudoSetCommand</h1>
+			<h1>Class RoleSetCommand</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SudoSetCommand</span>
+						<span class="target">RoleSetCommand</span>
 					</li>
 				</ul>
 			</section>
@@ -79,13 +79,13 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="sudosetcommand.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="rolesetcommand.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sudosetcommand.html#run" class="tsd-kind-icon">run</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rolesetcommand.html#run" class="tsd-kind-icon">run</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,25 +97,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sudo<wbr>Set<wbr>Command<span class="tsd-signature-symbol">(</span>projectService<span class="tsd-signature-symbol">: </span><a href="projectservice.html" class="tsd-signature-type">ProjectService</a>, firebaseService<span class="tsd-signature-symbol">: </span><a href="firebaseservice.html" class="tsd-signature-type">FirebaseService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sudosetcommand.html" class="tsd-signature-type">SudoSetCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Role<wbr>Set<wbr>Command<span class="tsd-signature-symbol">(</span>firebaseService<span class="tsd-signature-symbol">: </span><a href="firebaseservice.html" class="tsd-signature-type">FirebaseService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rolesetcommand.html" class="tsd-signature-type">RoleSetCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/95933da/src/cli/commands/sudo-set.command.ts#L7">cli/commands/sudo-set.command.ts:7</a></li>
+									<li>Defined in cli/commands/role-set.command.ts:7</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>projectService: <a href="projectservice.html" class="tsd-signature-type">ProjectService</a></h5>
-								</li>
-								<li>
 									<h5>firebaseService: <a href="firebaseservice.html" class="tsd-signature-type">FirebaseService</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="sudosetcommand.html" class="tsd-signature-type">SudoSetCommand</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="rolesetcommand.html" class="tsd-signature-type">RoleSetCommand</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -126,17 +123,20 @@
 					<a name="run" class="tsd-anchor"></a>
 					<h3>run</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span>role<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/95933da/src/cli/commands/sudo-set.command.ts#L13">cli/commands/sudo-set.command.ts:13</a></li>
+									<li>Defined in cli/commands/role-set.command.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>role: <span class="tsd-signature-type">string</span></h5>
+								</li>
 								<li>
 									<h5>email: <span class="tsd-signature-type">string</span></h5>
 								</li>
@@ -211,9 +211,21 @@
 					<li class=" tsd-kind-class">
 						<a href="rolegetcommand.html" class="tsd-kind-icon">Role<wbr>Get<wbr>Command</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="rolesetcommand.html" class="tsd-kind-icon">Role<wbr>Set<wbr>Command</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="rolesetcommand.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rolesetcommand.html#run" class="tsd-kind-icon">run</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="sudocommand.html" class="tsd-kind-icon">Sudo<wbr>Command</a>
 					</li>
@@ -223,21 +235,9 @@
 					<li class=" tsd-kind-class">
 						<a href="sudoremovecommand.html" class="tsd-kind-icon">Sudo<wbr>Remove<wbr>Command</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="sudosetcommand.html" class="tsd-kind-icon">Sudo<wbr>Set<wbr>Command</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="sudosetcommand.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sudosetcommand.html#run" class="tsd-kind-icon">run</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="terminalservice.html" class="tsd-kind-icon">Terminal<wbr>Service</a>
 					</li>

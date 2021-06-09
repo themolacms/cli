@@ -1,6 +1,6 @@
 import {yellow, green} from 'chalk';
 
-import {OK, WARN} from '../../lib/services/message.service';
+import {OK, WARN, ERROR} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
 
@@ -29,6 +29,8 @@ export class SudoSetCommand {
           backend: {...molaDotJson.backend, sadmin: email},
         });
         console.log(OK + 'A new super admin is setted.');
+      } else {
+        console.log(ERROR + `No user with the email '${green(email)}' found.`);
       }
     } else {
       console.log(

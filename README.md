@@ -18,6 +18,7 @@
   - [`info`](#command-info)
   - [`new`](#command-new)
   - [`preview`](#command-preview)
+  - [`role`](#command-role)
   - [`sudo`](#command-sudo)
   - [`test`](#command-test)
   - [`help`](#command-help)
@@ -34,7 +35,7 @@
 
 The Mola CMS all-in-one CLI
 
-- [`mola add|generate|g|a <input> [params...]`](#command-add)
+- [`mola add|generate|a|g <input> [params...]`](#command-add)
 - [`mola build|b`](#command-build)
 - [`mola deploy|d`](#command-deploy)
 - [`mola docs|home|h`](#command-docs)
@@ -42,6 +43,7 @@ The Mola CMS all-in-one CLI
 - [`mola info|i`](#command-info)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
 - [`mola preview|p`](#command-preview)
+- [`mola role|r <subCommand> [params...]`](#command-role)
 - [`mola sudo|sadmin|s <subCommand> [email]`](#command-sudo)
 - [`mola test|t`](#command-test)
 - [`mola help`](#command-help)
@@ -60,8 +62,8 @@ Add a components, pages, ...
 ```sh
 mola add <input> [params...]
 mola generate <input> [params...]
-mola g <input> [params...]
 mola a <input> [params...]
+mola g <input> [params...]
 ```
 
 **Parameters:**
@@ -172,6 +174,23 @@ Preview the app.
 mola preview
 mola p
 ```
+
+<h3><a name="command-role"><p><code>role</code></p>
+</a></h3>
+
+Manange user role.
+
+**Usage:**
+
+```sh
+mola role <subCommand> [params...]
+mola r <subCommand> [params...]
+```
+
+**Parameters:**
+
+- `<subCommand>`: A supported sub-command: get, set
+- `[params...]`: The `[params...]` parameter.
 
 <h3><a name="command-sudo"><p><code>sudo</code></p>
 </a></h3>

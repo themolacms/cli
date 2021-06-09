@@ -1,4 +1,6 @@
-import {OK, WARN} from '../../lib/services/message.service';
+import {green} from 'chalk';
+
+import {OK, WARN, ERROR} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
 
@@ -17,7 +19,8 @@ export class SudoRemoveCommand {
       await this.firebaseService.initializeApp();
       const auth = this.firebaseService.auth();
       // get the user
-      const sadminUser = await auth.getUserByEmail(backend.sadmin);
+      const email = backend.sadmin;
+      const sadminUser = await auth.getUserByEmail(email);
       if (sadminUser) {
         const {uid, customClaims} = sadminUser;
         await auth.setCustomUserClaims(uid, {
@@ -28,6 +31,8 @@ export class SudoRemoveCommand {
           backend: {...molaDotJson.backend, sadmin: ''},
         });
         console.log(OK + 'The super admin is removed.');
+      } else {
+        console.log(ERROR + `No user with the email '${green(email)}' found.`);
       }
     } else {
       console.log(WARN + 'This app has no super admin.');

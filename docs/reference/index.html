@@ -80,6 +80,7 @@
 								<li><a href="#command-info"><code>info</code></a></li>
 								<li><a href="#command-new"><code>new</code></a></li>
 								<li><a href="#command-preview"><code>preview</code></a></li>
+								<li><a href="#command-role"><code>role</code></a></li>
 								<li><a href="#command-sudo"><code>sudo</code></a></li>
 								<li><a href="#command-test"><code>test</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
@@ -102,6 +103,7 @@
 						<li><a href="#command-info"><code>mola info|i</code></a></li>
 						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git</code></a></li>
 						<li><a href="#command-preview"><code>mola preview|p</code></a></li>
+						<li><a href="#command-role"><code>mola role|r &lt;subCommand&gt; [params...]</code></a></li>
 						<li><a href="#command-sudo"><code>mola sudo|sadmin|s &lt;subCommand&gt; [email]</code></a></li>
 						<li><a href="#command-test"><code>mola test|t</code></a></li>
 						<li><a href="#command-help"><code>mola help</code></a></li>
@@ -184,6 +186,17 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] 
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola preview
 mola p</code></pre>
+					<h3><a name="command-role"><p><code>role</code></p>
+					</a></h3>
+					<p>Manange user role.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola role &lt;subCommand&gt; [params...]
+mola r &lt;subCommand&gt; [params...]</code></pre>
+					<p><strong>Parameters:</strong></p>
+					<ul>
+						<li><code>&lt;subCommand&gt;</code>: A supported sub-command: get, set</li>
+						<li><code>[params...]</code>: The <code>[params...]</code> parameter.</li>
+					</ul>
 					<h3><a name="command-sudo"><p><code>sudo</code></p>
 					</a></h3>
 					<p>Manage super admin account.</p>
@@ -278,6 +291,15 @@ mola t</code></pre>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rolecommand.html" class="tsd-kind-icon">Role<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rolegetcommand.html" class="tsd-kind-icon">Role<wbr>Get<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rolesetcommand.html" class="tsd-kind-icon">Role<wbr>Set<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/sudocommand.html" class="tsd-kind-icon">Sudo<wbr>Command</a>
