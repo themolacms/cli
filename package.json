@@ -49,6 +49,7 @@
     "firebase-admin": "^9.9.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
+    "list-github-dir-content": "^3.0.0",
     "open": "^8.2.0",
     "recursive-readdir": "^2.2.2",
     "superstatic": "^7.1.0",

@@ -19,7 +19,7 @@ export class Lib {
     this.helperService = new HelperService();
     this.messageService = new MessageService();
     this.fileService = new FileService();
-    this.downloadService = new DownloadService();
+    this.downloadService = new DownloadService(this.fileService);
     this.terminalService = new TerminalService();
     this.projectService = new ProjectService(this.fileService);
     this.firebaseService = new FirebaseService(this.fileService);

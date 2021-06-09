@@ -10,8 +10,10 @@ import {
 } from 'fs-extra';
 import * as zipper from 'adm-zip';
 
+import {FileService} from './file.service';
+
 export class DownloadService {
-  constructor() {}
+  constructor(private fileService: FileService) {}
 
   async downloadAndUnzip(url: string, filePath: string) {
     // copy
@@ -20,7 +22,7 @@ export class DownloadService {
     }
     // download
     else {
-      await this.download(url, filePath);
+      await this.downloadBlob(url, filePath);
     }
     // unzip
     await this.unzip(filePath);
@@ -31,7 +33,7 @@ export class DownloadService {
     await this.unnest(folderPath);
   }
 
-  download(url: string, filePath: string): Promise<void> {
+  downloadBlob(url: string, filePath: string): Promise<void> {
     const {folderPath} = this.extractFilePath(filePath);
     return new Promise((resolve, reject) => {
       ensureDir(folderPath)
@@ -48,6 +50,15 @@ export class DownloadService {
           }, reject);
         }, reject);
     });
+  }
+
+  async downloadText(url: string, filePath: string) {
+    const response = await axios({
+      method: 'GET',
+      url,
+      responseType: 'text',
+    });
+    await this.fileService.createFile(resolve(filePath), response.data);
   }
 
   unzip(filePath: string): Promise<void> {

@@ -125,6 +125,7 @@ export class Cli {
     );
     this.addCommand = new AddCommand(
       this.molaModule.fileService,
+      this.molaModule.downloadService,
       this.molaModule.terminalService,
     );
     this.sudoGetCommand = new SudoGetCommand(
