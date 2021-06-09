@@ -69,7 +69,7 @@ mola g <input> [params...]
 **Parameters:**
 
 - `<input>`: An input string
-- `[params...]`: The `[params...]` parameter.
+- `[params...]`: List of parameters
 
 <h3><a name="command-build"><p><code>build</code></p>
 </a></h3>
@@ -190,7 +190,7 @@ mola r <subCommand> [params...]
 **Parameters:**
 
 - `<subCommand>`: A supported sub-command: get, set
-- `[params...]`: The `[params...]` parameter.
+- `[params...]`: List of sub-command parameters
 
 <h3><a name="command-sudo"><p><code>sudo</code></p>
 </a></h3>

@@ -69,7 +69,7 @@ export class Cli {
 
   /**
    * @param input - An input string
-   * @param params? - List of parameters
+   * @param params...? - List of parameters
    */
   addCommandDef: CommandDef = [
     ['add <input> [params...]', 'generate', 'a', 'g'], 'Add a components, pages, ...'
@@ -101,7 +101,7 @@ export class Cli {
 
   /**
    * @param subCommand - A supported sub-command: get, set
-   * @param params? - List of sub-command parameters
+   * @param params...? - List of sub-command parameters
    */
   roleCommandDef: CommandDef = [
     ['role <subCommand> [params...]', 'r'],
