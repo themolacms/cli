@@ -2,30 +2,30 @@ import {yellow} from 'chalk';
 
 import {ERROR} from '../../lib/services/message.service';
 
-import {RoleGetCommand} from './role-get.command';
-import {RoleSetCommand} from './role-set.command';
+import {ClaimGetCommand} from './claim-get.command';
+import {ClaimSetCommand} from './claim-set.command';
 
-export class RoleCommand {
+export class ClaimCommand {
   constructor(
-    private roleGetCommand: RoleGetCommand,
-    private roleSetCommand: RoleSetCommand
+    private claimGetCommand: ClaimGetCommand,
+    private claimSetCommand: ClaimSetCommand
   ) {}
 
   run(subCommand: string, params: string[] = []) {
     switch (subCommand) {
       case 'get':
       case 'g':
-        this.roleGetCommand.run(params[0]);
+        this.claimGetCommand.run(params[0]);
         break;
       case 'set':
       case 's':
-        this.roleSetCommand.run(params[0], params[1]);
+        this.claimSetCommand.run(params.shift() as string, params);
         break;
       default:
         console.log(
           ERROR +
             `Invalid sub-command '${subCommand}':  ` +
-            `${yellow('get')}, ${yellow('set')}, ${yellow('remove')}`
+            `${yellow('get')}, ${yellow('set')}`
         );
         break;
     }

@@ -10,9 +10,9 @@ import {SudoCommand} from './commands/sudo.command';
 import {SudoGetCommand} from './commands/sudo-get.command';
 import {SudoSetCommand} from './commands/sudo-set.command';
 import {SudoRemoveCommand} from './commands/sudo-remove.command';
-import {RoleCommand} from './commands/role.command';
-import {RoleGetCommand} from './commands/role-get.command';
-import {RoleSetCommand} from './commands/role-set.command';
+import {ClaimCommand} from './commands/claim.command';
+import {ClaimGetCommand} from './commands/claim-get.command';
+import {ClaimSetCommand} from './commands/claim-set.command';
 import {BuildCommand} from './commands/build.command';
 import {PreviewCommand} from './commands/preview.command';
 import {DeployCommand} from './commands/deploy.command';
@@ -29,9 +29,9 @@ export class Cli {
   sudoGetCommand: SudoGetCommand;
   sudoSetCommand: SudoSetCommand;
   sudoRemoveCommand: SudoRemoveCommand;
-  roleCommand: RoleCommand;
-  roleGetCommand: RoleGetCommand;
-  roleSetCommand: RoleSetCommand;
+  claimCommand: ClaimCommand;
+  claimGetCommand: ClaimGetCommand;
+  claimSetCommand: ClaimSetCommand;
   buildCommand: BuildCommand;
   previewCommand: PreviewCommand;
   deployCommand: DeployCommand;
@@ -103,24 +103,24 @@ export class Cli {
    * @param subCommand - A supported sub-command: get, set
    * @param params...? - List of sub-command parameters
    */
-  roleCommandDef: CommandDef = [
-    ['role <subCommand> [params...]', 'r'],
-    'Manange user role.'
+  claimCommandDef: CommandDef = [
+    ['claim <subCommand> [params...]', 'c'],
+    'Manange user claim.'
   ];
 
   /**
    * @param email - The user email
    */
-  roleGetCommandDef: CommandDef = [
-    'role-get <email>', 'Display a user role.'
+  claimGetCommandDef: CommandDef = [
+    'claim-get <email>', 'Display a user claims.'
   ];
 
   /**
-   * @param role - A supported role: admin, editor, author, contributor, subscriber
    * @param email - The user email
+   * @param claims...? - A list of claims, formated "name:value"
    */
-  roleSetCommandDef: CommandDef = [
-    'role-set <role> <email>', 'Set a role to a user.'
+  claimSetCommandDef: CommandDef = [
+    'claim-set <email> [claims...]', 'Set claims to a user.'
   ];
 
   buildCommandDef: CommandDef = [
@@ -174,11 +174,11 @@ export class Cli {
       this.sudoSetCommand,
       this.sudoRemoveCommand,
     );
-    this.roleGetCommand = new RoleGetCommand(this.molaModule.firebaseService);
-    this.roleSetCommand = new RoleSetCommand(this.molaModule.firebaseService);
-    this.roleCommand = new RoleCommand(
-      this.roleGetCommand,
-      this.roleSetCommand,
+    this.claimGetCommand = new ClaimGetCommand(this.molaModule.firebaseService);
+    this.claimSetCommand = new ClaimSetCommand(this.molaModule.firebaseService);
+    this.claimCommand = new ClaimCommand(
+      this.claimGetCommand,
+      this.claimSetCommand,
     );
     this.buildCommand = new BuildCommand(this.molaModule.terminalService);
     this.previewCommand = new PreviewCommand(this.molaModule.projectService);
@@ -302,32 +302,32 @@ export class Cli {
         .action(() => this.sudoRemoveCommand.run());
     })();
 
-    // role
+    // claim
     (() => {
-      const [[command, ...aliases], description] = this.roleCommandDef;
+      const [[command, ...aliases], description] = this.claimCommandDef;
       commander
         .command(command)
         .aliases(aliases)
         .description(description)
-        .action((subCommand, params) => this.roleCommand.run(subCommand, params));
+        .action((subCommand, params) => this.claimCommand.run(subCommand, params));
     })();
 
-    // role-get
+    // claim-get
     (() => {
-      const [command, description] = this.roleGetCommandDef;
+      const [command, description] = this.claimGetCommandDef;
       commander
         .command(command as string)
         .description(description)
-        .action((email) => this.roleGetCommand.run(email));
+        .action((email) => this.claimGetCommand.run(email));
     })();
 
-    // role-set
+    // claim-set
     (() => {
-      const [command, description] = this.roleSetCommandDef;
+      const [command, description] = this.claimSetCommandDef;
       commander
         .command(command as string)
         .description(description)
-        .action((role, email) => this.roleSetCommand.run(role, email));
+        .action((email, claims) => this.claimSetCommand.run(email, claims));
     })();
 
     // build
