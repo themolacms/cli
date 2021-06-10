@@ -43,7 +43,7 @@ export class NewCommand {
       .replace(/[^a-zA-Z0-9-]/g, ' ')
       .replace(/ /g, '-');
     const projectPath = resolve(validProjectName);
-    appDomain = appDomain || 'mola.lamnhan.com';
+    appDomain = appDomain || 'yours.domain';
     appName = appName || 'Mola App';
     appDescription = appDescription || 'Just another awesome Mola app.';
     const deployTarget = commandOptions.deploy || 'github';
@@ -157,7 +157,7 @@ export class NewCommand {
       vendorSkins,
       appSkins
     );
-    const soulChanging = vendorSoul !== appSoul;
+    const soulChanging = appSoul && vendorSoul !== appSoul;
 
     // update mola.json
     molaDotJson.projectName = appProjectName;

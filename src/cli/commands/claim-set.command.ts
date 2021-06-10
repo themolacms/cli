@@ -1,4 +1,4 @@
-import {yellow} from 'chalk';
+import {blue, yellow, green, red} from 'chalk';
 
 import {OK, WARN, ERROR} from '../../lib/services/message.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
@@ -23,17 +23,20 @@ export class ClaimSetCommand {
         if (value === 'sdamin') {
           console.log(
             WARN +
-              "Unsupported role = 'sadmin', please use: $" +
+              `Unsupported: role = ${red('sadmin')}, please use: $ ` +
               yellow('mola sudo set <email>')
           );
+          return;
         }
         if (supportedRoles.indexOf(value) === -1) {
           console.log(
             WARN +
-              `Unsupported role = '${value}' (${supportedRoles.join(', ')})`
+              `Unsupported: role = ${red(value)} (${green(
+                supportedRoles.join('|')
+              )})`
           );
+          return;
         }
-        return;
       }
       // filter legits
       if (name === 'legit') {
@@ -41,22 +44,26 @@ export class ClaimSetCommand {
         if (supportedLegits.indexOf(value) === -1) {
           console.log(
             WARN +
-              `Unsupported legit = '${value}' (${supportedLegits.join(', ')})`
+              `Unsupported: legit = ${red(value)} (${green(
+                supportedLegits.join('|')
+              )})`
           );
+          return;
         }
-        return;
       }
       // set claims
       claims[name] = value;
     });
     // set claims
-    try {
-      // set user claims & profiles.badges
-      await this.firebaseService.updateClaims(email, claims);
-      // result
-      console.log(OK + `The roles is applied to the user '${email}'.`);
-    } catch (e) {
-      console.log(ERROR + e.message);
+    if (Object.keys(claims).length) {
+      try {
+        // set user claims & profiles.badges
+        await this.firebaseService.updateClaims(email, claims);
+        // result
+        console.log(OK + `The roles is applied to the user ${blue(email)}.`);
+      } catch (e) {
+        console.log(ERROR + e.message);
+      }
     }
   }
 }

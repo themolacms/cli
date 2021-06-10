@@ -34,7 +34,7 @@ export class SudoSetCommand {
         WARN +
           `There is a super admin already - ${green(
             backend.sadmin
-          )}, to set another one you need to remove the current first: $` +
+          )}, remove the current first before setting new one: $ ` +
           yellow('mola sudo remove')
       );
     }

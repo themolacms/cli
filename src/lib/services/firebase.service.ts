@@ -1,4 +1,5 @@
 import {resolve} from 'path';
+import {blue} from 'chalk';
 import * as admin from 'firebase-admin';
 
 import {FileService} from './file.service';
@@ -38,8 +39,8 @@ export class FirebaseService {
     const auth = await this.auth();
     const firestore = await this.firestore();
     // get the user
-    const user = await auth.getUserByEmail(email);
-    if (user) {
+    try {
+      const user = await auth.getUserByEmail(email);
       const {uid, customClaims} = user;
       const claims = {...customClaims, ...updates} as Record<string, unknown>;
       // update claims
@@ -54,8 +55,10 @@ export class FirebaseService {
           // may not has 'profiles' collection
         }
       }
-    } else {
-      throw new Error(`No user with the email '${email}' found.`);
+    } catch (e) {
+      throw new Error(
+        `No user (or unknown error) with the email ${blue(email)} found.`
+      );
     }
   }
 }

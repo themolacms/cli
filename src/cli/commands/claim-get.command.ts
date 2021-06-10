@@ -1,8 +1,7 @@
-import {grey, green, yellow} from 'chalk';
-import {capitalCase} from 'change-case';
+import {grey, blue, green} from 'chalk';
 const ttyTable = require('tty-table');
 
-import {ERROR} from '../../lib/services/message.service';
+import {OK, ERROR} from '../../lib/services/message.service';
 import {FirebaseService} from '../../lib/services/firebase.service';
 
 export class ClaimGetCommand {
@@ -11,12 +10,12 @@ export class ClaimGetCommand {
   async run(email: string) {
     const auth = await this.firebaseService.auth();
     // get the user
-    const user = await auth.getUserByEmail(email);
-    if (user) {
+    try {
+      const user = await auth.getUserByEmail(email);
       const table = ttyTable(
         [
           {value: 'Name', width: 50, align: 'left'},
-          {value: 'Value', width: 200, align: 'left'},
+          {value: 'Value', width: 100, align: 'left'},
         ],
         []
       );
@@ -29,10 +28,13 @@ export class ClaimGetCommand {
         }
       }
       // result
-      console.log(`The user '${email}' has these claims:`);
+      console.log(OK + `The user ${blue(email)} has these claims:`);
       console.log(table.render());
-    } else {
-      console.log(ERROR + `No user with the email '${green(email)}' found.`);
+    } catch (e) {
+      console.log(
+        ERROR +
+          `No user (or unknown error) with the email ${blue(email)} found.`
+      );
     }
   }
 }
