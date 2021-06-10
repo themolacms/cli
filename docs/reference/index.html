@@ -74,13 +74,13 @@
 						<li><a href="#cli-command-reference">Command reference</a><ul>
 								<li><a href="#command-add"><code>add</code></a></li>
 								<li><a href="#command-build"><code>build</code></a></li>
+								<li><a href="#command-claim"><code>claim</code></a></li>
 								<li><a href="#command-deploy"><code>deploy</code></a></li>
 								<li><a href="#command-docs"><code>docs</code></a></li>
 								<li><a href="#command-e2e"><code>e2e</code></a></li>
 								<li><a href="#command-info"><code>info</code></a></li>
 								<li><a href="#command-new"><code>new</code></a></li>
 								<li><a href="#command-preview"><code>preview</code></a></li>
-								<li><a href="#command-role"><code>role</code></a></li>
 								<li><a href="#command-sudo"><code>sudo</code></a></li>
 								<li><a href="#command-test"><code>test</code></a></li>
 								<li><a href="#command-help"><code>help</code></a></li>
@@ -90,6 +90,22 @@
 						<li><a href="https://mola-cli.lamnhan.com">Detail API reference</a></li>
 					</ul>
 				</section>
+				<section id="getting-started">
+					<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+						<h2>Getting started</h2>
+					</a>
+					<ul>
+						<li>Install &amp; use:</li>
+					</ul>
+					<pre><code class="language-sh">npx @molacms/cli new blank myApp</code></pre>
+					<ul>
+						<li>Install globally:</li>
+					</ul>
+					<pre><code class="language-sh">npm install -g @molacms/cli</code></pre>
+					<p>Use the global CLI:</p>
+					<pre><code class="language-sh">mola new blank myApp</code></pre>
+					<p>See the homepage for more: <a href="https://mola.lamnhan.com">https://mola.lamnhan.com</a></p>
+				</section>
 				<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<h2><a name="cli-command-overview"><p>Command overview</p>
 					</a></h2>
@@ -97,13 +113,13 @@
 					<ul>
 						<li><a href="#command-add"><code>mola add|generate|a|g &lt;input&gt; [params...]</code></a></li>
 						<li><a href="#command-build"><code>mola build|b</code></a></li>
+						<li><a href="#command-claim"><code>mola claim|c &lt;subCommand&gt; [params...]</code></a></li>
 						<li><a href="#command-deploy"><code>mola deploy|d</code></a></li>
 						<li><a href="#command-docs"><code>mola docs|home|h</code></a></li>
 						<li><a href="#command-e2e"><code>mola e2e|e</code></a></li>
 						<li><a href="#command-info"><code>mola info|i</code></a></li>
 						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git</code></a></li>
 						<li><a href="#command-preview"><code>mola preview|p</code></a></li>
-						<li><a href="#command-role"><code>mola role|r &lt;subCommand&gt; [params...]</code></a></li>
 						<li><a href="#command-sudo"><code>mola sudo|sadmin|s &lt;subCommand&gt; [email]</code></a></li>
 						<li><a href="#command-test"><code>mola test|t</code></a></li>
 						<li><a href="#command-help"><code>mola help</code></a></li>
@@ -122,7 +138,7 @@ mola g &lt;input&gt; [params...]</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;input&gt;</code>: An input string</li>
-						<li><code>[params...]</code>: The <code>[params...]</code> parameter.</li>
+						<li><code>[params...]</code>: List of parameters</li>
 					</ul>
 					<h3><a name="command-build"><p><code>build</code></p>
 					</a></h3>
@@ -130,6 +146,17 @@ mola g &lt;input&gt; [params...]</code></pre>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola build
 mola b</code></pre>
+					<h3><a name="command-claim"><p><code>claim</code></p>
+					</a></h3>
+					<p>Manange user claim.</p>
+					<p><strong>Usage:</strong></p>
+					<pre><code class="language-sh">mola claim &lt;subCommand&gt; [params...]
+mola c &lt;subCommand&gt; [params...]</code></pre>
+					<p><strong>Parameters:</strong></p>
+					<ul>
+						<li><code>&lt;subCommand&gt;</code>: A supported sub-command: get, set</li>
+						<li><code>[params...]</code>: List of sub-command parameters</li>
+					</ul>
 					<h3><a name="command-deploy"><p><code>deploy</code></p>
 					</a></h3>
 					<p>Deploy the app.</p>
@@ -186,17 +213,6 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] 
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola preview
 mola p</code></pre>
-					<h3><a name="command-role"><p><code>role</code></p>
-					</a></h3>
-					<p>Manange user role.</p>
-					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">mola role &lt;subCommand&gt; [params...]
-mola r &lt;subCommand&gt; [params...]</code></pre>
-					<p><strong>Parameters:</strong></p>
-					<ul>
-						<li><code>&lt;subCommand&gt;</code>: A supported sub-command: get, set</li>
-						<li><code>[params...]</code>: The <code>[params...]</code> parameter.</li>
-					</ul>
 					<h3><a name="command-sudo"><p><code>sudo</code></p>
 					</a></h3>
 					<p>Manage super admin account.</p>
@@ -251,6 +267,15 @@ mola t</code></pre>
 						<a href="classes/buildcommand.html" class="tsd-kind-icon">Build<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/claimcommand.html" class="tsd-kind-icon">Claim<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/claimgetcommand.html" class="tsd-kind-icon">Claim<wbr>Get<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/claimsetcommand.html" class="tsd-kind-icon">Claim<wbr>Set<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/cli.html" class="tsd-kind-icon">Cli</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -291,15 +316,6 @@ mola t</code></pre>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/projectservice.html" class="tsd-kind-icon">Project<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/rolecommand.html" class="tsd-kind-icon">Role<wbr>Command</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/rolegetcommand.html" class="tsd-kind-icon">Role<wbr>Get<wbr>Command</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/rolesetcommand.html" class="tsd-kind-icon">Role<wbr>Set<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/sudocommand.html" class="tsd-kind-icon">Sudo<wbr>Command</a>
@@ -357,6 +373,9 @@ mola t</code></pre>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#superstatic" class="tsd-kind-icon">superstatic</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#ttytable" class="tsd-kind-icon">tty<wbr>Table</a>
 					</li>
 				</ul>
 			</nav>

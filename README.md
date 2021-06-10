@@ -8,23 +8,50 @@
 
 <section id="tocx" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 
+- [Getting started](#getting-started)
 - [Command overview](#cli-command-overview)
 - [Command reference](#cli-command-reference)
   - [`add`](#command-add)
   - [`build`](#command-build)
+  - [`claim`](#command-claim)
   - [`deploy`](#command-deploy)
   - [`docs`](#command-docs)
   - [`e2e`](#command-e2e)
   - [`info`](#command-info)
   - [`new`](#command-new)
   - [`preview`](#command-preview)
-  - [`role`](#command-role)
   - [`sudo`](#command-sudo)
   - [`test`](#command-test)
   - [`help`](#command-help)
   - [`*`](#command-*)
 - [Detail API reference](https://mola-cli.lamnhan.com)
 
+
+</section>
+
+<section id="getting-started">
+
+## Getting started
+
+- Install & use:
+
+```sh
+npx @molacms/cli new blank myApp
+```
+
+- Install globally:
+
+```sh
+npm install -g @molacms/cli
+```
+
+Use the global CLI:
+
+```sh
+mola new blank myApp
+```
+
+See the homepage for more: [https://mola.lamnhan.com](https://mola.lamnhan.com)
 
 </section>
 
@@ -37,13 +64,13 @@ The Mola CMS all-in-one CLI
 
 - [`mola add|generate|a|g <input> [params...]`](#command-add)
 - [`mola build|b`](#command-build)
+- [`mola claim|c <subCommand> [params...]`](#command-claim)
 - [`mola deploy|d`](#command-deploy)
 - [`mola docs|home|h`](#command-docs)
 - [`mola e2e|e`](#command-e2e)
 - [`mola info|i`](#command-info)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
 - [`mola preview|p`](#command-preview)
-- [`mola role|r <subCommand> [params...]`](#command-role)
 - [`mola sudo|sadmin|s <subCommand> [email]`](#command-sudo)
 - [`mola test|t`](#command-test)
 - [`mola help`](#command-help)
@@ -82,6 +109,23 @@ Build the app.
 mola build
 mola b
 ```
+
+<h3><a name="command-claim"><p><code>claim</code></p>
+</a></h3>
+
+Manange user claim.
+
+**Usage:**
+
+```sh
+mola claim <subCommand> [params...]
+mola c <subCommand> [params...]
+```
+
+**Parameters:**
+
+- `<subCommand>`: A supported sub-command: get, set
+- `[params...]`: List of sub-command parameters
 
 <h3><a name="command-deploy"><p><code>deploy</code></p>
 </a></h3>
@@ -174,23 +218,6 @@ Preview the app.
 mola preview
 mola p
 ```
-
-<h3><a name="command-role"><p><code>role</code></p>
-</a></h3>
-
-Manange user role.
-
-**Usage:**
-
-```sh
-mola role <subCommand> [params...]
-mola r <subCommand> [params...]
-```
-
-**Parameters:**
-
-- `<subCommand>`: A supported sub-command: get, set
-- `[params...]`: List of sub-command parameters
 
 <h3><a name="command-sudo"><p><code>sudo</code></p>
 </a></h3>
