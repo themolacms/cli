@@ -8,9 +8,7 @@ export class RoleGetCommand {
   constructor(private firebaseService: FirebaseService) {}
 
   async run(email: string) {
-    // init firebase
-    await this.firebaseService.initializeApp();
-    const auth = this.firebaseService.auth();
+    const auth = await this.firebaseService.auth();
     // get the user
     const user = await auth.getUserByEmail(email);
     if (user) {

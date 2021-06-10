@@ -9,7 +9,7 @@ export class FirebaseService {
 
   constructor(private fileService: FileService) {}
 
-  async initializeApp() {
+  private async initializeApp() {
     if (!this.app) {
       if (!(await this.fileService.exists(this.keyPath))) {
         throw new Error(
@@ -24,11 +24,38 @@ export class FirebaseService {
     }
   }
 
-  auth() {
+  async auth() {
+    await this.initializeApp();
     return this.app?.auth() as admin.auth.Auth;
   }
 
-  firestore() {
+  async firestore() {
+    await this.initializeApp();
     return this.app?.firestore() as admin.firestore.Firestore;
+  }
+
+  async updateClaims(email: string, updates: Record<string, unknown>) {
+    const auth = await this.auth();
+    const firestore = await this.firestore();
+    // get the user
+    const user = await auth.getUserByEmail(email);
+    if (user) {
+      const {uid, customClaims} = user;
+      const claims = {...customClaims, ...updates} as Record<string, unknown>;
+      // update claims
+      await auth.setCustomUserClaims(uid, claims);
+      // update profile
+      const dbUser = (await firestore.doc(`users/${uid}`).get()).data();
+      if (dbUser) {
+        const badges = Object.keys(claims).map(key => claims[key]);
+        try {
+          await firestore.doc(`profiles/${dbUser.username}`).update({badges});
+        } catch (e) {
+          // may not has 'profiles' collection
+        }
+      }
+    } else {
+      throw new Error(`No user with the email '${email}' found.`);
+    }
   }
 }

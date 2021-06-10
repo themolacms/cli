@@ -17,33 +17,17 @@ export class SudoSetCommand {
     const molaDotJson = await this.projectService.getMolaDotJson();
     const {backend} = molaDotJson;
     if (!backend?.sadmin) {
-      // init firebase
-      await this.firebaseService.initializeApp();
-      const auth = this.firebaseService.auth();
-      const firestore = this.firebaseService.firestore();
-      // get the user
-      const user = await auth.getUserByEmail(email);
-      if (user) {
-        const {uid, customClaims} = user;
-        const claims = {...customClaims, role: 'sadmin'} as Record<
-          string,
-          unknown
-        >;
-        // update claims
-        await auth.setCustomUserClaims(uid, claims);
+      try {
+        // set user claims & profiles.badges
+        await this.firebaseService.updateClaims(email, {role: 'sadmin'});
+        // update mola.json (mola.backend.sadmin)
         await this.projectService.updateMolaDotJson({
           backend: {...molaDotJson.backend, sadmin: email},
         });
-        // update profile
-        const dbUser = (await firestore.doc(`users/${uid}`).get()).data();
-        if (dbUser) {
-          const badges = Object.keys(claims).map(key => claims[key]);
-          await firestore.doc(`profiles/${dbUser.username}`).update({badges});
-        }
         // result
         console.log(OK + 'A new super admin is setted.');
-      } else {
-        console.log(ERROR + `No user with the email '${green(email)}' found.`);
+      } catch (e) {
+        console.log(ERROR + e.message);
       }
     } else {
       console.log(
