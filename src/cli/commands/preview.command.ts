@@ -18,7 +18,7 @@ export class PreviewCommand {
     // launch server
     superstatic
       .server({
-        port: 4200,
+        port: 7000,
         host: 'localhost',
         cwd: previewDir,
         config: {
@@ -27,7 +27,7 @@ export class PreviewCommand {
         debug: true,
       })
       .listen(() =>
-        console.log(INFO + 'Preview your app at: ' + blue('localhost:4200'))
+        console.log(INFO + 'Preview your app at: ' + blue('localhost:7000'))
       );
   }
 }
