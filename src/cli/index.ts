@@ -128,7 +128,10 @@ export class Cli {
   ];
 
   previewCommandDef: CommandDef = [
-    ['preview', 'p'], 'Preview the app.'
+    ['preview', 'p'],
+    'Preview the app.',
+    ['-p, --port [value]', 'Custom port'],
+    ['-h, --host [value]', 'Custom host'],
   ];
 
   deployCommandDef: CommandDef = [
@@ -342,12 +345,15 @@ export class Cli {
 
     // preview
     (() => {
-      const [[command, ...aliases], description] = this.previewCommandDef;
+      const [[command, ...aliases], description, portOpt, hostOpt] =
+        this.previewCommandDef;
       commander
         .command(command)
         .aliases(aliases)
         .description(description)
-        .action(() => this.previewCommand.run());
+        .option(...portOpt)
+        .option(...hostOpt)
+        .action(options => this.previewCommand.run(options));
     })();
 
     // deploy

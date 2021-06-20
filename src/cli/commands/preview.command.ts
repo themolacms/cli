@@ -4,23 +4,30 @@ const superstatic = require('superstatic');
 import {INFO} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 
+interface Options {
+  port?: string;
+  host?: string;
+}
+
 export class PreviewCommand {
   constructor(private projectService: ProjectService) {}
 
-  async run() {
+  async run(options: Options) {
     const {deployTarget} = await this.projectService.getMolaDotJson();
-    const previewDir =
+    const cwd =
       deployTarget === 'github'
         ? 'docs'
         : deployTarget === 'firebase'
         ? 'firebase/public'
         : deployTarget;
     // launch server
+    const host = options.host || 'localhost';
+    const port = options.port || 7000;
     superstatic
       .server({
-        port: 7000,
-        host: 'localhost',
-        cwd: previewDir,
+        host,
+        port,
+        cwd,
         config: {
           cleanUrls: true,
           rewrites: [{source: '**', destination: '/index.html'}],
@@ -28,7 +35,7 @@ export class PreviewCommand {
         debug: true,
       })
       .listen(() =>
-        console.log(INFO + 'Preview your app at: ' + blue('localhost:7000'))
+        console.log(INFO + 'Preview your app at: ' + blue(`${host}:${port}`))
       );
   }
 }
