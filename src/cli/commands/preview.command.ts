@@ -22,6 +22,7 @@ export class PreviewCommand {
         host: 'localhost',
         cwd: previewDir,
         config: {
+          cleanUrls: true,
           rewrites: [{source: '**', destination: '/index.html'}],
         },
         debug: true,
