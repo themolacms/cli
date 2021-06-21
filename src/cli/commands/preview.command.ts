@@ -29,7 +29,7 @@ export class PreviewCommand {
       rewrites: [{source: '**', destination: '/index.html'}],
     } as Record<string, any>;
     if (options.i18n) {
-      config.i18n = {root: '/i18n'};
+      config.i18n = {root: '/'};
     }
     superstatic
       .server({
