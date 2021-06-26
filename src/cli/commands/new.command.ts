@@ -219,6 +219,14 @@ export class NewCommand {
     // docs/ (remove)
     this.fileService.removeFiles([resolve(projectPath, 'docs')]);
 
+    // .ngxerrc.json
+    await this.fileService.changeContent(
+      resolve(projectPath, '.ngxerrc.json'),
+      {
+        [vendorDomain]: appDomain,
+      }
+    );
+
     // angular.json
     await this.fileService.changeContent(
       resolve(projectPath, 'angular.json'),
@@ -280,6 +288,14 @@ export class NewCommand {
 
     // firebase/netlify
     else {
+      // .ngxerrc.json
+      await this.fileService.changeContent(
+        resolve(projectPath, '.ngxerrc.json'),
+        {
+          '"out": "docs"': `"out": "${deployTarget}/public"`,
+        }
+      );
+
       // angular.json
       await this.fileService.changeContent(
         resolve(projectPath, 'angular.json'),
@@ -294,7 +310,7 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'package.json'),
         {
-          '"deploy": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy": "${deployTarget} deploy"`,
+          '"deploy": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy": "cd ${deployTarget} && ${deployTarget} deploy && cd .."`,
         }
       );
 
@@ -331,15 +347,16 @@ export class NewCommand {
      */
     if (toChange) {
       const {from, to} = toChange;
-      const [fromCode] = from.split('-');
-      const [toCode] = to.split('-');
+      const [fromLang] = from.split('-');
+      const [toLang] = to.split('-');
       // src/index.html
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'index.html'),
         {
-          [`lang="${fromCode}"`]: `lang="${toCode}"`,
-          [`content="${from}"`]: `content="${to}"`,
-        }
+          [`lang="${fromLang}"`]: `lang="${toLang}"`,
+          [from]: to,
+        },
+        true
       );
       // src/app/app.module.ts
       await this.fileService.changeContent(
@@ -352,9 +369,10 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'app', 'app.component.ts'),
         {
-          [`lang: '${fromCode}'`]: `lang: '${toCode}'`,
-          [`ogLocale: '${from}'`]: `ogLocale: '${to}'`,
-        }
+          [`lang: '${fromLang}'`]: `lang: '${toLang}'`,
+          [`locale: '${from}'`]: `locale: '${to}'`,
+        },
+        true
       );
       // src/app/app-translation.module.ts
       await this.fileService.changeContent(
@@ -427,7 +445,7 @@ export class NewCommand {
                 return [
                   `        '${toAdd}': {`,
                   `          lang: '${toAddCode}',`,
-                  `          ogLocale: '${toAdd}',`,
+                  `          locale: '${toAdd}',`,
                   '        },',
                 ].join('\n');
               })
@@ -474,10 +492,17 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'styles.scss'),
         {
-          [`@lamnhan/unistylus/scss/skins/${from}-default`]: `@lamnhan/unistylus/scss/skins/${to}-default`,
+          [`@unistylus/core/scss/skins/${from}-default`]: `@unistylus/core/scss/skins/${to}-default`,
           [`[data-theme=${from}]`]: `[data-theme=${to}]`,
           [`[data-theme="${from}"]`]: `[data-theme="${to}"]`,
           [`[data-theme='${from}']`]: `[data-theme='${to}']`,
+        }
+      );
+      // src/app/app.component.ts
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'app', 'app.component.ts'),
+        {
+          [`theme: '${from}'`]: `theme: '${to}'`,
         }
       );
       // src/theming/app.component.scss
@@ -500,9 +525,8 @@ export class NewCommand {
       const compRemoving = {} as Record<string, string>;
       toRemoves.forEach(toRemove => {
         // styles.scss (import)
-        stylesRemoving[
-          `\n@import '@lamnhan/unistylus/scss/skins/${toRemove}';`
-        ] = '';
+        stylesRemoving[`\n@import '@unistylus/core/scss/skins/${toRemove}';`] =
+          '';
         // styles.scss (customization, may be)
         const stylesRemovingText = `// TODO: delete this line/block -> [data-theme=${toRemove}]`;
         stylesRemoving[`[data-theme=${toRemove}]`] = stylesRemovingText;
@@ -542,7 +566,7 @@ export class NewCommand {
       const compAdding2 = [] as string[];
       toAdds.forEach(toAdd => {
         // styles.scss (import)
-        stylesAdding1.push(`@import '@lamnhan/unistylus/scss/skins/${toAdd}';`);
+        stylesAdding1.push(`@import '@unistylus/core/scss/skins/${toAdd}';`);
         // styles.scss (customization)
         stylesAdding2.push(
           `// modify "${toAdd}" skin\n// [data-theme=${toAdd}] {}`
@@ -581,8 +605,9 @@ export class NewCommand {
     await this.fileService.changeContent(
       resolve(projectPath, 'src', 'styles.scss'),
       {
-        [`@lamnhan/unistylus/scss/souls/${from}`]: `@lamnhan/unistylus/scss/souls/${to}`,
-      }
+        [`@unistylus/${from}`]: `@unistylus/${to}`,
+      },
+      true
     );
   }
 }

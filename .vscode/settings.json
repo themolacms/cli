@@ -1,8 +1,10 @@
 {
   "files.exclude": {
+    ".vscode/": true,
+    "**/node_modules": true,
+    "**/package-lock.json": true,
     ".deploy/": true,
     ".nyc_output/": true,
-    ".vscode/": true,
     "docs/": true,
     "src/**/*.js": true,
     "test/**/*.js": true,
