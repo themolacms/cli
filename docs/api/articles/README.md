@@ -42,7 +42,7 @@ npx @molacms/cli new blank myApp
 - Install globally:
 
 ```sh
-npm install -g @molacms/cli
+npm i -g @molacms/cli
 ```
 
 Use the global CLI:
@@ -70,7 +70,7 @@ The Mola CMS all-in-one CLI
 - [`mola e2e|e`](#command-e2e)
 - [`mola info|i`](#command-info)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
-- [`mola preview|p`](#command-preview)
+- [`mola preview|p --port [value] --host [value] --i18n`](#command-preview)
 - [`mola sudo|sadmin|s <subCommand> [email]`](#command-sudo)
 - [`mola test|t`](#command-test)
 - [`mola help`](#command-help)
@@ -215,9 +215,15 @@ Preview the app.
 **Usage:**
 
 ```sh
-mola preview
-mola p
+mola preview --port [value] --host [value] --i18n
+mola p --port [value] --host [value] --i18n
 ```
+
+**Options:**
+
+- `-p, --port [value]`: Custom port
+- `-h, --host [value]`: Custom host
+- `-i, --i18n`: Enable i18n
 
 <h3><a name="command-sudo"><p><code>sudo</code></p>
 </a></h3>

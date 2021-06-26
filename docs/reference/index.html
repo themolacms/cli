@@ -98,13 +98,16 @@
 					<ul>
 						<li>Install &amp; use:</li>
 					</ul>
-					<pre><code class="language-sh">npx @molacms/cli new blank myApp</code></pre>
+					<pre><code class="language-sh">npx @molacms/cli new blank myApp
+</code></pre>
 					<ul>
 						<li>Install globally:</li>
 					</ul>
-					<pre><code class="language-sh">npm install -g @molacms/cli</code></pre>
+					<pre><code class="language-sh">npm i -g @molacms/cli
+</code></pre>
 					<p>Use the global CLI:</p>
-					<pre><code class="language-sh">mola new blank myApp</code></pre>
+					<pre><code class="language-sh">mola new blank myApp
+</code></pre>
 					<p>See the homepage for more: <a href="https://mola.lamnhan.com">https://mola.lamnhan.com</a></p>
 				</section>
 				<section id="cli" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
@@ -120,7 +123,7 @@
 						<li><a href="#command-e2e"><code>mola e2e|e</code></a></li>
 						<li><a href="#command-info"><code>mola info|i</code></a></li>
 						<li><a href="#command-new"><code>mola new|start|n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git</code></a></li>
-						<li><a href="#command-preview"><code>mola preview|p</code></a></li>
+						<li><a href="#command-preview"><code>mola preview|p --port [value] --host [value] --i18n</code></a></li>
 						<li><a href="#command-sudo"><code>mola sudo|sadmin|s &lt;subCommand&gt; [email]</code></a></li>
 						<li><a href="#command-test"><code>mola test|t</code></a></li>
 						<li><a href="#command-help"><code>mola help</code></a></li>
@@ -135,7 +138,8 @@
 					<pre><code class="language-sh">mola add &lt;input&gt; [params...]
 mola generate &lt;input&gt; [params...]
 mola a &lt;input&gt; [params...]
-mola g &lt;input&gt; [params...]</code></pre>
+mola g &lt;input&gt; [params...]
+</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;input&gt;</code>: An input string</li>
@@ -146,13 +150,15 @@ mola g &lt;input&gt; [params...]</code></pre>
 					<p>Build the app.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola build
-mola b</code></pre>
+mola b
+</code></pre>
 					<h3><a name="command-claim"><p><code>claim</code></p>
 					</a></h3>
 					<p>Manange user claim.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola claim &lt;subCommand&gt; [params...]
-mola c &lt;subCommand&gt; [params...]</code></pre>
+mola c &lt;subCommand&gt; [params...]
+</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;subCommand&gt;</code>: A supported sub-command: get, set</li>
@@ -163,33 +169,38 @@ mola c &lt;subCommand&gt; [params...]</code></pre>
 					<p>Deploy the app.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola deploy
-mola d</code></pre>
+mola d
+</code></pre>
 					<h3><a name="command-docs"><p><code>docs</code></p>
 					</a></h3>
 					<p>Open documentation.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola docs
 mola home
-mola h</code></pre>
+mola h
+</code></pre>
 					<h3><a name="command-e2e"><p><code>e2e</code></p>
 					</a></h3>
 					<p>E2e test the app.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola e2e
-mola e</code></pre>
+mola e
+</code></pre>
 					<h3><a name="command-info"><p><code>info</code></p>
 					</a></h3>
 					<p>Display project information.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola info
-mola i</code></pre>
+mola i
+</code></pre>
 					<h3><a name="command-new"><p><code>new</code></p>
 					</a></h3>
 					<p>Create a new project.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola new &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git
 mola start &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git
-mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git</code></pre>
+mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] --<span class="hljs-built_in">source</span> [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git
+</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;theme&gt;</code>: A Mola theme input.</li>
@@ -212,15 +223,23 @@ mola n &lt;theme&gt; &lt;projectName&gt; [appDomain] [appName] [appDescription] 
 					</a></h3>
 					<p>Preview the app.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">mola preview
-mola p</code></pre>
+					<pre><code class="language-sh">mola preview --port [value] --host [value] --i18n
+mola p --port [value] --host [value] --i18n
+</code></pre>
+					<p><strong>Options:</strong></p>
+					<ul>
+						<li><code>-p, --port [value]</code>: Custom port</li>
+						<li><code>-h, --host [value]</code>: Custom host</li>
+						<li><code>-i, --i18n</code>: Enable i18n</li>
+					</ul>
 					<h3><a name="command-sudo"><p><code>sudo</code></p>
 					</a></h3>
 					<p>Manage super admin account.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola sudo &lt;subCommand&gt; [email]
 mola sadmin &lt;subCommand&gt; [email]
-mola s &lt;subCommand&gt; [email]</code></pre>
+mola s &lt;subCommand&gt; [email]
+</code></pre>
 					<p><strong>Parameters:</strong></p>
 					<ul>
 						<li><code>&lt;subCommand&gt;</code>: A supported sub-command: get, set, remove</li>
@@ -231,17 +250,20 @@ mola s &lt;subCommand&gt; [email]</code></pre>
 					<p>Unit test the app.</p>
 					<p><strong>Usage:</strong></p>
 					<pre><code class="language-sh">mola <span class="hljs-built_in">test</span>
-mola t</code></pre>
+mola t
+</code></pre>
 					<h3><a name="command-help"><p><code>help</code></p>
 					</a></h3>
 					<p>Display help.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">mola <span class="hljs-built_in">help</span></code></pre>
+					<pre><code class="language-sh">mola <span class="hljs-built_in">help</span>
+</code></pre>
 					<h3><a name="command-*"><p><code>*</code></p>
 					</a></h3>
 					<p>Any other command is not suppoted.</p>
 					<p><strong>Usage:</strong></p>
-					<pre><code class="language-sh">mola &lt;cmd&gt;</code></pre>
+					<pre><code class="language-sh">mola &lt;cmd&gt;
+</code></pre>
 				</section>
 				<section id="license" data-note="AUTO-GENERATED CONTENT, DO NOT EDIT DIRECTLY!">
 					<a href="#license" id="license" style="color: inherit; text-decoration: none;">
@@ -347,6 +369,9 @@ mola t</code></pre>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/newcommandoptions.html" class="tsd-kind-icon">New<wbr>Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#commanddef" class="tsd-kind-icon">Command<wbr>Def</a>
