@@ -300,9 +300,9 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'angular.json'),
         {
-          '"outputPath": "docs"': '"outputPath": "www"',
+          '"outputPath": "docs"': `"outputPath": "${deployTarget}/public"`,
           '\n              "src/404.html",': '',
-          '\n              "src/CNAME"': '',
+          '\n              "src/CNAME",': '',
         }
       );
 
@@ -340,7 +340,6 @@ export class NewCommand {
     localeChanging: CompareAndExtractResult
   ) {
     const {toChange, toAdds, toRemoves} = localeChanging;
-    console.log(localeChanging);
 
     /**
      * change
@@ -440,15 +439,17 @@ export class NewCommand {
           '/* MOLA:META_TRANSLATIONS */':
             '{\n' +
             moduleAdding
-              .map(toAdd => {
-                const [toAddCode] = toAdd.split('-');
-                return [
+              .map(toAdd =>
+                [
                   `        '${toAdd}': {`,
-                  `          lang: '${toAddCode}',`,
+                  "          url: '',",
+                  "          title: '',",
+                  "          description: '',",
+                  "          image: '',",
                   `          locale: '${toAdd}',`,
                   '        },',
-                ].join('\n');
-              })
+                ].join('\n')
+              )
               .join('\n') +
             '\n      },',
         }
@@ -481,7 +482,6 @@ export class NewCommand {
     skinChanging: CompareAndExtractResult
   ) {
     const {toChange, toAdds, toRemoves} = skinChanging;
-    console.log(skinChanging);
 
     /**
      * change
@@ -600,7 +600,6 @@ export class NewCommand {
   }
 
   private async modifySoul(projectPath: string, from: string, to: string) {
-    console.log({from, to});
     // src/styles.scss
     await this.fileService.changeContent(
       resolve(projectPath, 'src', 'styles.scss'),
