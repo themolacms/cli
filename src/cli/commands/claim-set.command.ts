@@ -10,7 +10,7 @@ export class ClaimSetCommand {
     // process claims
     const claims = {} as Record<string, unknown>;
     claimInputs.forEach(claim => {
-      const [name, value] = claim.split(':').map(x => x.trim());
+      const [name, value] = claim.split('=').map(x => x.trim());
       // filter roles
       if (name === 'role') {
         const supportedRoles = [
@@ -23,7 +23,7 @@ export class ClaimSetCommand {
         if (value === 'sdamin') {
           console.log(
             WARN +
-              `Unsupported: role = ${red('sadmin')}, please use: $ ` +
+              `Unsupported: role=${red('sadmin')}, please use: $ ` +
               yellow('mola sudo set <email>')
           );
           return;
@@ -31,7 +31,7 @@ export class ClaimSetCommand {
         if (supportedRoles.indexOf(value) === -1) {
           console.log(
             WARN +
-              `Unsupported: role = ${red(value)} (${green(
+              `Unsupported: role=${red(value)} (${green(
                 supportedRoles.join('|')
               )})`
           );
@@ -44,7 +44,7 @@ export class ClaimSetCommand {
         if (supportedLegits.indexOf(value) === -1) {
           console.log(
             WARN +
-              `Unsupported: legit = ${red(value)} (${green(
+              `Unsupported: legit=${red(value)} (${green(
                 supportedLegits.join('|')
               )})`
           );
