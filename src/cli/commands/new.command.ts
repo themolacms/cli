@@ -104,11 +104,7 @@ export class NewCommand {
     // mola github (github.com/themolacms)
     else {
       const [theme, tag = 'latest'] = input.split('@');
-      const themeName =
-        ['blank', 'intro', 'blog', 'shop'].indexOf(theme) === -1
-          ? theme
-          : `starter-${theme}`;
-      return `https://github.com/themolacms/${themeName}/archive/${tag}.zip`;
+      return `https://github.com/themolacms/${theme}/archive/${tag}.zip`;
     }
   }
 
@@ -589,10 +585,10 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'theming', 'app.component.scss'),
         {
-          '\n@include register_app_icons(':
+          '\n@include register_theme_icons(':
             '\n' +
             compAdding1.join('\n\n') +
-            '\n\n@include register_app_icons(',
+            '\n\n@include register_theme_icons(',
           '\n    default: ': '\n' + compAdding2.join('\n') + '\n    default: ',
         }
       );

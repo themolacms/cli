@@ -33,19 +33,13 @@
 
 ## Getting started
 
-- Install & use:
-
-```sh
-npx @molacms/cli new blank myApp
-```
-
 - Install globally:
 
 ```sh
 npm i -g @molacms/cli
 ```
 
-Use the global CLI:
+- Use the global CLI:
 
 ```sh
 mola new blank myApp
