@@ -45,14 +45,13 @@ export class FirebaseService {
       const claims = {...customClaims, ...updates} as Record<string, unknown>;
       // update claims
       await auth.setCustomUserClaims(uid, claims);
-      // update profile
-      const dbUser = (await firestore.doc(`users/${uid}`).get()).data();
-      if (dbUser) {
-        const badges = Object.keys(claims).map(key => claims[key]);
-        try {
-          await firestore.doc(`profiles/${dbUser.username}`).update({badges});
-        } catch (e) {
-          // may not has 'profiles' collection
+      // update profile role
+      if (updates.role) {
+        const dbUser = (await firestore.doc(`users/${uid}`).get()).data();
+        if (dbUser) {
+          await firestore.doc(`profiles/${dbUser.username}`).update({
+            role: updates.role,
+          });
         }
       }
     } catch (e) {

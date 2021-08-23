@@ -38,26 +38,13 @@ export class ClaimSetCommand {
           return;
         }
       }
-      // filter legits
-      if (name === 'legit') {
-        const supportedLegits = ['average', 'official', 'suspicious'];
-        if (supportedLegits.indexOf(value) === -1) {
-          console.log(
-            WARN +
-              `Unsupported: legit=${red(value)} (${green(
-                supportedLegits.join('|')
-              )})`
-          );
-          return;
-        }
-      }
       // set claims
       claims[name] = value;
     });
     // set claims
     if (Object.keys(claims).length) {
       try {
-        // set user claims & profiles.badges
+        // set user claims && profile role
         await this.firebaseService.updateClaims(email, claims);
         // result
         console.log(OK + `The roles is applied to the user ${blue(email)}.`);
