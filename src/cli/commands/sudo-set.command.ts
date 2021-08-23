@@ -18,7 +18,7 @@ export class SudoSetCommand {
     const {backend} = molaDotJson;
     if (!backend?.sadmin) {
       try {
-        // set user claims & profiles.badges
+        // set user claims & profile role
         await this.firebaseService.updateClaims(email, {role: 'sadmin'});
         // update mola.json (mola.backend.sadmin)
         await this.projectService.updateMolaDotJson({
