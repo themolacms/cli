@@ -18,6 +18,8 @@ import {PreviewCommand} from './commands/preview.command';
 import {DeployCommand} from './commands/deploy.command';
 import {TestCommand} from './commands/test.command';
 import {E2eCommand} from './commands/e2e.command';
+import {DatabaseCommand} from './commands/database.command';
+import {DatabaseInitCommand} from './commands/database-init.command';
 
 export class Cli {
   private molaModule: MolaModule;
@@ -37,6 +39,8 @@ export class Cli {
   deployCommand: DeployCommand;
   testCommand: TestCommand;
   e2eCommand: E2eCommand;
+  databaseCommand: DatabaseCommand;
+  databaseInitCommand: DatabaseInitCommand;
 
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
@@ -147,6 +151,15 @@ export class Cli {
     ['e2e', 'e'], 'E2e test the app.'
   ];
 
+  databaseCommandDef: CommandDef = [
+    ['database <subCommand> [params...]', 'db'],
+    'Database related commands.'
+  ];
+
+  databaseInitCommandDef: CommandDef = [
+    'database-init', 'Advanced init.'
+  ];
+
   constructor() {
     this.molaModule = new MolaModule();
     this.docsCommand = new DocsCommand();
@@ -189,6 +202,8 @@ export class Cli {
     this.deployCommand = new DeployCommand(this.molaModule.terminalService);
     this.testCommand = new TestCommand(this.molaModule.terminalService);
     this.e2eCommand = new E2eCommand(this.molaModule.terminalService);
+    this.databaseInitCommand = new DatabaseInitCommand(this.molaModule.firebaseService);
+    this.databaseCommand = new DatabaseCommand(this.databaseInitCommand);
   }
 
   getApp() {
@@ -391,6 +406,25 @@ export class Cli {
         .aliases(aliases)
         .description(description)
         .action(() => this.e2eCommand.run());
+    })();
+
+    // database
+    (() => {
+      const [[command, ...aliases], description] = this.databaseCommandDef;
+      commander
+        .command(command)
+        .aliases(aliases)
+        .description(description)
+        .action((subCommand, params) => this.databaseCommand.run(subCommand, params));
+    })();
+
+    // database-init
+    (() => {
+      const [command, description] = this.databaseInitCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(() => this.databaseInitCommand.run());
     })();
 
     // help

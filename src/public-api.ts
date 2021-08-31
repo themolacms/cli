@@ -25,3 +25,5 @@ export * from './cli/commands/preview.command';
 export * from './cli/commands/deploy.command';
 export * from './cli/commands/test.command';
 export * from './cli/commands/e2e.command';
+export * from './cli/commands/database.command';
+export * from './cli/commands/database-init.command';
