@@ -223,9 +223,9 @@ export class NewCommand {
       true
     );
 
-    // src/app/app.component.ts
+    // src/app/app.module.ts
     await this.fileService.changeContent(
-      resolve(projectPath, 'src', 'app', 'app.component.ts'),
+      resolve(projectPath, 'src', 'app', 'app.module.ts'),
       {
         [vendorDomain]: appDomain,
         [vendorName]: appName,
