@@ -331,6 +331,7 @@ export class NewCommand {
         resolve(projectPath, 'src', 'app', 'app.module.ts'),
         {
           [from]: to,
+          "text: 'English'": `text: 'Locale: ${to}'`,
         },
         true
       );
@@ -450,6 +451,8 @@ export class NewCommand {
         resolve(projectPath, 'src', 'app', 'app.module.ts'),
         {
           [`theme: '${from}'`]: `theme: '${to}'`,
+          [`value: '${from}'`]: `value: '${to}'`,
+          "text: 'THEME.LIGHT'": `text: 'Theme: ${to}'`,
         }
       );
     }
@@ -463,8 +466,7 @@ export class NewCommand {
       const stylesRemoving = {} as Record<string, string>;
       toRemoves.forEach(toRemove => {
         // styles.scss (import)
-        stylesRemoving[`\n@import '@unistylus/core/scss/skins/${toRemove}';`] =
-          '';
+        stylesRemoving[`\n@use '@unistylus/core/scss/skins/${toRemove}';`] = '';
         // styles.scss (customization, may be)
         const stylesRemovingText = `// TODO: delete this line/block -> [data-theme=${toRemove}]`;
         stylesRemoving[`[data-theme=${toRemove}]`] = stylesRemovingText;
@@ -491,7 +493,7 @@ export class NewCommand {
       const stylesAdding2 = [] as string[];
       toAdds.forEach(toAdd => {
         // styles.scss (import)
-        stylesAdding1.push(`@import '@unistylus/core/scss/skins/${toAdd}';`);
+        stylesAdding1.push(`@use '@unistylus/core/scss/skins/${toAdd}';`);
         // styles.scss (customization)
         stylesAdding2.push(
           `// modify "${toAdd}" skin\n// [data-theme=${toAdd}] {}`
