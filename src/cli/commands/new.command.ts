@@ -336,19 +336,32 @@ export class NewCommand {
         true
       );
       // assets/i18n/${from}.json
-      const fromPath = resolve(
+      const i18nFromPath = resolve(
         projectPath,
         'src',
         'assets',
         'i18n',
         `${from}.json`
       );
-      const i18nJson = await this.fileService.readJson(fromPath);
+      const i18nJson = await this.fileService.readJson(i18nFromPath);
       await this.fileService.createJson(
         resolve(projectPath, 'src', 'assets', 'i18n', `${to}.json`),
         i18nJson
       );
-      await this.fileService.removeFiles([fromPath]);
+      await this.fileService.removeFiles([i18nFromPath]);
+      // manifests/${from}.webmanifest
+      const manifestFromPath = resolve(
+        projectPath,
+        'src',
+        'manifests',
+        `${from}.webmanifest`
+      );
+      const manifestJson = await this.fileService.readJson(manifestFromPath);
+      await this.fileService.createJson(
+        resolve(projectPath, 'src', 'manifests', `${to}.webmanifest`),
+        manifestJson
+      );
+      await this.fileService.removeFiles([manifestFromPath]);
     }
 
     /**
@@ -358,14 +371,19 @@ export class NewCommand {
     if (toRemoves.length) {
       // prepare
       const moduleRemoving = {} as Record<string, string>;
-      const fileRemoving = [] as string[];
+      const i18nRemoving = [] as string[];
+      const manifestRemoving = [] as string[];
       toRemoves.forEach(toRemove => {
         // src/app/app.module.ts
         moduleRemoving[`'${toRemove}'`] = '';
         moduleRemoving[`'${toRemove}',`] = '';
         // assets/i18n/
-        fileRemoving.push(
+        i18nRemoving.push(
           resolve(projectPath, 'src', 'assets', 'i18n', `${toRemove}.json`)
+        );
+        // manifests/
+        manifestRemoving.push(
+          resolve(projectPath, 'src', 'manifests', `${toRemove}.webmanifest`)
         );
       });
       // src/app/app.module.ts
@@ -374,8 +392,9 @@ export class NewCommand {
         moduleRemoving
       );
       // assets/i18n/
-      await this.fileService.removeFiles(fileRemoving);
-      // TODO: remove meta translation
+      await this.fileService.removeFiles(i18nRemoving);
+      // manifests/
+      await this.fileService.removeFiles(manifestRemoving);
     }
 
     /**
@@ -385,7 +404,8 @@ export class NewCommand {
     if (toAdds.length) {
       // prepare
       const moduleAdding = toAdds;
-      const fileAdding = toAdds;
+      const i18nAdding = toAdds;
+      const manifestAdding = toAdds;
       // src/app/app.module.ts
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'app', 'app.module.ts'),
@@ -415,9 +435,18 @@ export class NewCommand {
       );
       // assets/i18n/
       await Promise.all(
-        fileAdding.map(toAdd =>
+        i18nAdding.map(toAdd =>
           this.fileService.createJson(
             resolve(projectPath, 'src', 'assets', 'i18n', `${toAdd}.json`),
+            {}
+          )
+        )
+      );
+      // manifests/
+      await Promise.all(
+        manifestAdding.map(toAdd =>
+          this.fileService.createJson(
+            resolve(projectPath, 'src', 'manifests', `${toAdd}.webmanifest`),
             {}
           )
         )
