@@ -3,7 +3,6 @@ import {resolve} from 'path';
 import {FileService} from './file.service';
 
 export interface MolaDotJson {
-  projectName: string;
   domain: string;
   name: string;
   description: string;

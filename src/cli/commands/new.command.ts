@@ -125,19 +125,12 @@ export class NewCommand {
     appSkins: string[],
     appSoul: string
   ) {
-    // get project name
-    const appProjectName = projectPath
-      .replace(/\\/g, '/')
-      .split('/')
-      .pop() as string;
-
     // load mola.json
     const molaDotJson = await this.projectService.getMolaDotJson(projectPath);
     const {
       domain: vendorDomain,
       name: vendorName,
       description: vendorDescription,
-      projectName: vendorProjectName,
       locales,
       skins,
       soul,
@@ -156,7 +149,6 @@ export class NewCommand {
     const soulChanging = appSoul && vendorSoul !== appSoul;
 
     // update mola.json
-    molaDotJson.projectName = appProjectName;
     molaDotJson.domain = appDomain;
     molaDotJson.name = appName;
     molaDotJson.description = appDescription;
@@ -173,8 +165,8 @@ export class NewCommand {
     await this.modifyContent(
       projectPath,
       deployTarget,
-      {appProjectName, appDomain, appName, appDescription},
-      {vendorProjectName, vendorDomain, vendorName, vendorDescription}
+      {appDomain, appName, appDescription},
+      {vendorDomain, vendorName, vendorDescription}
     );
 
     // modify locales
@@ -193,21 +185,18 @@ export class NewCommand {
     projectPath: string,
     deployTarget: string,
     app: {
-      appProjectName: string;
       appDomain: string;
       appName: string;
       appDescription: string;
     },
     vendor: {
-      vendorProjectName: string;
       vendorDomain: string;
       vendorName: string;
       vendorDescription: string;
     }
   ) {
-    const {appProjectName, appDomain, appName, appDescription} = app;
-    const {vendorProjectName, vendorDomain, vendorName, vendorDescription} =
-      vendor;
+    const {appDomain, appName, appDescription} = app;
+    const {vendorDomain, vendorName, vendorDescription} = vendor;
     /**
      * General modifications
      */
@@ -223,18 +212,8 @@ export class NewCommand {
       }
     );
 
-    // angular.json
-    await this.fileService.changeContent(
-      resolve(projectPath, 'angular.json'),
-      {
-        [vendorProjectName]: appProjectName,
-      },
-      true
-    );
-
     // package.json
     await this.fileService.changeContent(resolve(projectPath, 'package.json'), {
-      '"name": "starter-blank"': `"name": "${appProjectName}"`,
       [vendorDescription]: appDescription,
       [vendorDomain]: appDomain,
     });
