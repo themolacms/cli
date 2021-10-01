@@ -445,20 +445,12 @@ export class NewCommand {
           [`[data-theme='${from}']`]: `[data-theme='${to}']`,
         }
       );
-      // src/app/app.component.ts
+      // src/app/app.module.ts
       await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'app', 'app.component.ts'),
+        resolve(projectPath, 'src', 'app', 'app.module.ts'),
         {
           [`theme: '${from}'`]: `theme: '${to}'`,
         }
-      );
-      // src/theming/app.component.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
-        {
-          [from]: to,
-        },
-        true
       );
     }
 
@@ -469,7 +461,6 @@ export class NewCommand {
     if (toRemoves.length) {
       // prepare
       const stylesRemoving = {} as Record<string, string>;
-      const compRemoving = {} as Record<string, string>;
       toRemoves.forEach(toRemove => {
         // styles.scss (import)
         stylesRemoving[`\n@import '@unistylus/core/scss/skins/${toRemove}';`] =
@@ -482,22 +473,11 @@ export class NewCommand {
         stylesRemoving[`[data-theme=${toRemove}],`] = stylesRemovingText;
         stylesRemoving[`[data-theme="${toRemove}"],`] = stylesRemovingText;
         stylesRemoving[`[data-theme='${toRemove}'],`] = stylesRemovingText;
-        // app.component.scss (data)
-        compRemoving[
-          `$${toRemove}_theme_icons: (`
-        ] = `// TODO: delete this map -> $${toRemove}_theme_icons: (`;
-        // app.component.scss (register)
-        compRemoving[`\n    ${toRemove}: $${toRemove}_theme_icons,`] = '';
       });
       // src/styles.scss
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'styles.scss'),
         stylesRemoving
-      );
-      // src/theming/app.component.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
-        compRemoving
       );
     }
 
@@ -509,8 +489,6 @@ export class NewCommand {
       // prepare
       const stylesAdding1 = [] as string[];
       const stylesAdding2 = [] as string[];
-      const compAdding1 = [] as string[];
-      const compAdding2 = [] as string[];
       toAdds.forEach(toAdd => {
         // styles.scss (import)
         stylesAdding1.push(`@import '@unistylus/core/scss/skins/${toAdd}';`);
@@ -518,10 +496,6 @@ export class NewCommand {
         stylesAdding2.push(
           `// modify "${toAdd}" skin\n// [data-theme=${toAdd}] {}`
         );
-        // app.component.scss (data)
-        compAdding1.push(`$${toAdd}_theme_icons: ();`);
-        // app.component.scss (register)
-        compAdding2.push(`    ${toAdd}: $${toAdd}_theme_icons,`);
       });
       // src/styles.scss
       await this.fileService.changeContent(
@@ -530,17 +504,6 @@ export class NewCommand {
           "-default';\n": "-default';\n" + stylesAdding1.join('\n') + '\n',
           '\n// register soul':
             '\n' + stylesAdding2.join('\n\n') + '\n\n// register soul',
-        }
-      );
-      // src/theming/app.component.scss
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'theming', 'app.component.scss'),
-        {
-          '\n@include register_theme_icons(':
-            '\n' +
-            compAdding1.join('\n\n') +
-            '\n\n@include register_theme_icons(',
-          '\n    default: ': '\n' + compAdding2.join('\n') + '\n    default: ',
         }
       );
     }
