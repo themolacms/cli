@@ -13,7 +13,7 @@ import {ProjectService} from '../../lib/services/project.service';
 
 interface NewCommandOptions {
   source?: string;
-  deploy?: 'github' | 'firebase' | 'netlify';
+  deploy?: 'github' | 'firebase';
   locale?: string;
   skin?: string;
   soul?: string;
@@ -82,12 +82,6 @@ export class NewCommand {
     // init git
     if (!commandOptions.skipGit) {
       execSync('git init', {stdio: 'inherit', cwd: projectPath});
-    }
-    // notify for firebase init
-    if (commandOptions.deploy === 'firebase') {
-      console.log('\n' + yellow('======================================'));
-      console.log('\n' + yellow('= RUN: `firebase init` to ./firebase ='));
-      console.log('\n' + yellow('======================================'));
     }
   }
 
@@ -261,7 +255,7 @@ export class NewCommand {
       );
     }
 
-    // firebase/netlify
+    // firebase
     else {
       // .ngxerrc.json
       await this.fileService.changeContent(

@@ -194,7 +194,7 @@ mola n <theme> <projectName> [appDomain] [appName] [appDescription] --source [va
 **Options:**
 
 - `-s, --source [value]`: Custom Mola theme source (url/path to .zip).
-- `-d, --deploy [value]`: Deploy service (github/firebase/netlify).
+- `-d, --deploy [value]`: Deploy service (github/firebase).
 - `-l, --locale [value]`: Change or add locales (commna-separated).
 - `-k, --skin [value]`: Change or add Unistylus skins (commna-separated).
 - `-o, --soul [value]`: Change Unistylus soul.
