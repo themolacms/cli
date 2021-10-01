@@ -14,6 +14,7 @@
   - [`add`](#command-add)
   - [`build`](#command-build)
   - [`claim`](#command-claim)
+  - [`database`](#command-database)
   - [`deploy`](#command-deploy)
   - [`docs`](#command-docs)
   - [`e2e`](#command-e2e)
@@ -59,6 +60,7 @@ The Mola CMS all-in-one CLI
 - [`mola add|generate|a|g <input> [params...]`](#command-add)
 - [`mola build|b`](#command-build)
 - [`mola claim|c <subCommand> [params...]`](#command-claim)
+- [`mola database|db <subCommand> [params...]`](#command-database)
 - [`mola deploy|d`](#command-deploy)
 - [`mola docs|home|h`](#command-docs)
 - [`mola e2e|e`](#command-e2e)
@@ -120,6 +122,23 @@ mola c <subCommand> [params...]
 
 - `<subCommand>`: A supported sub-command: get, set
 - `[params...]`: List of sub-command parameters
+
+<h3><a name="command-database"><p><code>database</code></p>
+</a></h3>
+
+Database related commands.
+
+**Usage:**
+
+```sh
+mola database <subCommand> [params...]
+mola db <subCommand> [params...]
+```
+
+**Parameters:**
+
+- `<subCommand>`: The `<subCommand>` parameter.
+- `[params...]`: The `[params...]` parameter.
 
 <h3><a name="command-deploy"><p><code>deploy</code></p>
 </a></h3>
