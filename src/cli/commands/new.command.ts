@@ -330,22 +330,6 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'app', 'app.module.ts'),
         {
-          [`useValue: '${from}'`]: `useValue: '${to}'`,
-        }
-      );
-      // src/app/app.component.ts
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'app', 'app.component.ts'),
-        {
-          [`lang: '${fromLang}'`]: `lang: '${toLang}'`,
-          [`locale: '${from}'`]: `locale: '${to}'`,
-        },
-        true
-      );
-      // src/app/app-translation.module.ts
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
-        {
           [from]: to,
         },
         true
@@ -375,7 +359,7 @@ export class NewCommand {
       const moduleRemoving = {} as Record<string, string>;
       const fileRemoving = [] as string[];
       toRemoves.forEach(toRemove => {
-        // src/app/app-translation.module.ts
+        // src/app/app.module.ts
         moduleRemoving[`'${toRemove}'`] = '';
         moduleRemoving[`'${toRemove}',`] = '';
         // assets/i18n/
@@ -383,9 +367,9 @@ export class NewCommand {
           resolve(projectPath, 'src', 'assets', 'i18n', `${toRemove}.json`)
         );
       });
-      // src/app/app-translation.module.ts
+      // src/app/app.module.ts
       await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
+        resolve(projectPath, 'src', 'app', 'app.module.ts'),
         moduleRemoving
       );
       // assets/i18n/
@@ -401,9 +385,9 @@ export class NewCommand {
       // prepare
       const moduleAdding = toAdds;
       const fileAdding = toAdds;
-      // src/app/app.component.ts
+      // src/app/app.module.ts
       await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'app', 'app.component.ts'),
+        resolve(projectPath, 'src', 'app', 'app.module.ts'),
         {
           '/* MOLA:META_TRANSLATIONS */':
             '{\n' +
@@ -421,12 +405,6 @@ export class NewCommand {
               )
               .join('\n') +
             '\n      },',
-        }
-      );
-      // src/app/app-translation.module.ts
-      await this.fileService.changeContent(
-        resolve(projectPath, 'src', 'app', 'app-translation.module.ts'),
-        {
           'availableLangs: [':
             'availableLangs: [' +
             "'" +
