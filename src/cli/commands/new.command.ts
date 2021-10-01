@@ -279,7 +279,7 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'package.json'),
         {
-          '"deploy": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy": "cd ${deployTarget} && ${deployTarget} deploy && cd .."`,
+          '"deploy:app": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy:app": "cd ${deployTarget} && ${deployTarget} deploy && cd .."`,
         }
       );
 
