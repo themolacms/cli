@@ -8,8 +8,11 @@ export class ClaimGetCommand {
   constructor(private firebaseService: FirebaseService) {}
 
   async run(email: string) {
-    const auth = await this.firebaseService.auth();
+    if (!email) {
+      return console.log(ERROR + "Missing required 'email' param.");
+    }
     // get the user
+    const auth = await this.firebaseService.auth();
     try {
       const user = await auth.getUserByEmail(email);
       const table = ttyTable(

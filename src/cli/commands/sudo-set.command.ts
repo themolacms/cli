@@ -8,7 +8,7 @@ export class SudoSetCommand {
 
   async run(email: string) {
     if (!email) {
-      throw new Error("Missing required 'email' param.");
+      return console.log(ERROR + "Missing required 'email' param.");
     }
     const sadmin = await this.firebaseService.getSadmin();
     if (sadmin) {
