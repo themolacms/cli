@@ -31,3 +31,4 @@ export * from './cli/commands/database-import.command';
 export * from './cli/commands/database-export.command';
 export * from './cli/commands/database-backup.command';
 export * from './cli/commands/database-restore.command';
+export * from './cli/commands/database-setup.command';

@@ -24,6 +24,7 @@ import {DatabaseImportCommand} from './commands/database-import.command';
 import {DatabaseExportCommand} from './commands/database-export.command';
 import {DatabaseBackupCommand} from './commands/database-backup.command';
 import {DatabaseRestoreCommand} from './commands/database-restore.command';
+import {DatabaseSetupCommand} from './commands/database-setup.command';
 
 export class Cli {
   private molaModule: MolaModule;
@@ -49,6 +50,7 @@ export class Cli {
   databaseExportCommand: DatabaseExportCommand;
   databaseBackupCommand: DatabaseBackupCommand;
   databaseRestoreCommand: DatabaseRestoreCommand;
+  databaseSetupCommand: DatabaseSetupCommand;
 
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
@@ -184,6 +186,10 @@ export class Cli {
     'database-restore', 'Import all database collections.'
   ];
 
+  databaseSetupCommandDef: CommandDef = [
+    'database-setup', 'Init, restore, deploy rules and indexes.'
+  ];
+
   constructor() {
     this.molaModule = new MolaModule();
     this.docsCommand = new DocsCommand();
@@ -235,12 +241,19 @@ export class Cli {
       this.molaModule.projectService,
       this.databaseImportCommand,
     );
+    this.databaseSetupCommand = new DatabaseSetupCommand(
+      this.molaModule.terminalService,
+      this.molaModule.projectService,
+      this.databaseInitCommand,
+      this.databaseRestoreCommand
+    );
     this.databaseCommand = new DatabaseCommand(
       this.databaseInitCommand,
       this.databaseImportCommand,
       this.databaseExportCommand,
       this.databaseBackupCommand,
-      this.databaseRestoreCommand
+      this.databaseRestoreCommand,
+      this.databaseSetupCommand
     );
   }
 
@@ -499,6 +512,15 @@ export class Cli {
         .command(command as string)
         .description(description)
         .action(() => this.databaseRestoreCommand.run());
+    })();
+
+    // database-setup
+    (() => {
+      const [command, description] = this.databaseSetupCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(() => this.databaseSetupCommand.run());
     })();
 
     // help

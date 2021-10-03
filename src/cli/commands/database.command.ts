@@ -7,6 +7,7 @@ import {DatabaseImportCommand} from './database-import.command';
 import {DatabaseExportCommand} from './database-export.command';
 import {DatabaseBackupCommand} from './database-backup.command';
 import {DatabaseRestoreCommand} from './database-restore.command';
+import {DatabaseSetupCommand} from './database-setup.command';
 
 export class DatabaseCommand {
   constructor(
@@ -14,7 +15,8 @@ export class DatabaseCommand {
     private databaseImportCommand: DatabaseImportCommand,
     private databaseExportCommand: DatabaseExportCommand,
     private databaseBackupCommand: DatabaseBackupCommand,
-    private databaseRestoreCommand: DatabaseRestoreCommand
+    private databaseRestoreCommand: DatabaseRestoreCommand,
+    private databaseSetupCommand: DatabaseSetupCommand
   ) {}
 
   run(subCommand: string, params: string[] = []) {
@@ -38,6 +40,10 @@ export class DatabaseCommand {
       case 'restore':
       case 'r':
         this.databaseRestoreCommand.run();
+        break;
+      case 'setup':
+      case 's':
+        this.databaseSetupCommand.run();
         break;
       default:
         console.log(
