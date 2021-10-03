@@ -187,7 +187,7 @@ export class Cli {
   ];
 
   databaseSetupCommandDef: CommandDef = [
-    'database-setup', 'Init, restore, deploy rules and indexes.'
+    'database-setup', 'Init, deploy rules and indexes.'
   ];
 
   constructor() {
@@ -244,8 +244,7 @@ export class Cli {
     this.databaseSetupCommand = new DatabaseSetupCommand(
       this.molaModule.terminalService,
       this.molaModule.projectService,
-      this.databaseInitCommand,
-      this.databaseRestoreCommand
+      this.databaseInitCommand
     );
     this.databaseCommand = new DatabaseCommand(
       this.databaseInitCommand,
