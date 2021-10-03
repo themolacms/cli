@@ -1,4 +1,4 @@
-import {yellow} from 'chalk';
+import {green, red} from 'chalk';
 
 import {ERROR} from '../../lib/services/message.service';
 
@@ -30,8 +30,8 @@ export class SudoCommand {
       default:
         console.log(
           ERROR +
-            `Invalid sub-command '${subCommand}':  ` +
-            `${yellow('get')}, ${yellow('set')}, ${yellow('remove')}`
+            `Invalid sub-command '${red(subCommand)}', available: ` +
+            `${green('get')}, ${green('set')}, ${green('remove')}`
         );
         break;
     }

@@ -1,6 +1,6 @@
 {
   "name": "@molacms/cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The Mola CMS all-in-one CLI",
   "author": "Lam Nhan",
   "homepage": "https://mola.lamnhan.com",
@@ -46,7 +46,7 @@
     "chalk": "^4.1.0",
     "change-case": "^4.1.1",
     "commander": "^6.1.0",
-    "firebase-admin": "^9.9.0",
+    "firebase-admin": "^9.12.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
     "list-github-dir-content": "^3.0.0",
@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "@lamnhan/ayedocs": "^1.0.7",
+    "@lamnhan/seminjecto": "^1.0.6",
     "@types/adm-zip": "^0.4.33",
     "@types/chai": "^4.2.13",
     "@types/fs-extra": "^9.0.1",

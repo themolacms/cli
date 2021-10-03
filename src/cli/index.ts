@@ -20,6 +20,8 @@ import {TestCommand} from './commands/test.command';
 import {E2eCommand} from './commands/e2e.command';
 import {DatabaseCommand} from './commands/database.command';
 import {DatabaseInitCommand} from './commands/database-init.command';
+import {DatabaseImportCommand} from './commands/database-import.command';
+import {DatabaseExportCommand} from './commands/database-export.command';
 
 export class Cli {
   private molaModule: MolaModule;
@@ -41,6 +43,8 @@ export class Cli {
   e2eCommand: E2eCommand;
   databaseCommand: DatabaseCommand;
   databaseInitCommand: DatabaseInitCommand;
+  databaseImportCommand: DatabaseImportCommand;
+  databaseExportCommand: DatabaseExportCommand;
 
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
@@ -157,7 +161,15 @@ export class Cli {
   ];
 
   databaseInitCommandDef: CommandDef = [
-    'database-init', 'Advanced init.'
+    'database-init', 'Init database.'
+  ];
+
+  databaseImportCommandDef: CommandDef = [
+    'database-import <collection>', 'Import a collection.'
+  ];
+
+  databaseExportCommandDef: CommandDef = [
+    'database-export <collection>', 'Export a collection.'
   ];
 
   constructor() {
@@ -203,7 +215,19 @@ export class Cli {
     this.testCommand = new TestCommand(this.molaModule.terminalService);
     this.e2eCommand = new E2eCommand(this.molaModule.terminalService);
     this.databaseInitCommand = new DatabaseInitCommand(this.molaModule.firebaseService);
-    this.databaseCommand = new DatabaseCommand(this.databaseInitCommand);
+    this.databaseImportCommand = new DatabaseImportCommand(
+      this.molaModule.fileService,
+      this.molaModule.firebaseService
+    );
+    this.databaseExportCommand = new DatabaseExportCommand(
+      this.molaModule.fileService,
+      this.molaModule.firebaseService
+    );
+    this.databaseCommand = new DatabaseCommand(
+      this.databaseInitCommand,
+      this.databaseImportCommand,
+      this.databaseExportCommand
+    );
   }
 
   getApp() {
@@ -425,6 +449,24 @@ export class Cli {
         .command(command as string)
         .description(description)
         .action(() => this.databaseInitCommand.run());
+    })();
+
+    // database-import
+    (() => {
+      const [command, description] = this.databaseImportCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(params => this.databaseImportCommand.run(params));
+    })();
+
+    // database-export
+    (() => {
+      const [command, description] = this.databaseExportCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(params => this.databaseExportCommand.run(params));
     })();
 
     // help
