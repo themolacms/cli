@@ -5,6 +5,7 @@ import {Lib as MolaModule} from '../lib/index';
 import {DocsCommand} from './commands/docs.command';
 import {InfoCommand} from './commands/info.command';
 import {NewCommand} from './commands/new.command';
+import {SetupCommand} from './commands/setup.command';
 import {AddCommand} from './commands/add.command';
 import {SudoCommand} from './commands/sudo.command';
 import {SudoGetCommand} from './commands/sudo-get.command';
@@ -31,6 +32,7 @@ export class Cli {
   docsCommand: DocsCommand;
   infoCommand: InfoCommand;
   newCommand: NewCommand;
+  setupCommand: SetupCommand;
   addCommand: AddCommand;
   sudoCommand: SudoCommand;
   sudoGetCommand: SudoGetCommand;
@@ -79,6 +81,10 @@ export class Cli {
     ['-o, --soul [value]', 'Change Unistylus soul.'],
     ['-i, --skip-install', 'Do not install dependency packages.'],
     ['-g, --skip-git', 'Do not initialize a git repository.'],
+  ];
+
+  setupCommandDef: CommandDef = [
+    'setup', 'Setup the project.'
   ];
 
   /**
@@ -161,6 +167,10 @@ export class Cli {
     ['e2e', 'e'], 'E2e test the app.'
   ];
 
+  /**
+   * @param subCommand - A supported sub-command: init, import, export, backup, restore, setup
+   * @param params...? - List of sub-command parameters
+   */
   databaseCommandDef: CommandDef = [
     ['database <subCommand> [params...]', 'db'],
     'Database related commands.'
@@ -254,6 +264,10 @@ export class Cli {
       this.databaseRestoreCommand,
       this.databaseSetupCommand
     );
+    this.setupCommand = new SetupCommand(
+      this.molaModule.projectService,
+      this.databaseSetupCommand,
+    );
   }
 
   getApp() {
@@ -322,6 +336,15 @@ export class Cli {
             options
           )
         );
+    })();
+
+    // setup
+    (() => {
+      const [command, description] = this.setupCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(() => this.setupCommand.run());
     })();
 
     // add

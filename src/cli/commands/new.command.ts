@@ -1,12 +1,13 @@
 import {execSync} from 'child_process';
 import {resolve} from 'path';
 import {yellow, green, gray} from 'chalk';
+import {move} from 'fs-extra';
 
 import {
   HelperService,
   CompareAndExtractResult,
 } from '../../lib/services/helper.service';
-import {OK} from '../../lib/services/message.service';
+import {OK, INFO} from '../../lib/services/message.service';
 import {FileService} from '../../lib/services/file.service';
 import {DownloadService} from '../../lib/services/download.service';
 import {ProjectService} from '../../lib/services/project.service';
@@ -82,6 +83,20 @@ export class NewCommand {
     // init git
     if (!commandOptions.skipGit) {
       execSync('git init', {stdio: 'inherit', cwd: projectPath});
+    }
+    // if there are key.json
+    if (await this.fileService.exists(resolve('key.json'))) {
+      // move key.json to firebase/key.json
+      await move(
+        resolve('key.json'),
+        resolve(projectPath, 'firebase', 'key.json')
+      );
+      // run setup
+      execSync('mola setup', {stdio: 'inherit', cwd: projectPath});
+      // notify key.json
+      console.log(
+        INFO + `Firebase key.json was moved to ${validProjectName}/firebase/`
+      );
     }
   }
 

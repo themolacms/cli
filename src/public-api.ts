@@ -12,6 +12,7 @@ export * from './lib/services/firebase.service';
 export * from './cli/commands/docs.command';
 export * from './cli/commands/info.command';
 export * from './cli/commands/new.command';
+export * from './cli/commands/setup.command';
 export * from './cli/commands/add.command';
 export * from './cli/commands/sudo.command';
 export * from './cli/commands/sudo-get.command';
