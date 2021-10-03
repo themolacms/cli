@@ -7,7 +7,7 @@ export class StorageSetupCommand {
   async run() {
     // deploy rules, indexes
     this.terminalService.exec(
-      'npx firebase deploy --only storage:rules',
+      'npx firebase deploy --only storage',
       'firebase',
       'inherit'
     );

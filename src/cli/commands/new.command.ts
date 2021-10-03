@@ -90,7 +90,9 @@ export class NewCommand {
       await this.runSetup(projectPath);
       // notify key.json
       console.log(
-        INFO + `Firebase key.json was moved to ${validProjectName}/firebase/`
+        '\n' +
+          INFO +
+          `Firebase key.json was moved to ${validProjectName}/firebase/`
       );
     }
   }
