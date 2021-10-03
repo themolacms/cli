@@ -21,6 +21,8 @@
   - [`info`](#command-info)
   - [`new`](#command-new)
   - [`preview`](#command-preview)
+  - [`setup`](#command-setup)
+  - [`storage`](#command-storage)
   - [`sudo`](#command-sudo)
   - [`test`](#command-test)
   - [`help`](#command-help)
@@ -67,6 +69,8 @@ The Mola CMS all-in-one CLI
 - [`mola info|i`](#command-info)
 - [`mola new|start|n <theme> <projectName> [appDomain] [appName] [appDescription] --source [value] --deploy [value] --locale [value] --skin [value] --soul [value] --skip-install --skip-git`](#command-new)
 - [`mola preview|p --port [value] --host [value] --i18n`](#command-preview)
+- [`mola setup`](#command-setup)
+- [`mola storage|st <subCommand> [params...]`](#command-storage)
 - [`mola sudo|sadmin|s <subCommand> [email]`](#command-sudo)
 - [`mola test|t`](#command-test)
 - [`mola help`](#command-help)
@@ -137,8 +141,8 @@ mola db <subCommand> [params...]
 
 **Parameters:**
 
-- `<subCommand>`: The `<subCommand>` parameter.
-- `[params...]`: The `[params...]` parameter.
+- `<subCommand>`: A supported sub-command: init, import, export, backup, restore, setup
+- `[params...]`: List of sub-command parameters
 
 <h3><a name="command-deploy"><p><code>deploy</code></p>
 </a></h3>
@@ -237,6 +241,34 @@ mola p --port [value] --host [value] --i18n
 - `-p, --port [value]`: Custom port
 - `-h, --host [value]`: Custom host
 - `-i, --i18n`: Enable i18n
+
+<h3><a name="command-setup"><p><code>setup</code></p>
+</a></h3>
+
+Setup the project.
+
+**Usage:**
+
+```sh
+mola setup
+```
+
+<h3><a name="command-storage"><p><code>storage</code></p>
+</a></h3>
+
+Storage related commands.
+
+**Usage:**
+
+```sh
+mola storage <subCommand> [params...]
+mola st <subCommand> [params...]
+```
+
+**Parameters:**
+
+- `<subCommand>`: A supported sub-command: setup
+- `[params...]`: List of sub-command parameters
 
 <h3><a name="command-sudo"><p><code>sudo</code></p>
 </a></h3>

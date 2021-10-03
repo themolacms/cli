@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SudoGetCommand | @molacms/cli</title>
+	<title>DatabaseRestoreCommand | @molacms/cli</title>
 	<meta name="description" content="Documentation for @molacms/cli">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="sudogetcommand.html">SudoGetCommand</a>
+					<a href="databaserestorecommand.html">DatabaseRestoreCommand</a>
 				</li>
 			</ul>
-			<h1>Class SudoGetCommand</h1>
+			<h1>Class DatabaseRestoreCommand</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SudoGetCommand</span>
+						<span class="target">DatabaseRestoreCommand</span>
 					</li>
 				</ul>
 			</section>
@@ -79,13 +79,13 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="sudogetcommand.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="databaserestorecommand.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sudogetcommand.html#run" class="tsd-kind-icon">run</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="databaserestorecommand.html#run" class="tsd-kind-icon">run</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,22 +97,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sudo<wbr>Get<wbr>Command<span class="tsd-signature-symbol">(</span>firebaseService<span class="tsd-signature-symbol">: </span><a href="firebaseservice.html" class="tsd-signature-type">FirebaseService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sudogetcommand.html" class="tsd-signature-type">SudoGetCommand</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Database<wbr>Restore<wbr>Command<span class="tsd-signature-symbol">(</span>projectService<span class="tsd-signature-symbol">: </span><a href="projectservice.html" class="tsd-signature-type">ProjectService</a>, databaseImportCommand<span class="tsd-signature-symbol">: </span><a href="databaseimportcommand.html" class="tsd-signature-type">DatabaseImportCommand</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="databaserestorecommand.html" class="tsd-signature-type">DatabaseRestoreCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/dcf3a30/src/cli/commands/sudo-get.command.ts#L6">cli/commands/sudo-get.command.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/dcf3a30/src/cli/commands/database-restore.command.ts#L6">cli/commands/database-restore.command.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>firebaseService: <a href="firebaseservice.html" class="tsd-signature-type">FirebaseService</a></h5>
+									<h5>projectService: <a href="projectservice.html" class="tsd-signature-type">ProjectService</a></h5>
+								</li>
+								<li>
+									<h5>databaseImportCommand: <a href="databaseimportcommand.html" class="tsd-signature-type">DatabaseImportCommand</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="sudogetcommand.html" class="tsd-signature-type">SudoGetCommand</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="databaserestorecommand.html" class="tsd-signature-type">DatabaseRestoreCommand</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -129,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/themolacms/cli/blob/dcf3a30/src/cli/commands/sudo-get.command.ts#L9">cli/commands/sudo-get.command.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/themolacms/cli/blob/dcf3a30/src/cli/commands/database-restore.command.ts#L12">cli/commands/database-restore.command.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -151,13 +154,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="sudogetcommand.html" class="tsd-kind-icon">Sudo<wbr>Get<wbr>Command</a>
+						<a href="databaserestorecommand.html" class="tsd-kind-icon">Database<wbr>Restore<wbr>Command</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="sudogetcommand.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="databaserestorecommand.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sudogetcommand.html#run" class="tsd-kind-icon">run</a>
+								<a href="databaserestorecommand.html#run" class="tsd-kind-icon">run</a>
 							</li>
 						</ul>
 					</li>
