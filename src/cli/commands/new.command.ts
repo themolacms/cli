@@ -249,6 +249,22 @@ export class NewCommand {
       true
     );
 
+    // src/environments/environment.prod.ts
+    await this.fileService.changeContent(
+      resolve(projectPath, 'src', 'environments', 'environment.prod.ts'),
+      {
+        [vendorName]: appName,
+      }
+    );
+
+    // src/environments/environment.ts
+    await this.fileService.changeContent(
+      resolve(projectPath, 'src', 'environments', 'environment.ts'),
+      {
+        [vendorName]: appName,
+      }
+    );
+
     /**
      * Specific deploy target modifiations
      */
@@ -294,7 +310,7 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'package.json'),
         {
-          '"deploy:app": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy:app": "cd ${deployTarget} && ${deployTarget} deploy && cd .."`,
+          '"deploy:app": "git add . && git commit -m \'deploy:app\' && git push"': `"deploy:app": "cd ${deployTarget} && ${deployTarget} deploy --only hosting && cd .."`,
         }
       );
 
