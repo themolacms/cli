@@ -199,17 +199,9 @@ export class Cli {
       this.molaModule.downloadService,
       this.molaModule.terminalService,
     );
-    this.sudoGetCommand = new SudoGetCommand(
-      this.molaModule.projectService,
-    );
-    this.sudoSetCommand = new SudoSetCommand(
-      this.molaModule.projectService,
-      this.molaModule.firebaseService,
-    );
-    this.sudoRemoveCommand = new SudoRemoveCommand(
-      this.molaModule.projectService,
-      this.molaModule.firebaseService,
-    );
+    this.sudoGetCommand = new SudoGetCommand(this.molaModule.firebaseService);
+    this.sudoSetCommand = new SudoSetCommand(this.molaModule.firebaseService);
+    this.sudoRemoveCommand = new SudoRemoveCommand(this.molaModule.firebaseService);
     this.sudoCommand = new SudoCommand(
       this.sudoGetCommand,
       this.sudoSetCommand,

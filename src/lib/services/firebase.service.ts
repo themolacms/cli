@@ -35,28 +35,71 @@ export class FirebaseService {
     return this.app?.firestore() as admin.firestore.Firestore;
   }
 
-  async updateClaims(email: string, updates: Record<string, unknown>) {
+  async getUserDataByEmail(email: string) {
     const auth = await this.auth();
     const firestore = await this.firestore();
-    // get the user
+    // get user by email
+    let data: null | {
+      user: admin.auth.UserRecord;
+      profileDoc: FirebaseFirestore.DocumentData;
+    } = null;
     try {
       const user = await auth.getUserByEmail(email);
-      const {uid, customClaims} = user;
-      const claims = {...customClaims, ...updates} as Record<string, unknown>;
-      // update claims
-      await auth.setCustomUserClaims(uid, claims);
-      // update profile role
-      if (updates.role) {
-        const dbUser = (await firestore.doc(`users/${uid}`).get()).data();
-        if (dbUser) {
-          await firestore.doc(`profiles/${dbUser.username}`).update({
-            role: updates.role,
-          });
-        }
+      const result = (
+        await firestore
+          .collection('profiles')
+          .where('uid', '==', user.uid)
+          .get()
+      ).docs;
+      if (user && result.length) {
+        data = {user, profileDoc: result[0].data()};
       }
     } catch (e) {
+      data = null;
+    }
+    return data;
+  }
+
+  async getSadmin() {
+    const firestore = await this.firestore();
+    let sadmin: Record<string, unknown> | null = null;
+    try {
+      const result = (
+        await firestore
+          .collection('profiles')
+          .where('role', '==', 'sadmin')
+          .get()
+      ).docs;
+      if (result.length) {
+        sadmin = result[0].data();
+      }
+    } catch (e) {
+      sadmin = null;
+    }
+    return sadmin;
+  }
+
+  async updateClaims(
+    uid: string,
+    username: string,
+    updates: Record<string, unknown>
+  ) {
+    const auth = await this.auth();
+    const firestore = await this.firestore();
+    try {
+      // get the user
+      const {customClaims} = await auth.getUser(uid);
+      const claims = {...customClaims, ...updates} as Record<string, unknown>;
+      // set data
+      await Promise.all([
+        // update claims
+        auth.setCustomUserClaims(uid, claims),
+        // update profile role
+        firestore.doc(`profiles/${username}`).update({role: updates.role}),
+      ]);
+    } catch (e) {
       throw new Error(
-        `No user (or unknown error) with the email ${blue(email)} found.`
+        `No user (or unknown error) with the uid ${blue(uid)} found.`
       );
     }
   }

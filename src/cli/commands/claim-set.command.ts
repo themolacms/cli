@@ -43,12 +43,18 @@ export class ClaimSetCommand {
     });
     // set claims
     if (Object.keys(claims).length) {
+      const userData = await this.firebaseService.getUserDataByEmail(email);
+      if (!userData) {
+        return console.log(ERROR + `No user with the email "${email}"" found.`);
+      }
+      // set the claims
+      const {uid, id: username} = userData.profileDoc;
       try {
         // set user claims && profile role
-        await this.firebaseService.updateClaims(email, claims);
+        await this.firebaseService.updateClaims(uid, username, claims);
         // result
         console.log(OK + `The roles is applied to the user ${blue(email)}.`);
-      } catch (e) {
+      } catch (e: any) {
         console.log(ERROR + e.message);
       }
     }
