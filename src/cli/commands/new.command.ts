@@ -121,19 +121,19 @@ export class NewCommand {
 
   async runSetup(projectPath: string) {
     const keyPath = resolve(projectPath, 'firebase', 'key.json');
+    const firebaseRCPath = resolve(projectPath, 'firebase', '.firebaserc');
     // move key.json to firebase/key.json
     await move(resolve('key.json'), keyPath);
     // update firebase project id
-    const firebaseRCData = {
-      projects: {
-        default: ((await this.fileService.readJson(keyPath)) as any)
-          .project_id as string,
-      },
-    };
-    await this.fileService.createJson(
-      resolve(projectPath, 'firebase', '.firebaserc'),
-      firebaseRCData
-    );
+    const keyData = (await this.fileService.readJson(keyPath)) as Record<
+      string,
+      unknown
+    >;
+    const firebaseRCData = (await this.fileService.readJson(
+      firebaseRCPath
+    )) as Record<string, any>;
+    firebaseRCData.projects.default = keyData.project_id;
+    await this.fileService.createJson(firebaseRCPath, firebaseRCData);
     // run setup
     execSync('mola setup', {stdio: 'inherit', cwd: projectPath});
   }
