@@ -22,6 +22,8 @@ import {DatabaseCommand} from './commands/database.command';
 import {DatabaseInitCommand} from './commands/database-init.command';
 import {DatabaseImportCommand} from './commands/database-import.command';
 import {DatabaseExportCommand} from './commands/database-export.command';
+import {DatabaseBackupCommand} from './commands/database-backup.command';
+import {DatabaseRestoreCommand} from './commands/database-restore.command';
 
 export class Cli {
   private molaModule: MolaModule;
@@ -45,6 +47,8 @@ export class Cli {
   databaseInitCommand: DatabaseInitCommand;
   databaseImportCommand: DatabaseImportCommand;
   databaseExportCommand: DatabaseExportCommand;
+  databaseBackupCommand: DatabaseBackupCommand;
+  databaseRestoreCommand: DatabaseRestoreCommand;
 
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
@@ -161,7 +165,7 @@ export class Cli {
   ];
 
   databaseInitCommandDef: CommandDef = [
-    'database-init', 'Init database.'
+    'database-init', 'Database advanced init.'
   ];
 
   databaseImportCommandDef: CommandDef = [
@@ -170,6 +174,14 @@ export class Cli {
 
   databaseExportCommandDef: CommandDef = [
     'database-export <collection>', 'Export a collection.'
+  ];
+
+  databaseBackupCommandDef: CommandDef = [
+    'database-backup', 'Export all database collections.'
+  ];
+
+  databaseRestoreCommandDef: CommandDef = [
+    'database-restore', 'Import all database collections.'
   ];
 
   constructor() {
@@ -223,10 +235,20 @@ export class Cli {
       this.molaModule.fileService,
       this.molaModule.firebaseService
     );
+    this.databaseBackupCommand = new DatabaseBackupCommand(
+      this.molaModule.projectService,
+      this.databaseExportCommand,
+    );
+    this.databaseRestoreCommand = new DatabaseRestoreCommand(
+      this.molaModule.projectService,
+      this.databaseImportCommand,
+    );
     this.databaseCommand = new DatabaseCommand(
       this.databaseInitCommand,
       this.databaseImportCommand,
-      this.databaseExportCommand
+      this.databaseExportCommand,
+      this.databaseBackupCommand,
+      this.databaseRestoreCommand
     );
   }
 
@@ -467,6 +489,24 @@ export class Cli {
         .command(command as string)
         .description(description)
         .action(params => this.databaseExportCommand.run(params));
+    })();
+
+    // database-backup
+    (() => {
+      const [command, description] = this.databaseBackupCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(() => this.databaseBackupCommand.run());
+    })();
+
+    // database-restore
+    (() => {
+      const [command, description] = this.databaseRestoreCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(() => this.databaseRestoreCommand.run());
     })();
 
     // help

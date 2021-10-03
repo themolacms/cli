@@ -5,12 +5,16 @@ import {ERROR} from '../../lib/services/message.service';
 import {DatabaseInitCommand} from './database-init.command';
 import {DatabaseImportCommand} from './database-import.command';
 import {DatabaseExportCommand} from './database-export.command';
+import {DatabaseBackupCommand} from './database-backup.command';
+import {DatabaseRestoreCommand} from './database-restore.command';
 
 export class DatabaseCommand {
   constructor(
     private databaseInitCommand: DatabaseInitCommand,
     private databaseImportCommand: DatabaseImportCommand,
-    private databaseExportCommand: DatabaseExportCommand
+    private databaseExportCommand: DatabaseExportCommand,
+    private databaseBackupCommand: DatabaseBackupCommand,
+    private databaseRestoreCommand: DatabaseRestoreCommand
   ) {}
 
   run(subCommand: string, params: string[] = []) {
@@ -27,11 +31,21 @@ export class DatabaseCommand {
       case 'ex':
         this.databaseExportCommand.run(params);
         break;
+      case 'backup':
+      case 'b':
+        this.databaseBackupCommand.run();
+        break;
+      case 'restore':
+      case 'r':
+        this.databaseRestoreCommand.run();
+        break;
       default:
         console.log(
           ERROR +
             `Invalid sub-command '${red(subCommand)}', available: ` +
-            `${green('init')}, ${green('import')}, ${green('export')}`
+            `${green('init')}, ` +
+            `${green('import')}, ${green('export')}, ` +
+            `${green('backup')}, ${green('restore')}`
         );
         break;
     }

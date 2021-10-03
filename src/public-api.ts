@@ -29,3 +29,5 @@ export * from './cli/commands/database.command';
 export * from './cli/commands/database-init.command';
 export * from './cli/commands/database-import.command';
 export * from './cli/commands/database-export.command';
+export * from './cli/commands/database-backup.command';
+export * from './cli/commands/database-restore.command';

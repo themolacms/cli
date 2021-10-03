@@ -10,11 +10,16 @@ export interface MolaDotJson {
   locales: string[];
   skins: string[];
   soul: string;
-  backend?: BackendPoperties;
+  backend?: BackendProperties;
+  database?: DatabaseProperties;
 }
 
-export interface BackendPoperties {
+export interface BackendProperties {
   sadmin?: string;
+}
+
+export interface DatabaseProperties {
+  collections: string[];
 }
 
 export class ProjectService {
