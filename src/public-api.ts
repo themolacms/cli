@@ -33,3 +33,6 @@ export * from './cli/commands/database-export.command';
 export * from './cli/commands/database-backup.command';
 export * from './cli/commands/database-restore.command';
 export * from './cli/commands/database-setup.command';
+export * from './cli/commands/storage.command';
+
+export * from './cli/commands/storage-setup.command';

@@ -26,6 +26,8 @@ import {DatabaseExportCommand} from './commands/database-export.command';
 import {DatabaseBackupCommand} from './commands/database-backup.command';
 import {DatabaseRestoreCommand} from './commands/database-restore.command';
 import {DatabaseSetupCommand} from './commands/database-setup.command';
+import {StorageCommand} from './commands/storage.command';
+import {StorageSetupCommand} from './commands/storage-setup.command';
 
 export class Cli {
   private molaModule: MolaModule;
@@ -53,6 +55,8 @@ export class Cli {
   databaseBackupCommand: DatabaseBackupCommand;
   databaseRestoreCommand: DatabaseRestoreCommand;
   databaseSetupCommand: DatabaseSetupCommand;
+  storageCommand: StorageCommand;
+  storageSetupCommand: StorageSetupCommand;
 
   commander = ['mola', 'The Mola CMS all-in-one CLI'];
 
@@ -200,6 +204,19 @@ export class Cli {
     'database-setup', 'Init, deploy rules and indexes.'
   ];
 
+  /**
+   * @param subCommand - A supported sub-command: setup
+   * @param params...? - List of sub-command parameters
+   */
+  storageCommandDef: CommandDef = [
+    ['storage <subCommand> [params...]', 'st'],
+    'Storage related commands.'
+  ];
+
+  storageSetupCommandDef: CommandDef = [
+    'storage-setup', 'Deploy rules.'
+  ];
+
   constructor() {
     this.molaModule = new MolaModule();
     this.docsCommand = new DocsCommand();
@@ -264,9 +281,12 @@ export class Cli {
       this.databaseRestoreCommand,
       this.databaseSetupCommand
     );
+    this.storageSetupCommand = new StorageSetupCommand(this.molaModule.terminalService);
+    this.storageCommand = new StorageCommand(this.storageSetupCommand);
     this.setupCommand = new SetupCommand(
       this.molaModule.projectService,
       this.databaseSetupCommand,
+      this.storageSetupCommand,
     );
   }
 
@@ -543,6 +563,25 @@ export class Cli {
         .command(command as string)
         .description(description)
         .action(() => this.databaseSetupCommand.run());
+    })();
+
+    // storage
+    (() => {
+      const [[command, ...aliases], description] = this.storageCommandDef;
+      commander
+        .command(command)
+        .aliases(aliases)
+        .description(description)
+        .action((subCommand, params) => this.storageCommand.run(subCommand, params));
+    })();
+
+    // storage-setup
+    (() => {
+      const [command, description] = this.storageSetupCommandDef;
+      commander
+        .command(command as string)
+        .description(description)
+        .action(() => this.storageSetupCommand.run());
     })();
 
     // help

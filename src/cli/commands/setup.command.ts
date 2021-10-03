@@ -2,11 +2,13 @@ import {ERROR} from '../../lib/services/message.service';
 import {ProjectService} from '../../lib/services/project.service';
 
 import {DatabaseSetupCommand} from './database-setup.command';
+import {StorageSetupCommand} from './storage-setup.command';
 
 export class SetupCommand {
   constructor(
     private projectService: ProjectService,
-    private databaseSetupCommand: DatabaseSetupCommand
+    private databaseSetupCommand: DatabaseSetupCommand,
+    private storageSetupCommand: StorageSetupCommand
   ) {}
 
   async run() {
@@ -16,6 +18,8 @@ export class SetupCommand {
     }
     // database setup
     await this.databaseSetupCommand.run();
+    // storage setup
+    await this.storageSetupCommand.run();
     // other setup ...
     // ...
   }

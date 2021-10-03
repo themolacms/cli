@@ -51,7 +51,8 @@ export class DatabaseCommand {
             `Invalid sub-command '${red(subCommand)}', available: ` +
             `${green('init')}, ` +
             `${green('import')}, ${green('export')}, ` +
-            `${green('backup')}, ${green('restore')}`
+            `${green('backup')}, ${green('restore')}` +
+            `${green('setup')}, `
         );
         break;
     }
