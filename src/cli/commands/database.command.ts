@@ -17,7 +17,7 @@ export class DatabaseCommand {
     switch (subCommand) {
       case 'init':
       case 'i':
-        this.databaseInitCommand.run();
+        this.databaseInitCommand.run(params);
         break;
       case 'import':
       case 'im':

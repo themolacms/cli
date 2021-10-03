@@ -1,6 +1,5 @@
 import {resolve} from 'path';
 import {gray} from 'chalk';
-import {ensureFile} from 'fs-extra';
 
 import {OK, WARN} from '../../lib/services/message.service';
 import {FileService} from '../../lib/services/file.service';

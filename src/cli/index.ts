@@ -448,7 +448,7 @@ export class Cli {
       commander
         .command(command as string)
         .description(description)
-        .action(() => this.databaseInitCommand.run());
+        .action(params => this.databaseInitCommand.run(params));
     })();
 
     // database-import
