@@ -85,14 +85,9 @@ export class NewCommand {
       execSync('git init', {stdio: 'inherit', cwd: projectPath});
     }
     // if there are key.json
-    if (await this.fileService.exists(resolve('key.json'))) {
-      // move key.json to firebase/key.json
-      await move(
-        resolve('key.json'),
-        resolve(projectPath, 'firebase', 'key.json')
-      );
+    if (await this.fileService.exists('key.json')) {
       // run setup
-      execSync('mola setup', {stdio: 'inherit', cwd: projectPath});
+      await this.runSetup(projectPath);
       // notify key.json
       console.log(
         INFO + `Firebase key.json was moved to ${validProjectName}/firebase/`
@@ -122,6 +117,25 @@ export class NewCommand {
       resourceUrl,
       projectPath + '/download.zip'
     );
+  }
+
+  async runSetup(projectPath: string) {
+    const keyPath = resolve(projectPath, 'firebase', 'key.json');
+    // move key.json to firebase/key.json
+    await move(resolve('key.json'), keyPath);
+    // update firebase project id
+    const firebaseRCData = {
+      projects: {
+        default: ((await this.fileService.readJson(keyPath)) as any)
+          .project_id as string,
+      },
+    };
+    await this.fileService.createJson(
+      resolve(projectPath, 'firebase', '.firebaserc'),
+      firebaseRCData
+    );
+    // run setup
+    execSync('mola setup', {stdio: 'inherit', cwd: projectPath});
   }
 
   async modify(

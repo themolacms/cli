@@ -19,7 +19,10 @@ export class DatabaseInitCommand {
       )
     );
     console.log(
-      OK + 'Database collections initialized: ' + collections.join('\n   + ')
+      OK +
+        'Database collections initialized: ' +
+        '\n   + ' +
+        collections.join('\n   + ')
     );
   }
 
