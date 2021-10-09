@@ -14,6 +14,10 @@ export class DatabaseRestoreCommand {
     if (!database) {
       return console.log(WARN + 'No database config found in mola.json.');
     }
-    return this.databaseImportCommand.run(database.collections);
+    const {collections, extraCollections = []} = database;
+    return this.databaseImportCommand.run([
+      ...collections,
+      ...extraCollections,
+    ]);
   }
 }

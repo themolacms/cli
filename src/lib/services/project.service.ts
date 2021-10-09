@@ -15,6 +15,7 @@ export interface MolaDotJson {
 
 export interface DatabaseProperties {
   collections: string[];
+  extraCollections?: string[];
 }
 
 export class ProjectService {
