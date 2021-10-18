@@ -516,10 +516,16 @@ export class NewCommand {
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'styles.scss'),
         {
-          [`@unistylus/core/scss/skins/${from}-default`]: `@unistylus/core/scss/skins/${to}-default`,
           [`[data-theme=${from}]`]: `[data-theme=${to}]`,
           [`[data-theme="${from}"]`]: `[data-theme="${to}"]`,
           [`[data-theme='${from}']`]: `[data-theme='${to}']`,
+        }
+      );
+      // src/unistylus.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'unistylus.scss'),
+        {
+          [`/skins/${from}-default`]: `/skins/${to}-default`,
         }
       );
       // src/app/app.module.ts
@@ -538,12 +544,9 @@ export class NewCommand {
      */
 
     if (toRemoves.length) {
-      // prepare
+      // styles.scss (customization, may be)
       const stylesRemoving = {} as Record<string, string>;
       toRemoves.forEach(toRemove => {
-        // styles.scss (import)
-        stylesRemoving[`\n@use '@unistylus/core/scss/skins/${toRemove}';`] = '';
-        // styles.scss (customization, may be)
         const stylesRemovingText = `// TODO: delete this line/block -> [data-theme=${toRemove}]`;
         stylesRemoving[`[data-theme=${toRemove}]`] = stylesRemovingText;
         stylesRemoving[`[data-theme="${toRemove}"]`] = stylesRemovingText;
@@ -552,10 +555,22 @@ export class NewCommand {
         stylesRemoving[`[data-theme="${toRemove}"],`] = stylesRemovingText;
         stylesRemoving[`[data-theme='${toRemove}'],`] = stylesRemovingText;
       });
-      // src/styles.scss
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'styles.scss'),
         stylesRemoving
+      );
+      // src/unistylus.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'unistylus.scss'),
+        content => {
+          toRemoves.forEach(toRemove => {
+            content = content.replace(
+              new RegExp(`@import '(.*?)/skins/${toRemove}';\n`),
+              ''
+            );
+          });
+          return content;
+        }
       );
     }
 
@@ -564,33 +579,45 @@ export class NewCommand {
      */
 
     if (toAdds.length) {
-      // prepare
-      const stylesAdding1 = [] as string[];
-      const stylesAdding2 = [] as string[];
+      // src/styles.scss
+      const stylesAdding = [] as string[];
       toAdds.forEach(toAdd => {
-        // styles.scss (import)
-        stylesAdding1.push(`@use '@unistylus/core/scss/skins/${toAdd}';`);
-        // styles.scss (customization)
-        stylesAdding2.push(
+        stylesAdding.push(
           `// modify "${toAdd}" skin\n// [data-theme=${toAdd}] {}`
         );
       });
-      // src/styles.scss
       await this.fileService.changeContent(
         resolve(projectPath, 'src', 'styles.scss'),
-        {
-          "-default';\n": "-default';\n" + stylesAdding1.join('\n') + '\n',
-          '\n// register soul':
-            '\n' + stylesAdding2.join('\n\n') + '\n\n// register soul',
+        content => content + '\n\n' + stylesAdding.join('\n\n')
+      );
+      // src/unistylus.scss
+      await this.fileService.changeContent(
+        resolve(projectPath, 'src', 'unistylus.scss'),
+        content => {
+          const contentSample = (content.match(/@import '(.*?)';/) || [])[1];
+          if (!contentSample) return content;
+          const collection = (() => {
+            if (!contentSample.includes('@')) {
+              const [collection] = contentSample.split('/');
+              return collection;
+            }
+            const [org, name] = contentSample.split('/');
+            return `${org}/${name}`;
+          })();
+          let toAddImports = '';
+          toAdds.forEach(toAdd => {
+            toAddImports += `@import '${collection}/skins/${toAdd}';\n`;
+          });
+          return toAddImports + content;
         }
       );
     }
   }
 
   private async modifySoul(projectPath: string, from: string, to: string) {
-    // src/styles.scss
+    // src/unistylus.scss
     await this.fileService.changeContent(
-      resolve(projectPath, 'src', 'styles.scss'),
+      resolve(projectPath, 'src', 'unistylus.scss'),
       {
         [`@unistylus/${from}`]: `@unistylus/${to}`,
       },
